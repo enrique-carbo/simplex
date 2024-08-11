@@ -109,13 +109,8 @@ export const headerData = {
           href: getPermalink('astro', 'tag'),
         },
       ],
-    },
-    {
-      text: 'Widgets',
-      href: '#',
-    },
-  ],
-  actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+    }
+  ]
 };
 
 export const footerData = {
