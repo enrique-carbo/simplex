@@ -126,7 +126,7 @@ function Carrito() {
           </SheetDescription>
         </SheetHeader>
 
-        <div className="flex flex-col h-[calc(100vh-200px)] md:h-[calc(100vh-350px)]">
+        <div className="flex flex-col h-[calc(100vh-200px)] md:h-[calc(100vh-300px)]">
         <div className="flex-grow overflow-y-auto">
         <div className="py-4">
           <h3 className="mb-2 font-bold">Productos disponibles:</h3>
@@ -162,7 +162,7 @@ function Carrito() {
           {cartState.items.length > 0 && (
           <div className="py-4">
             <Button variant="destructive" onClick={clearCart}>
-              Borrar todo el carrito
+              Vaciar
             </Button>
           </div>
         )}

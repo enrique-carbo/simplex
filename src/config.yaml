@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Simplex
+  site: 'https://simplex-552.pages.dev/'
   base: '/'
   trailingSlash: false
 
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Simplex
+    template: '%s — Simplex'
+  description: "E-commerce website for the sale of basic clothing located in Paraná Entre Ríos called Simplex."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Simplex
     images:
       - url: '~/assets/images/default.png'
         width: 1200
