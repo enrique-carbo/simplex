@@ -117,7 +117,7 @@ function Carrito() {
         <Button variant="outline">Carrito ({getTotalItems()})</Button>    
       </SheetTrigger>
 
-      <SheetContent side="right" className="w-[300px] sm:w-[540px]">
+      <SheetContent side="right" className="w-[300px] sm:w-[540px] flex-grow overflow-y-auto">
 
         <SheetHeader>
           <SheetTitle>Carrito de Compras</SheetTitle>
@@ -125,9 +125,7 @@ function Carrito() {
             Productos en tu carrito
           </SheetDescription>
         </SheetHeader>
-
-        <div className="flex flex-col h-[calc(100vh-200px)] md:h-[calc(100vh-300px)]">
-        <div className="flex-grow overflow-y-auto">
+        
         <div className="py-4">
           <h3 className="mb-2 font-bold">Productos disponibles:</h3>
           {availableProducts.map((product) => (
@@ -154,9 +152,7 @@ function Carrito() {
             <p className="text-gray-500 italic">está vacío</p>
           )}
         </div>
-        </div>
-        </div>
-
+       
         <div className="mt-auto py-4 border-t">
           <h3 className="font-bold">Total: ${cartState.total}</h3>
           {cartState.items.length > 0 && (
