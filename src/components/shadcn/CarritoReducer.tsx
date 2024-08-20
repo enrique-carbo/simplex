@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 import {
   Sheet,
   SheetContent,
@@ -8,35 +8,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
+import { availableProducts, type Product } from "@/assets/data/products";
+import type { CartAction, CartState } from "@/types";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-}
-
-interface CartItem extends Product {
-  quantity: number;
-}
-
-const availableProducts: Product[] = [
-  { id: 1, name: "Producto 1", price: 10 },
-  { id: 2, name: "Producto 2", price: 15 },
-  { id: 3, name: "Producto 3", price: 20 },
-  { id: 4, name: "Producto 4", price: 20 },
-  { id: 5, name: "Producto 5", price: 20 },
-];
-
-type CartAction =
-  | { type: 'ADD_ITEM'; payload: Product }
-  | { type: 'REMOVE_ITEM'; payload: number }
-  | { type: 'CLEAR_CART' }
-  | { type: 'LOAD_CART'; payload: CartState };
-
-interface CartState {
-  items: CartItem[];
-  total: number;
-}
 
 function cartReducer(state: CartState, action: CartAction): CartState {
   let newState: CartState;

@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Hero from '~/components/widgets/Hero.astro';
+import HeroIndex from '~/components/widgets/HeroIndex.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
@@ -11,6 +11,7 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { CarouselPlugin } from '@/components/shadcn/CarouselPlugin';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -19,30 +20,26 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+
   <!-- Hero Widget ******************* -->
 
-  <Hero
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
-    ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
-  >
+  <HeroIndex>
     <Fragment slot="title">
-      ¡Descubre nuestra colección y experimenta la simplicidad como forma de vida!
+      ¡Descubre nuestra colección!
     </Fragment>
 
     <Fragment slot="subtitle">
       Nuestra indumentaria básica urbana está diseñada para aquellos que valoran la elegancia minimalista
       y la comodidad sin renunciar a la calidad y el estilo.
     </Fragment>
-  </Hero>
+  </HeroIndex>
+
+  <!------------- Carousel ---------------------- -->
+
+  <div class="mb-8">
+    <CarouselPlugin client:load/>
+  </div>
+  
 
   <!-- Note Widget ******************* -->
 

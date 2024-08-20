@@ -32,6 +32,8 @@
     "astro-icon": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.2.0",
+    "embla-carousel-react": "^8.2.0",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
     "lucide-react": "^0.427.0",
