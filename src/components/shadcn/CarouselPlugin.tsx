@@ -1,37 +1,46 @@
-import React from'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
 
+// Images 
+import HoodieImage from '@/assets/images/products/hoodie.jpg';
+import WhiteTShirt from '@/assets/images/products/white-t-shirt.jpg';
+import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg';
 
-type CarouselItemProps = {
-  index: number;
-  image: string;
-};
-
-const CarouselItemComponent: React.FC<CarouselItemProps> = ({ index, image }) => (
-  <div className="p-1">
-    <Card>
-      <CardContent className="flex aspect-square items-center justify-center p-6">
-        <img src={`./src/assets/images/products/${image}`} alt={`Imagen ${index + 1}`} 
-        className="object-cover w-full h-full"/>
-      </CardContent>
-    </Card>
-  </div>
-);
 
 export function CarouselPlugin() {
-  const images = ['hoodie.jpg', 'white-t-shirt.jpg', 'white-t-shirt-1.jpg'];
   
-
   return (
     <div className='flex justify-center'>
       <Carousel className="w-full max-w-md">
         <CarouselContent>
-          {images.map((image, index) => (
-            <CarouselItem key={index}>
-              <CarouselItemComponent index={index} image={image} />
-            </CarouselItem>
-          ))}
+          
+          <CarouselItem>
+            <Card className='p-1'>
+              <CardContent className="flex aspect-square items-center justify-center p-6">
+              <img src={HoodieImage.src} alt="Producto 1"
+              className="object-cover w-full h-full"/>
+              </CardContent>
+            </Card>
+           </CarouselItem>
+
+          <CarouselItem>
+            <Card className='p-1'>
+              <CardContent className="flex aspect-square items-center justify-center p-6">
+              <img src={WhiteTShirt.src} alt="Producto 2"
+              className="object-cover w-full h-full"/>
+              </CardContent>
+            </Card>
+          </CarouselItem>
+
+          <CarouselItem>
+            <Card className='p-1'>
+              <CardContent className="flex aspect-square items-center justify-center p-6">
+              <img src={WhiteTShirt1.src} alt="Producto 3"
+              className="object-cover w-full h-full"/>
+              </CardContent>
+            </Card>
+          </CarouselItem>
+        
         </CarouselContent>
         <CarouselPrevious className="hidden md:block"/>
         <CarouselNext className="hidden md:block"/>
