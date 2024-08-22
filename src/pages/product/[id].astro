@@ -1,0 +1,42 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import { availableProducts, type Product } from '@/assets/data/products';
+
+export async function getStaticPaths() {
+  return availableProducts.map((product) => ({
+    params: { id: product.id.toString() },
+    props: { product },
+  }));
+}
+
+const { id } = Astro.params;
+const { product } = Astro.props;
+
+const metadata = {
+  title: "Producto",
+};
+---
+
+<Layout metadata={metadata}>
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-3xl font-bold mb-6">{product.name}</h1>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <img src={product.image} alt={product.name} class="w-full h-auto rounded-lg shadow-md" />
+            </div>
+            <div>
+              <p class="text-2xl font-semibold mb-4">${product.price.toFixed(2)}</p>
+              <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors">
+                Añadir al carrito
+              </button>
+            </div>
+          </div>
+          <div class="mt-8">
+            <a href="/homes/startup" class="text-blue-500 hover:underline">
+              &larr; Volver a la lista de productos
+            </a>
+          </div>
+        </div>
+      </main>
+  </Layout>

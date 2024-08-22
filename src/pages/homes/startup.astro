@@ -12,6 +12,7 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Brands from '~/components/widgets/Brands.astro';
 
 import { YouTube } from 'astro-embed';
+import ProductList from '@/components/ecommerce/ProductList';
 
 const metadata = {
   title: 'Startup Landing Page',
@@ -55,6 +56,10 @@ const metadata = {
       </style>
     </Fragment>
   </Hero>
+
+  <!---------- Product List --------------------------->
+
+  <ProductList client:load></ProductList>
 
   <!-- Features2 Widget ************** -->
 
