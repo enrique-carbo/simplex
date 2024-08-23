@@ -6,13 +6,13 @@ export const headerData = {
       text: 'Homes',
       links: [
         {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
+          text: 'Productos',
+          href: getPermalink('/homes/products'),
         },
         {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
-        },
+          text: 'SaaS',
+          href: getPermalink('/homes/saas'),
+        },        
         {
           text: 'Mobile App',
           href: getPermalink('/homes/mobile-app'),

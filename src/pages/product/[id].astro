@@ -13,12 +13,12 @@ const { id } = Astro.params;
 const { product } = Astro.props;
 
 const metadata = {
-  title: "Producto",
+  title: `Producto ${id}`,
 };
 ---
 
 <Layout metadata={metadata}>
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-14">
         <div class="max-w-4xl mx-auto">
           <h1 class="text-3xl font-bold mb-6">{product.name}</h1>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -33,7 +33,7 @@ const metadata = {
             </div>
           </div>
           <div class="mt-8">
-            <a href="/homes/startup" class="text-blue-500 hover:underline">
+            <a href="/homes/products" class="text-blue-500 hover:underline">
               &larr; Volver a la lista de productos
             </a>
           </div>

@@ -15,45 +15,20 @@ import { YouTube } from 'astro-embed';
 import ProductList from '@/components/ecommerce/ProductList';
 
 const metadata = {
-  title: 'Startup Landing Page',
+  title: 'Productos',
 };
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero
-    tagline="Startup Web Demo"
-    actions={[
-      {
-        variant: 'primary',
-        target: '_blank',
-        text: 'Get templates',
-        href: 'https://github.com/onwidget/astrowind',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
-    ]}
-  >
+  <Hero tagline="Disfruta de lo simple">
     <Fragment slot="title">
-      Improve <span class="hidden sm:inline">the online presence of</span> your <span
-        class="text-accent dark:text-white highlight">Startup</span
-      > with Astrowind templates
+      Productos
     </Fragment>
 
     <Fragment slot="subtitle">
-      Step into the spotlight with <span class="font-semibold">Astrowind</span> templates, your pathway to fortifying your
-      startup's digital footprint, fostering credibility, and expanding your reach.
-    </Fragment>
-
-    <Fragment slot="image">
-      <YouTube id="gxBkghlglTg" title="Astro just Launched.... Could it be the ultimate web framework?" />
-      <style is:inline>
-        lite-youtube {
-          margin: 0 auto;
-          max-width: 100%;
-        }
-      </style>
+      Nuestros productos en tus dispositivos.
     </Fragment>
   </Hero>
 
