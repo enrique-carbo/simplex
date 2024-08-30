@@ -1,4 +1,5 @@
-import { useReducer, useEffect } from 'react';
+import { useStore } from '@nanostores/react'
+import { $cartItems, $cartTotal, addToCart, removeFromCart, clearCart } from '@/store/cart'
 import {
   Sheet,
   SheetContent,
@@ -9,34 +10,15 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { availableProducts, type Product } from "@/assets/data/products";
-import cartReducer from "@/components/reducer/CartReducer"
 
-function Carrito() {
-  const [cartState, dispatch] = useReducer(cartReducer, { items: [], total: 0 });
 
-  useEffect(() => {
-    // Cargar el carrito desde localStorage al montar el componente
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      dispatch({ type: 'LOAD_CART', payload: JSON.parse(savedCart) });
-    }
-  }, []);
-
-  const addToCart = (product: Product) => {
-    dispatch({ type: 'ADD_ITEM', payload: product });
-  };
-
-  const removeFromCart = (productId: number) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: productId });
-  };
-
-  const clearCart = () => {
-    dispatch({ type: 'CLEAR_CART' });
-  };
+function CarritoNanostore() {
+  const cartItems = useStore($cartItems)
+  const total = useStore($cartTotal)
 
   const getTotalItems = () => {
-    return cartState.items.reduce((sum, item) => sum + item.quantity, 0);
-  };
+    return cartItems.reduce((sum, item) => sum + item.quantity, 0)
+  }
 
   return(
     <Sheet>
@@ -47,7 +29,7 @@ function Carrito() {
       <SheetContent side="right" className="w-[300px] sm:w-[540px] flex-grow overflow-y-auto">
 
         <SheetHeader>
-          <SheetTitle>Carrito de Compras</SheetTitle>
+          <SheetTitle>Carrito de Compras Nanostore</SheetTitle>
           <SheetDescription>
             Productos en tu carrito
           </SheetDescription>
@@ -56,7 +38,7 @@ function Carrito() {
         <div className="py-4">
           <h3 className="mb-2 font-bold">Productos disponibles:</h3>
           {availableProducts.map((product) => (
-            <div key={product.id} className="flex justify-between items-center mb-2">
+            <div key={product.id.toString()} className="flex justify-between items-center mb-2">
               <span>{product.name} - ${product.price}</span>
               <Button size="sm" className="text-white" onClick={() => addToCart(product)}>Agregar</Button>
             </div>
@@ -64,10 +46,10 @@ function Carrito() {
         </div>
 
         <div className="py-4">
-          <h3 className="mb-2 font-bold">Tu carrito:</h3>
-          {cartState.items.length > 0 ? (
-          cartState.items.map((item) => (
-            <div key={item.id} className="flex justify-between items-center mb-2">
+        <h3 className="mb-2 font-bold">Tu carrito:</h3>
+        {cartItems.length > 0 ? (
+          cartItems.map((item) => (
+            <div key={item.id.toString()} className="flex justify-between items-center mb-2">
               <span>{item.name} - ${item.price} x {item.quantity}</span>
               <div>
                 <Button variant="outline" size="sm" onClick={() => removeFromCart(item.id)}>-</Button>
@@ -75,25 +57,25 @@ function Carrito() {
                 <Button variant="outline" size="sm" onClick={() => addToCart(item)}>+</Button>
               </div>
             </div>
-          ))) : (
-            <p className="text-gray-500 italic">está vacío</p>
-          )}
-        </div>
-       
-        <div className="mt-auto py-4 border-t">
-          <h3 className="font-bold">Total: ${cartState.total}</h3>
-          {cartState.items.length > 0 && (
+          ))
+        ) : (
+          <p className="text-gray-500 italic">está vacío</p>
+        )}
+      </div>
+      <div className="mt-auto py-4 border-t">
+        <h3 className="font-bold">Total: ${total.toFixed(2)}</h3>
+        {cartItems.length > 0 && (
           <div className="py-4">
             <Button variant="destructive" onClick={clearCart}>
               Vaciar
             </Button>
           </div>
         )}
-        </div>
+      </div>
         
       </SheetContent>
     </Sheet>
   )
 }
 
-export default Carrito;
+export default CarritoNanostore;

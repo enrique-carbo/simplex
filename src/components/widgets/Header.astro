@@ -8,7 +8,8 @@ import Button from '~/components/ui/Button.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash, getAsset } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
-import Carrito from '@/components/shadcn/Carrito';
+
+import CarritoNanostore from '@/components/shadcn/CarritoNanostore';
 
 
 interface Link {
@@ -138,7 +139,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     >
       <div class="items-center flex justify-between w-full md:w-auto">
         <div class="flex">
-          <Carrito client:load></Carrito>
+          <CarritoNanostore client:load></CarritoNanostore>
           {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
           {
             showRssFeed && (

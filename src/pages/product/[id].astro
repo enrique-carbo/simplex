@@ -1,6 +1,8 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
 import { availableProducts, type Product } from '@/assets/data/products';
+import ButtonAddToCart from '@/components/ecommerce/ButtonAddToCart';
+
 
 export async function getStaticPaths() {
   return availableProducts.map((product) => ({
@@ -27,9 +29,7 @@ const metadata = {
             </div>
             <div>
               <p class="text-2xl font-semibold mb-4">${product.price.toFixed(2)}</p>
-              <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors">
-                Añadir al carrito
-              </button>
+              <ButtonAddToCart client:load product={product}></ButtonAddToCart>
             </div>
           </div>
           <div class="mt-8">
@@ -40,3 +40,4 @@ const metadata = {
         </div>
       </main>
   </Layout>
+
