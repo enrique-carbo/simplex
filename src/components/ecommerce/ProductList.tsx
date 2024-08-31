@@ -1,14 +1,21 @@
 import React from 'react';
 import { availableProducts, type Product } from '@/assets/data/products';
 
-const ProductList: React.FC = () => {
+interface ProductListProps {
+  category: string;
+}
+
+const ProductList: React.FC<ProductListProps> = ( {category} ) => {
   const handleProductClick = (product: Product) => {
     window.location.href = `/product/${product.id}`;
   };
 
+const filteredProducts = availableProducts.filter((product) => product.category === category);
+
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5 mb-10">
-      {availableProducts.map((product) => (
+      {filteredProducts.map((product) => (
         <div
           key={product.id}
           className="bg-slate-100 rounded-lg shadow-md overflow-hidden cursor-pointer transition-transform hover:scale-105"

@@ -11,30 +11,29 @@ import Features3 from '~/components/widgets/Features3.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Brands from '~/components/widgets/Brands.astro';
 
-import { YouTube } from 'astro-embed';
 import ProductList from '@/components/ecommerce/ProductList';
 
 const metadata = {
-  title: 'Productos',
+  title: 'Buzos',
 };
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero tagline="Disfruta de lo simple">
+  <Hero tagline="Simplex Buzos">
     <Fragment slot="title">
-      Productos
+      Buzos
     </Fragment>
 
     <Fragment slot="subtitle">
-      Nuestros productos en tus dispositivos.
+      Nuestros buzos en tus dispositivos.
     </Fragment>
   </Hero>
 
   <!---------- Product List --------------------------->
 
-  <ProductList client:load></ProductList>
+  <ProductList client:load category="buzos"></ProductList>
 
   <!-- Features2 Widget ************** -->
 
