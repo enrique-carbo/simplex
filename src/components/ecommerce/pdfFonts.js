@@ -1,5 +1,4 @@
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
 
 // Fuentes personalizadas (opcional)
 // const customFonts = {
@@ -11,7 +10,17 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 //   }
 // };
 
+const pdfFonts = {
+    Roboto: {
+      normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
+      bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
+      italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
+      bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf',
+    },
+  };
+
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-// pdfMake.fonts = customFonts; // Descomenta esta línea si usas fuentes personalizadas
+pdfMake.fonts = pdfFonts; // Descomenta esta línea si usas fuentes personalizadas
 
 export default pdfMake;
