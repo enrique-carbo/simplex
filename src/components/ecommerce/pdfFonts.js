@@ -19,7 +19,9 @@ const pdfFonts = {
     },
   };
 
-
+if (typeof window !== 'undefined') {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+  }
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 pdfMake.fonts = pdfFonts; // Descomenta esta línea si usas fuentes personalizadas
 
