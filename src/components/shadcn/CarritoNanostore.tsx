@@ -1,16 +1,29 @@
+import { useState, useEffect } from 'react';
 import { useStore } from '@nanostores/react';
 import { $cartItems, $cartTotal, addToCart, removeFromCart, clearCart } from '@/store/cart';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { availableProducts, type Product } from '@/assets/data/products';
+import { availableProducts } from '@/assets/data/products';
+import PDFDownloadButton from '@/components/ecommerce/PDFDownloadButton';
+
 
 function CarritoNanostore() {
   const cartItems = useStore($cartItems);
   const total = useStore($cartTotal);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
   const getTotalItems = () => {
     return cartItems.reduce((sum, item) => sum + item.quantity, 0);
   };
+
+  if (isLoading) {
+    return <Button variant="outline">Cargando...</Button>;
+  }
 
   return (
     <Sheet>
@@ -64,10 +77,11 @@ function CarritoNanostore() {
         <div className="mt-auto py-4 border-t">
           <h3 className="font-bold">Total: ${total.toFixed(2)}</h3>
           {cartItems.length > 0 && (
-            <div className="py-4">
+            <div className="py-4 flex justify-between">
               <Button variant="destructive" onClick={clearCart}>
                 Vaciar
               </Button>
+              <PDFDownloadButton />
             </div>
           )}
         </div>

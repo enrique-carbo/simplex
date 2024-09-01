@@ -57,6 +57,18 @@ export default defineConfig({
         '~': path.resolve(__dirname, './src'),
         '@': path.resolve(__dirname, './src')
       }
-    }
-  }
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            pdfmake: ['pdfmake', 'pdfmake/build/vfs_fonts'],
+          },
+        },
+      },
+    },
+    optimizeDeps: {
+      include: ['pdfmake/build/pdfmake', 'pdfmake/build/vfs_fonts'],
+    },
+  },
 });
