@@ -4,7 +4,7 @@ import { $cartItems, $cartTotal, addToCart, removeFromCart, clearCart } from '@/
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { availableProducts } from '@/assets/data/products';
-import PDFDownloadButton from '@/components/ecommerce/PDFDownloadButton';
+
 
 
 function CarritoNanostore() {
@@ -77,11 +77,11 @@ function CarritoNanostore() {
         <div className="mt-auto py-4 border-t">
           <h3 className="font-bold">Total: ${total.toFixed(2)}</h3>
           {cartItems.length > 0 && (
-            <div className="py-4 flex justify-between">
+            <div className="py-4">
               <Button variant="destructive" onClick={clearCart}>
                 Vaciar
               </Button>
-              <PDFDownloadButton/>
+              
             </div>
           )}
         </div>
