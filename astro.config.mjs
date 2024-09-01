@@ -74,4 +74,5 @@ export default defineConfig({
       noExternal: ['pdfmake', 'pdfmake/build/vfs_fonts'],
     },
   },
+  assetsInclude: ['**/*.ttf'],
 });
