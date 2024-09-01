@@ -1,35 +1,46 @@
-/* import pdfMake from "pdfmake/build/pdfmake";
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 
-const pdfFonts = {
-    Roboto: {
-      normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
-      bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
-      italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
-      bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf',
-    },
-  };
+// Importa las fuentes como archivos
+import RobotoRegular from '/fonts/Roboto-Regular.ttf';
+import RobotoBold from '/fonts/Roboto-Bold.ttf';
+import RobotoItalic from '/fonts/Roboto-Italic.ttf';
+import RobotoBoldItalic from '/fonts/Roboto-BoldItalic.ttf';
 
-if (typeof window !== 'undefined') {
-    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// Función para convertir la fuente a base64
+const fontToBase64 = async (fontUrl) => {
+  const response = await fetch(fontUrl);
+  const blob = await response.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+};
+
+// Configuración de fuentes
+const fonts = {
+  Roboto: {
+    normal: 'Roboto-Regular',
+    bold: 'Roboto-Bold',
+    italics: 'Roboto-Italic',
+    bolditalics: 'Roboto-BoldItalic'
   }
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-pdfMake.fonts = pdfFonts;
-export default pdfMake; */
+};
 
-let pdfMake;
-let pdfFonts;
+// Cargar las fuentes en el sistema de archivos virtual
+const loadFonts = async () => {
+  pdfMake.vfs = pdfFonts.pdfMake.vfs;
+  pdfMake.vfs['Roboto-Regular'] = await fontToBase64(RobotoRegular);
+  pdfMake.vfs['Roboto-Bold'] = await fontToBase64(RobotoBold);
+  pdfMake.vfs['Roboto-Italic'] = await fontToBase64(RobotoItalic);
+  pdfMake.vfs['Roboto-BoldItalic'] = await fontToBase64(RobotoBoldItalic);
+};
 
-try {
-  pdfMake = require('pdfmake/build/pdfmake');
-  pdfFonts = require('pdfmake/build/vfs_fonts');
-  
-  if (pdfMake && pdfFonts && pdfFonts.pdfMake && pdfFonts.pdfMake.vfs) {
-    pdfMake.vfs = pdfFonts.pdfMake.vfs;
-  } else {
-    console.warn('pdfMake or pdfFonts not loaded correctly');
-  }
-} catch (error) {
-  console.error('Error loading pdfMake or pdfFonts:', error);
-}
+// Inicializar pdfMake con las fuentes
+loadFonts().then(() => {
+  pdfMake.fonts = fonts;
+});
 
 export default pdfMake;

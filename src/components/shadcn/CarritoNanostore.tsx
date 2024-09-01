@@ -81,7 +81,7 @@ function CarritoNanostore() {
               <Button variant="destructive" onClick={clearCart}>
                 Vaciar
               </Button>
-              <PDFDownloadButton />
+              <PDFDownloadButton/>
             </div>
           )}
         </div>
