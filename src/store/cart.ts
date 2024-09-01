@@ -1,7 +1,7 @@
 import { atom, computed } from 'nanostores'
 import type { Product } from '@/assets/data/products'
 
-type CartItem = Product & { quantity: number }
+export type CartItem = Product & { quantity: number }
 
 const CART_STORAGE_KEY = 'cartItems'
 

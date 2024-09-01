@@ -5,6 +5,8 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Button } from '@/components/ui/button';
 import { availableProducts } from '@/assets/data/products';
 
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PDFDocument from '@/components/ecommerce/PDFDocument';
 
 
 function CarritoNanostore() {
@@ -81,6 +83,17 @@ function CarritoNanostore() {
               <Button variant="destructive" onClick={clearCart}>
                 Vaciar
               </Button>
+
+              <PDFDownloadLink
+                document={<PDFDocument cartItems={cartItems} total={total} />}
+                fileName="resumen-compra.pdf"
+              >
+                {({ blob, url, loading, error }) => (
+                  <Button variant="outline" disabled={loading} className="ml-2">
+                    {loading ? 'Generando PDF...' : 'Descargar PDF'}
+                  </Button>
+                )}
+              </PDFDownloadLink>
               
             </div>
           )}

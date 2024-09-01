@@ -26,6 +26,7 @@
     "@nanostores/react": "^0.7.3",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@react-pdf/renderer": "^3.4.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.14.5",
