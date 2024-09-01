@@ -72,8 +72,7 @@ export default defineConfig({
     },
     ssr: {
       noExternal: ['pdfmake', 'pdfmake/build/vfs_fonts'],
-    },
-    assetsInclude: ['**/*.ttf'],
+    }
   },
-  
+  assetsInclude: ['**/*.ttf'],
 });

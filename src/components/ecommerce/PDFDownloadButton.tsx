@@ -11,7 +11,7 @@ const PDFDownloadButton: React.FC = () => {
   const generatePDF = async () => {
     setIsLoading(true);
     try {
-      const pdfMake = await import('./pdfFonts');
+      const pdfMake = await import('@/components/ecommerce/pdfFonts');
 
       const docDefinition = {
         content: [
