@@ -18,8 +18,8 @@ export const headerData = {
           href: getPermalink('/homes/pantalones'),
         },
         {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
+          text: 'Bags',
+          href: getPermalink('/homes/marroquineria'),
         },
       ],
     },

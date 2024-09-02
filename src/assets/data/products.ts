@@ -16,4 +16,7 @@ export const availableProducts: Product[] = [
   { id: 7, name: 'Producto 7', price: 25, image: '/images/products/jeans.webp', category: 'pantalones' },
   { id: 8, name: 'Producto 8', price: 25, image: '/images/products/pantalon.webp', category: 'pantalones' },
   { id: 9, name: 'Producto 9', price: 20, image: '/images/products/Jogging.webp', category: 'pantalones' },
+  { id: 10, name: 'Producto 10', price: 10, image: '/images/products/fanny-pack.webp', category: 'bags' },
+  { id: 11, name: 'Producto 11', price: 10, image: '/images/products/morral.webp', category: 'bags' },
+  { id: 12, name: 'Producto 12', price: 10, image: '/images/products/morral-1.webp', category: 'bags' },
 ];
