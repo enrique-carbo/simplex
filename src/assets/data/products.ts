@@ -7,7 +7,9 @@ export interface Product {
 }
 
 export const availableProducts: Product[] = [
-  { id: 1, name: 'Producto 1', price: 20, image: '/images/products/hoodie.jpg', category: 'buzos' },
+  { id: 1, name: 'Producto 1', 
+    price: 20, image: '/images/products/hoodie.jpg', 
+    category: 'buzos' },
   { id: 2, name: 'Producto 2', price: 20, image: '/images/products/hoodie.webp', category: 'buzos' },
   { id: 3, name: 'Producto 3', price: 10, image: '/images/products/white-t-shirt.jpg', category: 'remeras' },
   { id: 4, name: 'Producto 4', price: 10, image: '/images/products/white-t-shirt.jpg', category: 'remeras' },

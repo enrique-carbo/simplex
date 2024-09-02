@@ -8,7 +8,6 @@ import { availableProducts } from '@/assets/data/products';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDFDocument from '@/components/ecommerce/PDFDocument';
 
-
 function CarritoNanostore() {
   const cartItems = useStore($cartItems);
   const total = useStore($cartTotal);
@@ -56,22 +55,29 @@ function CarritoNanostore() {
         <div className="py-4">
           <h3 className="mb-2 font-bold">Tu carrito:</h3>
           {cartItems.length > 0 ? (
-            cartItems.map((item) => (
-              <div key={item.id.toString()} className="flex justify-between items-center mb-2">
-                <span>
-                  {item.name} - ${item.price} x {item.quantity}
-                </span>
-                <div>
-                  <Button variant="outline" size="sm" onClick={() => removeFromCart(item.id)}>
-                    -
-                  </Button>
-                  <span className="mx-2">{item.quantity}</span>
-                  <Button variant="outline" size="sm" onClick={() => addToCart(item)}>
-                    +
-                  </Button>
+            cartItems.map((item) => {
+              const subtotal = item.price * item.quantity; // Calcular subtotal
+              return (
+                <div key={item.id.toString()} className="block md:flex justify-between items-center mb-2 border-t p-2">
+                  <span>
+                    {item.name} - ${item.price} x {item.quantity}
+                  </span>
+                  <div className='p-2'>
+                    <Button variant="outline" size="sm" onClick={() => removeFromCart(item.id)}>
+                      -
+                    </Button>
+                    <span className="mx-2">{item.quantity}</span>
+                    <Button variant="outline" size="sm" onClick={() => addToCart(item)}>
+                      +
+                    </Button>
+                    <span className='p-2'>
+                      {subtotal.toFixed(2)}
+                    </span>
+                  </div>
+                  
                 </div>
-              </div>
-            ))
+              );
+            })
           ) : (
             <p className="text-gray-500 italic">está vacío</p>
           )}
@@ -94,7 +100,6 @@ function CarritoNanostore() {
                   </Button>
                 )}
               </PDFDownloadLink>
-              
             </div>
           )}
         </div>
