@@ -19,12 +19,16 @@ export const headerData = {
         },
         {
           text: 'Bags',
-          href: getPermalink('/homes/marroquineria'),
+          href: getPermalink('/homes/bags'),
         },
+        {
+          text: 'Accesorios',
+          href: getPermalink('/homes/accesorios')
+        }
       ],
     },
     {
-      text: 'Pages',
+      text: 'Nosotros',
       links: [
         {
           text: 'Features (Anchor Link)',
@@ -57,48 +61,19 @@ export const headerData = {
       ],
     },
     {
-      text: 'Landing',
-      links: [
-        {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
-        },
-        {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
-        },
-        {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
-        },
-        {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
-        },
-        {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
-        },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
-        },
-      ],
-    },
-    {
       text: 'Blog',
       links: [
         {
-          text: 'Blog List',
+          text: 'Artículos',
           href: getBlogPermalink(),
         },
         {
-          text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+          text: 'Cordura',
+          href: getPermalink('cordura-dupont', 'post'),
         },
         {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
+          text: 'Remeras de Algodón',
+          href: getPermalink('remera-algodon-tipos', 'post'),
         },
         {
           text: 'Category Page',
@@ -121,21 +96,37 @@ export const footerData = {
         { text: 'Remeras', href: '/homes/remeras' },
         { text: 'Buzos', href: '/homes/buzos' },
         { text: 'Pantalones', href: '/homes/pantalones' },
-        { text: 'Bags', href: '/homes/marroquineria' },
+        { text: 'Bags', href: '/homes/bags' },
+        { text: 'Accesorios', href: '/homes/accesorios' },
       ],
     },
     {
-      title: 'Platform',
+      title: 'Blog',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
+        {
+          text: 'Artículos',
+          href: getBlogPermalink(),
+        },
+        {
+          text: 'Cordura',
+          href: getPermalink('cordura-dupont', 'post'),
+        },
+        {
+          text: 'Remeras de Algodón',
+          href: getPermalink('remera-algodon-tipos', 'post'),
+        },
+        {
+          text: 'Category Page',
+          href: getPermalink('tutorials', 'category'),
+        },
+        {
+          text: 'Tag Page',
+          href: getPermalink('astro', 'tag'),
+        },
       ],
     },
     {
-      title: 'Support',
+      title: 'Nosotros',
       links: [
         { text: 'Docs', href: '#' },
         { text: 'Community Forum', href: '#' },
