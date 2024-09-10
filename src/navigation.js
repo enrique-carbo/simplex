@@ -30,32 +30,23 @@ export const headerData = {
     {
       text: 'Nosotros',
       links: [
-        {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
-        },
-        {
-          text: 'Services',
-          href: getPermalink('/services'),
-        },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
+        { text: 'Ubicación',
+          href: getPermalink('/location')
         },
         {
           text: 'About us',
           href: getPermalink('/about'),
         },
         {
-          text: 'Contact',
+          text: 'Contacto',
           href: getPermalink('/contact'),
         },
         {
-          text: 'Terms',
+          text: 'Términos',
           href: getPermalink('/terms'),
         },
         {
-          text: 'Privacy policy',
+          text: 'Privacidad',
           href: getPermalink('/privacy'),
         },
       ],
@@ -128,17 +119,15 @@ export const footerData = {
     {
       title: 'Nosotros',
       links: [
-        { text: 'Docs', href: '#' },
+        { text: 'Ubicación', href: '/location' },
         { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
+        { text: 'Professional Services', href: '#' }
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Términos', href: getPermalink('/terms') },
+    { text: 'Privacidad', href: getPermalink('/privacy') },
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },

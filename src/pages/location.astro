@@ -1,0 +1,72 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+
+
+const metadata = {
+  title: 'Ubicación',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    image={{ src: '~/assets/images/location.png', alt: 'Ubicación Hero Image' }}
+  >
+    <Fragment slot="title">
+      <span class="text-3xl md:text-5xl">¿Dónde nos encontramos?</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+        ¡Estamos ubicados en <span class="font-bold">Padre Bartolomé Grella 1519</span>, esquina Comandante Espora! 
+    </Fragment>
+  </Hero>
+
+    <!-- Features2 Widget ************** -->
+
+    <Features2
+    title="Mapa"
+    subtitle="Nuestros local comercial está convenientemente ubicado, rodeado de un fácil acceso al transporte público y se suele encontrar lugar para estacionar. ¡Visitanos hoy!"
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!------------------- Map iframe -------------------------------->
+
+  <div class="flex flex-row justify-center py-6 px-4 mx-auto bg-blue-50 dark:bg-transparent overflow-x-auto">
+    <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1m_5VSJ7JHoPJqYZJKuDHtOwPbEdBS1M&ehbc=2E312F&noprof=1" width="920" height="480"></iframe>
+  </div>
+
+  <!-- Steps2 Widget ****************** -->
+
+  <Steps2
+    title="Transporte Público"
+    subtitle=" Las siguientes líneas de colectivos pasan cerca de nuestra ubicación:"
+    items={[
+      {
+        title: 'Línea 5',
+        description: 'Padre Grella y Amancio Acosta',
+        icon: 'tabler:bus',
+      },
+      {
+        title: 'Línea 7',
+        description: 'Padre Grella y Don Bosco',
+        icon: 'tabler:bus',
+      },
+      {
+        title: 'Línea 20',
+        description: 'Padre Grella y Don Bosco',
+        icon: 'tabler:bus',
+      },
+    ]}
+  />
+
+  
+  
+  </Layout>
+
