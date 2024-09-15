@@ -34,7 +34,7 @@ function CarritoNanostore() {
 
       <SheetContent side="right" className="w-[300px] sm:w-[540px] flex-grow overflow-y-auto">
         <SheetHeader>
-          <SheetTitle>Carrito de Compras Nanostore</SheetTitle>
+          <SheetTitle>Carrito de Compras</SheetTitle>
           <SheetDescription>Productos en tu carrito</SheetDescription>
         </SheetHeader>
 

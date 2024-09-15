@@ -40,15 +40,7 @@ export const headerData = {
         {
           text: 'Contacto',
           href: getPermalink('/contact'),
-        },
-        {
-          text: 'Términos',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacidad',
-          href: getPermalink('/privacy'),
-        },
+        }
       ],
     },
     {
@@ -92,42 +84,20 @@ export const footerData = {
       ],
     },
     {
-      title: 'Blog',
-      links: [
-        {
-          text: 'Artículos',
-          href: getBlogPermalink(),
-        },
-        {
-          text: 'Cordura',
-          href: getPermalink('cordura-dupont', 'post'),
-        },
-        {
-          text: 'Remeras de Algodón',
-          href: getPermalink('remera-algodon-tipos', 'post'),
-        },
-        {
-          text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
-        },
-        {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
-        },
-      ],
-    },
-    {
       title: 'Nosotros',
       links: [
         { text: 'Ubicación', href: '/location' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' }
+        { text: 'Contacto', href: '#' }
+      ]
+    },
+    {
+      title: 'Legales',
+      links: [
+        { text: 'Términos y Condiciones', href: '/terms' },
+        { text: 'Políticas de Privacidad', href: '/privacy' },
+        { text: 'Cambios y Devoluciones', href: '/cambios' }
       ],
     },
-  ],
-  secondaryLinks: [
-    { text: 'Términos', href: getPermalink('/terms') },
-    { text: 'Privacidad', href: getPermalink('/privacy') },
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
