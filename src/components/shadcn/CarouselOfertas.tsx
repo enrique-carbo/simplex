@@ -42,13 +42,17 @@ const carouselItems = [
 export function CarouselOfertas() {
   
   return (
-    <div className='flex justify-center'>
-      <Carousel className="w-full max-w-md md:max-w-3xl" 
+    <div className='flex justify-center p-4'>
+      <Carousel className="w-full max-w-lg md:max-w-4xl" 
       plugins={[
         Autoplay({
           delay: 3000,
         }),
-      ]}>
+      ]}
+      opts={{
+        align: "start",
+        loop: true,
+      }}>
         
         <CarouselContent>
           

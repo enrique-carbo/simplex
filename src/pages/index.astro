@@ -1,16 +1,15 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import Layout from '@/layouts/PageLayout.astro';
 
-import HeroIndex from '~/components/widgets/HeroIndex.astro';
-import Note from '~/components/widgets/Note.astro';
-import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
+import HeroIndex from '@/components/widgets/HeroIndex.astro';
+import Note from '@/components/widgets/Note.astro';
+import Features from '@/components/widgets/Features.astro';
+import Features2 from '@/components/widgets/Features2.astro';
+import Steps from '@/components/widgets/Steps.astro';
+import BlogLatestPosts from '@/components/widgets/BlogLatestPosts.astro';
+import FAQs from '@/components/widgets/FAQs.astro';
+import Stats from '@/components/widgets/Stats.astro';
+import CallToAction from '@/components/widgets/CallToAction.astro';
 import { CarouselHero } from '@/components/shadcn/CarouselHero';
 import { CarouselOfertas } from '@/components/shadcn/CarouselOfertas'
 
@@ -91,11 +90,15 @@ const metadata = {
         icon: 'bag',
       },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features>
 
   <!---------------- Carousel Ofertas ------------------------->
 
-  <div class="p-10">
+  <div class="p-2 md:p-10">
     <CarouselOfertas client:visible></CarouselOfertas>
   </div>
 
@@ -211,39 +214,39 @@ const metadata = {
 
   <FAQs
     title="Preguntas Frecuentes"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    subtitle="Preguntas frecuentes que podrían surgir relacionadas a nuestro local de indumentaria."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Why AstroWind?',
+        title: '¿Qué tipo de indumentaria se vende?',
         description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+          "Nuestra tienda ofrece una amplia variedad de indumentaria para hombres y unisex, incluyendo ropa casual, deportiva, accesorios y más.",
       },
       {
-        title: 'What do I need to start?',
+        title: '¿Cuáles son los horarios de atención en el showroom?',
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          'Nuestra local comercial está abierto de corrido de lunes a viernes de 14:00 a 19:00 y los sábados de 14:00 a 20:00 hs.',
       },
       {
-        title: 'How to install the Astro + Tailwind CSS template?',
+        title: '¿Cómo puedo hacer un pedido en línea?',
         description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+          "Puedes hacer un pedido en línea en nuestro sitio web, seleccionando los productos que deseas en el carrito y descargando el pedido. El PDF descargado debe ser enviado por Correo electrónico, Formulario de contacto o Whatsapp y nos contactaremos a la brevedad.",
       },
       {
-        title: "What's something that you don't understand?",
+        title: "¿Qué métodos de pago son aceptados?",
         description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+          "Los tipos de pagos aceptados son Efectivo, Transferencias y Mercado Pago.",
       },
       {
-        title: 'What is something that you would like to try again?',
+        title: '¿Qué es el plazo de envío para pedidos en línea?',
         description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+          "Nuestros pedidos en línea se envían dentro de las 72 horas hábiles después de recibir el pago. El plazo de entrega es de 3-5 días hábiles para pedidos dentro de la ciudad de Paraná.",
       },
       {
-        title: 'If you could only ask one question to each person you meet, what would that question be?',
+        title: '¿Tiene descuentos o promociones especiales?',
         description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+          "Sí, ofrecemos descuentos y promociones especiales en diferentes momentos del año. Puedes informarte en esta página web sobre noticias y ofertas exclusivas.",
       },
     ]}
   />

@@ -6,8 +6,13 @@ import Autoplay from "embla-carousel-autoplay"
 import HoodieImage from '@/assets/images/products/hoodie.jpg';
 import WhiteTShirt from '@/assets/images/products/white-t-shirt.jpg';
 import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg';
+import SimplexModel from '@/assets/images/products/model-simplex-1.jpg'
 
 const carouselItems = [
+  {
+    image: SimplexModel,
+    alt: 'Simplex model'
+  },
   {
     image: HoodieImage,
     alt: 'Producto 1'
@@ -32,7 +37,11 @@ export function CarouselHero() {
         Autoplay({
           delay: 3000,
         }),
-      ]}>
+      ]}
+      opts={{
+        align: "start",
+        loop: true,
+      }}>
         
         <CarouselContent>
           
