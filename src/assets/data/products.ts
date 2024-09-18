@@ -24,4 +24,5 @@ export const availableProducts: Product[] = [
   { id: 13, name: 'Producto 13', price: 4900, image: '/images/products/boxer.jpg', category: 'accesorios' },
   { id: 14, name: 'Producto 14', price: 3900, image: '/images/products/gorra.jpg', category: 'accesorios' },
   { id: 15, name: 'Producto 15', price: 2900, image: '/images/products/medias-2.jpg', category: 'accesorios' },
+  { id: 16, name: 'Producto 16', price: 39000, image: '/images/products/modelo-buzo-gris-sm.jpg', category: 'buzos' },
 ];
