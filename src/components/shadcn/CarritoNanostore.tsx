@@ -11,7 +11,7 @@ import PDFDocument from '@/components/ecommerce/PDFDocument';
 function CarritoNanostore() {
   const cartItems = useStore($cartItems);
   const total = useStore($cartTotal);
-
+  const [isCheckoutComplete, setIsCheckoutComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -21,6 +21,23 @@ function CarritoNanostore() {
   const getTotalItems = () => {
     return cartItems.reduce((sum, item) => sum + item.quantity, 0);
   };
+
+  const handleFinishPurchase = () => {
+    // Aquí se puede agregar lógica adicional para procesar la compra
+    setIsCheckoutComplete(true);
+  };
+
+  const handlePdfDownload = () => {
+    setTimeout(() => {
+      clearCart(); 
+      setIsCheckoutComplete(false); // Resetear la variable
+    }, 2000);
+  };
+
+  const handleClearCart = () => {
+    clearCart();
+    setIsCheckoutComplete(false);
+  }
 
   if (isLoading) {
     return <Button variant="outline">Cargando...</Button>;
@@ -62,7 +79,7 @@ function CarritoNanostore() {
                   <span>
                     {item.name} - ${item.price} x {item.quantity}
                   </span>
-                  <div className='p-2'>
+                  <div className="p-2">
                     <Button variant="outline" size="sm" onClick={() => removeFromCart(item.id)}>
                       -
                     </Button>
@@ -70,11 +87,8 @@ function CarritoNanostore() {
                     <Button variant="outline" size="sm" onClick={() => addToCart(item)}>
                       +
                     </Button>
-                    <span className='p-2'>
-                      {subtotal.toFixed(2)}
-                    </span>
+                    <span className="p-2">{subtotal.toFixed(2)}</span>
                   </div>
-                  
                 </div>
               );
             })
@@ -86,20 +100,31 @@ function CarritoNanostore() {
           <h3 className="font-bold">Total: ${total.toFixed(2)}</h3>
           {cartItems.length > 0 && (
             <div className="py-4">
-              <Button variant="destructive" onClick={clearCart}>
+              <Button variant="destructive" onClick={handleClearCart}>
                 Vaciar
               </Button>
 
-              <PDFDownloadLink
-                document={<PDFDocument cartItems={cartItems} total={total} />}
-                fileName="resumen-compra.pdf"
-              >
-                {({ blob, url, loading, error }) => (
-                  <Button variant="outline" disabled={loading} className="ml-2">
-                    {loading ? 'Generando PDF...' : 'Descargar PDF'}
-                  </Button>
-                )}
-              </PDFDownloadLink>
+              {!isCheckoutComplete ? (
+                <Button onClick={handleFinishPurchase} className="ml-1 text-white">
+                  Finalizar Compra
+                </Button>
+              ) : (
+                <PDFDownloadLink
+                  document={<PDFDocument cartItems={cartItems} total={total} />}
+                  fileName="resumen-compra.pdf"
+                >
+                  {({ blob, url, loading, error }) => (
+                    <Button
+                      className='ml-1' 
+                      variant="outline" 
+                      disabled={loading} 
+                      onClick={handlePdfDownload}
+                    >
+                        {loading ? 'Generando PDF...' : 'Descargar PDF'}
+                    </Button>
+                  )}
+                </PDFDownloadLink>
+              )}
             </div>
           )}
         </div>
