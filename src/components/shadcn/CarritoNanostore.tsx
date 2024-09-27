@@ -55,20 +55,6 @@ function CarritoNanostore() {
           <SheetDescription>Productos en tu carrito</SheetDescription>
         </SheetHeader>
 
-        <div className="py-4" style={{ display: 'none' }}>
-          <h3 className="mb-2 font-bold">Productos disponibles:</h3>
-          {availableProducts.map((product) => (
-            <div key={product.id.toString()} className="flex justify-between items-center mb-2">
-              <span>
-                {product.name} - ${product.price}
-              </span>
-              <Button size="sm" className="text-white" onClick={() => addToCart(product)}>
-                Agregar
-              </Button>
-            </div>
-          ))}
-        </div>
-
         <div className="py-4">
           <h3 className="mb-2 font-bold">Tu carrito:</h3>
           {cartItems.length > 0 ? (
@@ -76,10 +62,14 @@ function CarritoNanostore() {
               const subtotal = item.price * item.quantity; // Calcular subtotal
               return (
                 <div key={item.id.toString()} className="block md:flex justify-between items-center mb-2 border-t p-2">
-                  <span>
-                    {item.name} - ${item.price} x {item.quantity}
-                  </span>
-                  <div className="p-2">
+                  
+                  <div className="flex items-center">
+                    <span>
+                      {item.name} - ${item.price}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center p-2">
                     <Button variant="outline" size="sm" onClick={() => removeFromCart(item.id)}>
                       -
                     </Button>
@@ -87,7 +77,9 @@ function CarritoNanostore() {
                     <Button variant="outline" size="sm" onClick={() => addToCart(item)}>
                       +
                     </Button>
-                    <span className="p-2">{subtotal.toFixed(2)}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="p-2 font-semibold text-slate-800">{subtotal}</span>
                   </div>
                 </div>
               );
@@ -96,10 +88,12 @@ function CarritoNanostore() {
             <p className="text-gray-500 italic">está vacío</p>
           )}
         </div>
-        <div className="mt-auto py-4 border-t">
-          <h3 className="font-bold">Total: ${total.toFixed(2)}</h3>
-          {cartItems.length > 0 && (
-            <div className="py-4">
+
+        {cartItems.length > 0 && (    
+        <div className="mt-auto py-4 border-t-4 border-t-blue-700">
+          <h3 className="font-bold text-xl text-right">Total: $ {total}</h3>
+          
+            <div className="mt-10 py-4 flex justify-end">
               <Button variant="destructive" onClick={handleClearCart}>
                 Vaciar
               </Button>
@@ -126,8 +120,8 @@ function CarritoNanostore() {
                 </PDFDownloadLink>
               )}
             </div>
-          )}
         </div>
+        )}
       </SheetContent>
     </Sheet>
   );

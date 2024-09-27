@@ -34,11 +34,11 @@ const PDFDocument: React.FC<PDFDocumentProps> = ({ cartItems, total }) => (
         <View key={item.id} style={styles.item}>
           <Text>
             {item.id} - {item.name} - ${item.price} x {item.quantity}. 
-            Subtotal: ${(item.price * item.quantity).toFixed(2)}
+            Subtotal: ${(item.price * item.quantity)}
           </Text>
         </View>
       ))}
-      <Text style={styles.total}>Total: ${total.toFixed(2)}</Text>
+      <Text style={styles.total}>Total: ${total}</Text>
     </Page>
   </Document>
 );

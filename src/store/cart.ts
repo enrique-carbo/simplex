@@ -46,7 +46,7 @@ export function addToCart(product: Product) {
   updateLocalStorage($cartItems.get());
 }
 
-export function removeFromCart(productId: number) {
+export function removeFromCart(productId: string) {
   const items = $cartItems.get();
   const itemIndex = items.findIndex(item => item.id === productId);
   if (itemIndex > -1) {

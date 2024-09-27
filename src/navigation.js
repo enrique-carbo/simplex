@@ -59,13 +59,9 @@ export const headerData = {
           href: getPermalink('remera-algodon-tipos', 'post'),
         },
         {
-          text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
-        },
-        {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
-        },
+          text: 'Textiles',
+          href: getPermalink('textiles', 'category'),
+        }
       ],
     }
   ]
@@ -103,10 +99,9 @@ export const footerData = {
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
+    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') }
   ],
   footNote: `
-    La elegancia de los Simplex.
+    La elegancia de lo Simplex.
   `,
 };
