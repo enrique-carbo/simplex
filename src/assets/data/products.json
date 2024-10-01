@@ -14,34 +14,6 @@
     "category": "buzos"
   },
   {
-    "id": "3",
-    "name": "Producto 3",
-    "price": 6900,
-    "image": "/images/products/remera-gris.jpg",
-    "category": "remeras"
-  },
-  {
-    "id": "4",
-    "name": "Producto 4",
-    "price": 6900,
-    "image": "/images/products/remera-negra.jpg",
-    "category": "remeras"
-  },
-  {
-    "id": "5",
-    "name": "Producto 5",
-    "price": 9900,
-    "image": "/images/products/white-t-shirt-1.jpg",
-    "category": "remeras"
-  },
-  {
-    "id": "6",
-    "name": "Producto 6",
-    "price": 9900,
-    "image": "/images/products/white-t-shirt-1.jpg",
-    "category": "remeras"
-  },
-  {
     "id": "7",
     "name": "Producto 7",
     "price": 35000,
@@ -110,5 +82,61 @@
     "price": 39000,
     "image": "/images/products/modelo-buzo-gris-sm.jpg",
     "category": "buzos"
+  },
+  {
+    "id": "prod-remera-mc-gris-lineaE",
+    "name": "Remera MC Gris Línea E",
+    "price": 6900,
+    "image": "/images/products/remera-gris.jpg",
+    "category": "remeras"
+  },
+  {
+    "id": "prod-remera-mc-negra-lineaE",
+    "name": "Remera MC Negra Línea E",
+    "price": 6900,
+    "image": "/images/products/remera-negra.jpg",
+    "category": "remeras"
+  },
+  {
+    "id": "prod-remeraMC-blanca-APV",
+    "name": "Remera MC Blanca",
+    "price": 9900,
+    "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
+    "category": "remeras"
+  },
+  {
+    "id": "prod-remeraMC-gris-APV",
+    "name": "Remera MC Gris",
+    "price": 9900,
+    "image": "/images/products/algodonera/remera-mc-algodonera-gris.jpg",
+    "category": "remeras"
+  },
+  {
+    "id": "prod-remeraMC-azulmarino-APV",
+    "name": "Remera MC Azul",
+    "price": 9900,
+    "image": "/images/products/algodonera/remera-mc-algodonera-azul.jpg",
+    "category": "remeras"
+  },
+  {
+    "id": "prod-remeraMC-negro-APV",
+    "name": "Remera MC Negra",
+    "price": 9900,
+    "image": "/images/products/algodonera/remera-mc-algodonera-negra.jpg",
+    "category": "remeras"
+  },
+  {
+    "id": "prod-remeraMC-batik-azul-APV",
+    "name": "Remera MC Batik Azul",
+    "price": 10900,
+    "image": "/images/products/algodonera/remera-mc-batik-algodonera-azul.jpg",
+    "category": "remeras"
+  },
+  {
+    "id": "prod-remeraMC-batik-verde-APV",
+    "name": "Remera MC Batik Verde",
+    "price": 10900,
+    "image": "/images/products/algodonera/remera-mc-batik-algodonera-verde.jpg",
+    "category": "remeras"
   }
 ]
