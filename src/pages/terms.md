@@ -16,7 +16,7 @@ Al acceder y utilizar la página web de Simplex (en adelante, "el Sitio"), usted
 ### Definiciones
 
 **"Simplex"** se refiere a la tienda de indumentaria con sede en Padre Grella 1519 y titular de la página web.  
-**"Sitio"** se refiere a la página web de Simplex, ubicada en simplex.com.ar.  
+**"Sitio"** se refiere a la página web de Simplex, ubicada en simplex.ar.  
 **"Usuario"** se refiere a cualquier persona que acceda y utilice el Sitio.  
 **"Contenido"** se refiere a cualquier información, texto, imagen, gráfico, logo, marca, diseño, código fuente y cualquier otro material contenido en el Sitio.
 
@@ -51,7 +51,7 @@ El Usuario asume todos los riesgos asociados con el uso del Sitio y del Contenid
 
 ### Ley Aplicable y Jurisdicción
 
-Estos Términos y Condiciones se regirán e interpretarán de acuerdo con las leyes de la República Argentina, ciudad de Paraná, Entre Ríos..
+Estos Términos y Condiciones se regirán e interpretarán de acuerdo con las leyes de la República Argentina, ciudad de Paraná, Entre Ríos.
 Cualquier disputa o controversia que surja de la interpretación o ejecución de estos Términos y Condiciones se resolverá a través de la jurisdicción de la ciudad de Paraná.
 
 ### Modificaciones
@@ -65,4 +65,4 @@ Al acceder y utilizar el Sitio, el Usuario acepta y se compromete a cumplir con 
 
 ### Contacto
 
-Si tiene alguna pregunta o inquietud sobre estos Términos y Condiciones, por favor no dude en contactarnos a través de nuestro email.
+Si tiene alguna pregunta o inquietud sobre estos Términos y Condiciones, por favor no dude en contactarnos a través de nuestro email simplex.parana@gmail.com.

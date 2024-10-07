@@ -1,7 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import ContactUs from '~/components/widgets/Contact.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 
 const metadata = {
@@ -10,68 +9,47 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+
+
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <div class="mb-10">
+    <HeroText tagline="Dejanos tu mensaje" title="Contacto"/>
+  </div>
+  
+ 
 
-  <ContactUs
-    id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
-    inputs={[
-      {
-        type: 'text',
-        name: 'name',
-        label: 'Name',
-      },
-      {
-        type: 'email',
-        name: 'email',
-        label: 'Email',
-      },
-    ]}
-    textarea={{
-      label: 'Message',
-    }}
-    disclaimer={{
-      label:
-        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
-    }}
-    description="Our support team typically responds within 24 business hours."
-  />
+  <div class="flex items-center justify-center p-2 md:p-8 bg-blue-50 dark:bg-transparent">
+    <div class="w-full max-w-md md:max-w-2xl p-4 rounded-lg shadow-lg bg-slate-100 dark:bg-slate-800">
+      <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSe1qHEkoBD0ArEbN588ItwC1fjoi6shcJvvTXk84uR2Mq2K3w/viewform?embedded=true" 
+        width="100%" 
+        height="600" 
+        class="rounded-lg"
+      >
+        Loading…
+      </iframe>
+    </div>
+  </div>
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="We are here to help!"
+    title="Estamos para ayudarte"
     items={[
       {
-        title: 'General support',
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
-      },
-      {
-        title: 'Contact sales',
-        description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
-      },
-      {
-        title: 'Technical support',
-        description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
-      },
-      {
-        title: 'Phone',
-        description: '+1 (234) 567-890',
+        title: 'Teléfono',
+        description: '(0343) 567-890',
         icon: 'tabler:headset',
       },
       {
         title: 'Email',
-        description: 'contact@support.com',
+        description: 'simplex.parana@gmail.com',
         icon: 'tabler:mail',
       },
       {
-        title: 'Location',
-        description: '1234 Lorem Ipsum St, 12345, Miami, EEUU',
+        title: 'Ubicación',
+        description: 'Padre Grella, 1521, Paraná, Entre Ríos, Argentina.',
         icon: 'tabler:map-pin',
       },
     ]}
