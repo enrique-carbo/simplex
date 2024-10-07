@@ -1,6 +1,6 @@
 site:
   name: Simplex
-  site: 'https://simplex-552.pages.dev/'
+  site: 'https:simplex.ar'
   base: '/'
   trailingSlash: false
 
