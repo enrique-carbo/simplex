@@ -83,7 +83,7 @@ export const footerData = {
       title: 'Nosotros',
       links: [
         { text: 'Ubicación', href: '/location' },
-        { text: 'Contacto', href: '#' }
+        { text: 'Contacto', href: '/contact' }
       ]
     },
     {

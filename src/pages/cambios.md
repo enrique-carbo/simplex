@@ -5,11 +5,20 @@ layout: '~/layouts/MarkdownLayout.astro'
 
 ### Objetivo
 
-La política de cambio de prendas de **Simplex** tiene como objetivo brindar una experiencia de compra satisfactoria a nuestros clientes, ofreciendo la posibilidad de cambiar prendas que no se ajusten o no les gusten, y fomentar la satisfacción y la lealtad de nuestros clientes.
+La política de cambio de prendas de **Simplex** tiene como objetivo brindar una experiencia de compra satisfactoria a nuestros clientes, ofreciendo la posibilidad de cambiar prendas que posean fallas de fabricación, y de esta manera fomentar la satisfacción y la lealtad de nuestros clientes.
+Además se pueden cambiar aquellas prendas que se hallan adquirido para regalar.
 
 ### Ámbito de Aplicación
 
 Esta política se aplica a todas las prendas vendidas en nuestros establecimientos físicos y en nuestra plataforma de comercio electrónico.
+
+### Causas de devolución
+
+Las prendas pueden ser devueltas por las siguientes razones:
+
+* Fallas de fabricación o defectos en la confección.
+* No coinciden con la descripción o características del producto.
+* Fueron compradas para regalar y no se ajustan a las preferencias del destinatario.
 
 ### Condiciones
 
@@ -49,5 +58,5 @@ Esta política puede ser modificada o actualizada en cualquier momento. Es respo
 
 ### Contacto
 
-Si el cliente tiene alguna pregunta o inquietud sobre esta política, puede contactarnos a través de nuestro sitio web, correo electrónico o llamada al teléfono.
+Si el cliente tiene alguna pregunta o inquietud sobre esta política, puede contactarnos a través del formulario de contacto de nuestro sitio web o al correo electrónico simplex.parana@gmail.com.
 
