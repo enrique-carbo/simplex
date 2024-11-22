@@ -4,139 +4,159 @@
     "name": "Producto 1",
     "price": 39000,
     "image": "/images/products/hoodie.jpg",
-    "category": "buzos"
+    "category": "buzos",
+    "inStock": false
   },
   {
     "id": "2",
     "name": "Producto 2",
     "price": 39000,
     "image": "/images/products/hoodie.webp",
-    "category": "buzos"
+    "category": "buzos",
+    "inStock": true
   },
   {
     "id": "7",
     "name": "Producto 7",
     "price": 35000,
     "image": "/images/products/jeans.webp",
-    "category": "pantalones"
+    "category": "pantalones",
+    "inStock": true
   },
   {
     "id": "8",
     "name": "Producto 8",
     "price": 35000,
     "image": "/images/products/pantalon.webp",
-    "category": "pantalones"
+    "category": "pantalones",
+    "inStock": true
   },
   {
     "id": "9",
     "name": "Producto 9",
     "price": 20000,
     "image": "/images/products/Jogging.webp",
-    "category": "pantalones"
+    "category": "pantalones",
+    "inStock": true
   },
   {
     "id": "10",
     "name": "Producto 10",
     "price": 9900,
     "image": "/images/products/mini-bag.jpg",
-    "category": "bags"
+    "category": "bags",
+    "inStock": true
   },
   {
     "id": "11",
     "name": "Producto 11",
     "price": 11900,
     "image": "/images/products/morral-gris.jpg",
-    "category": "bags"
+    "category": "bags",
+    "inStock": true
   },
   {
     "id": "12",
     "name": "Producto 12",
     "price": 11900,
     "image": "/images/products/morral-negro-red.jpg",
-    "category": "bags"
+    "category": "bags",
+    "inStock": true
   },
   {
     "id": "13",
     "name": "Producto 13",
     "price": 4900,
     "image": "/images/products/boxer.jpg",
-    "category": "accesorios"
+    "category": "accesorios",
+    "inStock": true
   },
   {
     "id": "14",
     "name": "Producto 14",
     "price": 3900,
     "image": "/images/products/gorra.jpg",
-    "category": "accesorios"
+    "category": "accesorios",
+    "inStock": true
   },
   {
     "id": "15",
     "name": "Producto 15",
     "price": 2900,
     "image": "/images/products/medias-2.jpg",
-    "category": "accesorios"
+    "category": "accesorios",
+    "inStock": true
   },
   {
     "id": "16",
     "name": "Producto 16",
     "price": 39000,
     "image": "/images/products/modelo-buzo-gris-sm.jpg",
-    "category": "buzos"
+    "category": "buzos",
+    "inStock": true
   },
   {
     "id": "art-remera-mc-gris-lineaE",
     "name": "Remera MC Gris Línea E",
     "price": 6900,
     "image": "/images/products/remera-gris.jpg",
-    "category": "remeras"
+    "category": "remeras",
+    "inStock": false
   },
   {
     "id": "art-remera-mc-negra-lineaE",
     "name": "Remera MC Negra Línea E",
     "price": 6900,
     "image": "/images/products/remera-negra.jpg",
-    "category": "remeras"
+    "category": "remeras",
+    "inStock": true
   },
   {
     "id": "art-remeraMC-blanca-APV",
     "name": "Remera MC Blanca",
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
-    "category": "remeras"
+    "category": "remeras",
+    "inStock": true
   },
   {
     "id": "art-remeraMC-gris-APV",
     "name": "Remera MC Gris",
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-gris.jpg",
-    "category": "remeras"
+    "category": "remeras",
+    "inStock": true
   },
   {
     "id": "art-remeraMC-azulmarino-APV",
     "name": "Remera MC Azul",
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-azul.jpg",
-    "category": "remeras"
+    "category": "remeras",
+    "inStock": true
   },
   {
     "id": "art-remeraMC-negro-APV",
     "name": "Remera MC Negra",
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-negra.jpg",
-    "category": "remeras"
+    "category": "remeras",
+    "inStock": true
   },
   {
     "id": "art-remeraMC-batik-azul-APV",
     "name": "Remera MC Batik Azul",
     "price": 10900,
     "image": "/images/products/algodonera/remera-mc-batik-algodonera-azul.jpg",
-    "category": "remeras"
+    "category": "remeras",
+    "inStock": true
   },
   {
     "id": "art-remeraMC-batik-verde-APV",
     "name": "Remera MC Batik Verde",
     "price": 10900,
     "image": "/images/products/algodonera/remera-mc-batik-algodonera-verde.jpg",
-    "category": "remeras"
+    "category": "remeras",
+    "inStock": true
   }
 ]

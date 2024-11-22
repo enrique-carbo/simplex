@@ -22,8 +22,9 @@ interface ButtonAddToCartProps {
         size="sm" 
         className="text-white" 
         onClick={handleAddToCart}
+        disabled={!product.inStock}
       >
-        {itemInCart ? `En carrito (${itemInCart.quantity})` : 'Agregar al carrito'}
+        {!product.inStock ? 'Sin stock' : (itemInCart ? `En carrito (${itemInCart.quantity})` : 'Agregar al carrito')}
       </Button>
     );
   }

@@ -27,6 +27,11 @@ const filteredProducts = availableProducts.filter((product) => product.category 
           <div className="p-4">
             <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
             <p>${product.price.toFixed(2)}</p>
+            {product.inStock ? (
+                <p className="text-green-500">Disponible</p>
+              ) : (
+                <p className="text-red-500">Sin stock</p>
+              )}
           </div>
         
         </CardContent>
