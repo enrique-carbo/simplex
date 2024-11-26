@@ -1,32 +1,47 @@
-import { useStore } from '@nanostores/react'
-import { $cartItems, addToCart} from '@/store/cart'
-import { Button } from "@/components/ui/button"
-import { type Product } from "@/assets/data/products"
-
+import { useStore } from '@nanostores/react';
+import { $cartItems, addToCart } from '@/store/cart';
+import { Button } from '@/components/ui/button';
+import { type Product } from '@/assets/data/products';
 
 interface ButtonAddToCartProps {
-    product: Product;
-  }
-  
-  function ButtonAddToCart({ product }: ButtonAddToCartProps) {
-    const cartItems = useStore($cartItems);
+  product: Product;
+}
 
-    const handleAddToCart = () => {
-      addToCart(product);
-    };
-  
-    const itemInCart = cartItems.find(item => item.id === product.id);
-  
-    return (
-      <Button 
-        size="sm" 
-        className="text-white" 
-        onClick={handleAddToCart}
-        disabled={!product.inStock}
-      >
-        {!product.inStock ? 'Sin stock' : (itemInCart ? `En carrito (${itemInCart.quantity})` : 'Agregar al carrito')}
-      </Button>
-    );
-  }
+function ButtonAddToCart({ product }: ButtonAddToCartProps) {
+  const cartItems = useStore($cartItems);
 
-export default ButtonAddToCart
+  const handleAddToCart = (size: string) => {
+    addToCart(product, size);
+  };
+
+  const getQuantityInCart = (size: string) => {
+    const item = cartItems.find(item => item.id === product.id && item.size === size);
+    return item ? item.quantity : 0;
+  };
+
+  return (
+    <div>
+      {product.inStock ? (
+        <div>
+          {product.sizes.map(sizeOption => (
+            <Button
+              key={sizeOption.size}
+              size="sm"
+              className="text-white m-1"
+              onClick={() => handleAddToCart(sizeOption.size)}
+              disabled={sizeOption.quantity === 0}
+            >
+              {sizeOption.quantity === 0 ? 'Sin stock' : `Agregar ${sizeOption.size} (${getQuantityInCart(sizeOption.size)})`}
+            </Button>
+            ))}
+        </div>
+      ) : (
+        <Button size="sm" className="text-white" disabled>
+          Sin stock
+        </Button>
+      )}
+    </div>
+  );
+}
+
+export default ButtonAddToCart;

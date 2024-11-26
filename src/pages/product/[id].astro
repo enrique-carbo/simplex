@@ -3,8 +3,6 @@ import Layout from '@/layouts/PageLayout.astro';
 import { availableProducts, type Product } from '@/assets/data/products';
 import ButtonAddToCart from '@/components/ecommerce/ButtonAddToCart';
 
-
-
 export async function getStaticPaths() {
   return availableProducts.map((product) => ({
     params: { id: product.id.toString() },
@@ -21,30 +19,40 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-    <main class="container mx-auto px-4 py-14">
-        <div class="max-w-4xl mx-auto">
-          <h1 class="text-3xl font-bold mb-6">{product.name}</h1>
+  <main class="container mx-auto px-4 py-14">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold mb-6">{product.name}</h1>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-            <div>
-              <img src={product.image} alt={product.name} class="w-full h-auto rounded-lg shadow-md" />
-            </div>
-            <div>
-              <p class="text-2xl font-semibold mb-4">${product.price}</p>
-              <p class="text-gray-600 mb-4">
-                {product.inStock ? 'Disponible' : 'Sin stock'}
-              </p>
-              <ButtonAddToCart client:load product={product}></ButtonAddToCart>
-            </div>
-            
-          </div>
-          <div class="mt-8">
-            <a href=`/homes/${product.category}` class="text-blue-500 hover:underline">
-              &larr; Volver a la lista de {product.category}
-            </a>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <img src={product.image} alt={product.name} class="w-full h-auto rounded-lg shadow-md" />
         </div>
-      </main>
-  </Layout>
+        <div>
+          <p class="text-2xl font-semibold mb-4">${product.price}</p>
 
+          {product.inStock ? <p class="text-green-600 mb-4">Disponible</p> :
+          <p class="text-red-600 mb-4">Sin stock</p>
+          } 
+
+          {product.sizes.length > 0 && product.inStock && (
+            <div>
+              {product.sizes.length > 1 ? (
+                <div class="p-2">
+                  <p class="block text-gray-700 font-bold mb-2">Selecciona un talle:</p>
+                </div>
+              ) : (
+                <p class="text-gray-700 font-bold mb-2">Talle único</p>
+              )}
+            </div>
+          )}
+          <ButtonAddToCart client:load product={product}></ButtonAddToCart>
+        </div>
+      </div>
+      <div class="mt-8">
+        <a href={`/homes/${product.category}`} class="text-blue-500 hover:underline">
+          &larr; Volver a la lista de {product.category}
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

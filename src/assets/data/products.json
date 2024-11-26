@@ -5,7 +5,13 @@
     "price": 39000,
     "image": "/images/products/hoodie.jpg",
     "category": "buzos",
-    "inStock": false
+    "inStock": false,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "2",
@@ -13,7 +19,13 @@
     "price": 39000,
     "image": "/images/products/hoodie.webp",
     "category": "buzos",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 0 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "7",
@@ -21,7 +33,13 @@
     "price": 35000,
     "image": "/images/products/jeans.webp",
     "category": "pantalones",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "28", "quantity": 1 },
+      { "size": "30", "quantity": 1 },
+      { "size": "32", "quantity": 1 },
+      { "size": "34", "quantity": 1 }
+    ]
   },
   {
     "id": "8",
@@ -29,7 +47,13 @@
     "price": 35000,
     "image": "/images/products/pantalon.webp",
     "category": "pantalones",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "28", "quantity": 1 },
+      { "size": "30", "quantity": 1 },
+      { "size": "32", "quantity": 1 },
+      { "size": "34", "quantity": 1 }
+    ]
   },
   {
     "id": "9",
@@ -37,7 +61,13 @@
     "price": 20000,
     "image": "/images/products/Jogging.webp",
     "category": "pantalones",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "10",
@@ -45,7 +75,8 @@
     "price": 9900,
     "image": "/images/products/mini-bag.jpg",
     "category": "bags",
-    "inStock": true
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
     "id": "11",
@@ -53,7 +84,8 @@
     "price": 11900,
     "image": "/images/products/morral-gris.jpg",
     "category": "bags",
-    "inStock": true
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
     "id": "12",
@@ -61,7 +93,8 @@
     "price": 11900,
     "image": "/images/products/morral-negro-red.jpg",
     "category": "bags",
-    "inStock": true
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
     "id": "13",
@@ -69,7 +102,13 @@
     "price": 4900,
     "image": "/images/products/boxer.jpg",
     "category": "accesorios",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "14",
@@ -77,7 +116,8 @@
     "price": 3900,
     "image": "/images/products/gorra.jpg",
     "category": "accesorios",
-    "inStock": true
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
     "id": "15",
@@ -85,7 +125,8 @@
     "price": 2900,
     "image": "/images/products/medias-2.jpg",
     "category": "accesorios",
-    "inStock": true
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
     "id": "16",
@@ -93,7 +134,13 @@
     "price": 39000,
     "image": "/images/products/modelo-buzo-gris-sm.jpg",
     "category": "buzos",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "art-remera-mc-gris-lineaE",
@@ -101,7 +148,13 @@
     "price": 6900,
     "image": "/images/products/remera-gris.jpg",
     "category": "remeras",
-    "inStock": false
+    "inStock": false,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "art-remera-mc-negra-lineaE",
@@ -109,7 +162,13 @@
     "price": 6900,
     "image": "/images/products/remera-negra.jpg",
     "category": "remeras",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "art-remeraMC-blanca-APV",
@@ -117,7 +176,13 @@
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
     "category": "remeras",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "art-remeraMC-gris-APV",
@@ -125,7 +190,13 @@
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-gris.jpg",
     "category": "remeras",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "art-remeraMC-azulmarino-APV",
@@ -133,7 +204,13 @@
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-azul.jpg",
     "category": "remeras",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "art-remeraMC-negro-APV",
@@ -141,7 +218,13 @@
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-negra.jpg",
     "category": "remeras",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "art-remeraMC-batik-azul-APV",
@@ -149,7 +232,13 @@
     "price": 10900,
     "image": "/images/products/algodonera/remera-mc-batik-algodonera-azul.jpg",
     "category": "remeras",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   },
   {
     "id": "art-remeraMC-batik-verde-APV",
@@ -157,6 +246,12 @@
     "price": 10900,
     "image": "/images/products/algodonera/remera-mc-batik-algodonera-verde.jpg",
     "category": "remeras",
-    "inStock": true
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
   }
 ]

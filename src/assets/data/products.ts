@@ -5,6 +5,7 @@ export interface Product {
   image: string;
   category: string;
   inStock: boolean;
+  sizes: { "size": string, "quantity": number }[];
 }
 
 import productsData from './products.json';
