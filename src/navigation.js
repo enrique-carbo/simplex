@@ -102,6 +102,6 @@ export const footerData = {
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') }
   ],
   footNote: `
-    La elegancia de lo Simplex.
+    Showroom: Padre Grella 1515. Paraná. Entre Ríos
   `,
 };

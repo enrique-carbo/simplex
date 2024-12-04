@@ -297,3 +297,4 @@ export interface CartState {
   items: CartItem[];
   total: number;
 }
+

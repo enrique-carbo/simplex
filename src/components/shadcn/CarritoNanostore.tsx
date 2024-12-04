@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Button } from '@/components/ui/button';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDFDocument from '@/components/ecommerce/PDFDocument';
+import NumberFlow from '@number-flow/react'
 
 function CarritoNanostore() {
   const cartItems = useStore($cartItems);
@@ -87,7 +88,9 @@ function CarritoNanostore() {
 
         {cartItems.length > 0 && (
           <div className="mt-auto py-4 border-t-4 border-t-blue-700">
-            <h3 className="font-bold text-xl text-right">Total: $ {total}</h3>
+            <h3 className="font-bold text-xl text-right">Total: $
+            <span><NumberFlow value={total}/></span>
+            </h3>
             <div className="mt-10 py-4 flex justify-end">
               <Button variant="destructive" onClick={handleClearCart}>
                 Vaciar
