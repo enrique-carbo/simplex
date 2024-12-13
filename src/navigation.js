@@ -30,12 +30,12 @@ export const headerData = {
     {
       text: 'Nosotros',
       links: [
+        {
+          text: 'Origen',
+          href: getPermalink('/about'),
+        },
         { text: 'Ubicación',
           href: getPermalink('/location')
-        },
-        {
-          text: 'About us',
-          href: getPermalink('/about'),
         },
         {
           text: 'Contacto',
@@ -102,6 +102,6 @@ export const footerData = {
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') }
   ],
   footNote: `
-    Showroom: Padre Grella 1515. Paraná. Entre Ríos
+    Visitanos en Padre Grella 1515. Paraná. Entre Ríos
   `,
 };

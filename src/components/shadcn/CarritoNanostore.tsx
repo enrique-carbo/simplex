@@ -63,7 +63,7 @@ function CarritoNanostore() {
                 <div key={item.id + item.size} className="block md:flex justify-between items-center mb-2 border-t p-2">
                   <div className="flex items-center">
                     <span>
-                      {item.name} - {item.size} - ${item.price}
+                      {item.item}: {item.name} - {item.size} - ${item.price}
                     </span>
                   </div>
                   <div className="flex items-center p-2">

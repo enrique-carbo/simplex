@@ -1,6 +1,7 @@
 [
   {
     "id": "1",
+    "item": "202",
     "name": "Producto 1",
     "price": 39000,
     "image": "/images/products/hoodie.jpg",
@@ -15,6 +16,7 @@
   },
   {
     "id": "2",
+    "item": "202",
     "name": "Producto 2",
     "price": 39000,
     "image": "/images/products/hoodie.webp",
@@ -29,6 +31,7 @@
   },
   {
     "id": "7",
+    "item": "301",
     "name": "Producto 7",
     "price": 35000,
     "image": "/images/products/jeans.webp",
@@ -43,6 +46,7 @@
   },
   {
     "id": "8",
+    "item": "301",
     "name": "Producto 8",
     "price": 35000,
     "image": "/images/products/pantalon.webp",
@@ -57,6 +61,7 @@
   },
   {
     "id": "9",
+    "item": "301",
     "name": "Producto 9",
     "price": 20000,
     "image": "/images/products/Jogging.webp",
@@ -71,6 +76,7 @@
   },
   {
     "id": "10",
+    "item": "502",
     "name": "Producto 10",
     "price": 9900,
     "image": "/images/products/mini-bag.jpg",
@@ -80,6 +86,7 @@
   },
   {
     "id": "11",
+    "item": "502",
     "name": "Producto 11",
     "price": 11900,
     "image": "/images/products/morral-gris.jpg",
@@ -89,6 +96,7 @@
   },
   {
     "id": "12",
+    "item": "502",
     "name": "Producto 12",
     "price": 11900,
     "image": "/images/products/morral-negro-red.jpg",
@@ -98,6 +106,7 @@
   },
   {
     "id": "13",
+    "item": "001",
     "name": "Producto 13",
     "price": 4900,
     "image": "/images/products/boxer.jpg",
@@ -112,6 +121,7 @@
   },
   {
     "id": "14",
+    "item": "001",
     "name": "Producto 14",
     "price": 3900,
     "image": "/images/products/gorra.jpg",
@@ -121,6 +131,7 @@
   },
   {
     "id": "15",
+    "item": "002",
     "name": "Producto 15",
     "price": 2900,
     "image": "/images/products/medias-2.jpg",
@@ -130,6 +141,7 @@
   },
   {
     "id": "16",
+    "item": "202",
     "name": "Producto 16",
     "price": 39000,
     "image": "/images/products/modelo-buzo-gris-sm.jpg",
@@ -143,8 +155,9 @@
     ]
   },
   {
-    "id": "art-remera-mc-gris-lineaE",
-    "name": "Remera MC Gris Línea E",
+    "id": "art-remera-mc-gris-basix",
+    "item": "1011",
+    "name": "Remera MC Gris Basix",
     "price": 6900,
     "image": "/images/products/remera-gris.jpg",
     "category": "remeras",
@@ -157,8 +170,9 @@
     ]
   },
   {
-    "id": "art-remera-mc-negra-lineaE",
-    "name": "Remera MC Negra Línea E",
+    "id": "art-remera-mc-negra-basix",
+    "item": "1011",
+    "name": "Remera MC Negra Basix",
     "price": 6900,
     "image": "/images/products/remera-negra.jpg",
     "category": "remeras",
@@ -172,7 +186,8 @@
   },
   {
     "id": "art-remeraMC-blanca-APV",
-    "name": "Remera MC Blanca",
+    "item": "1012",
+    "name": "Remera MC Blanca Elevé",
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
     "category": "remeras",
@@ -186,7 +201,8 @@
   },
   {
     "id": "art-remeraMC-gris-APV",
-    "name": "Remera MC Gris",
+    "item": "1012",
+    "name": "Remera MC Gris Elevé",
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-gris.jpg",
     "category": "remeras",
@@ -200,7 +216,8 @@
   },
   {
     "id": "art-remeraMC-azulmarino-APV",
-    "name": "Remera MC Azul",
+    "item": "1012",
+    "name": "Remera MC Azul Elevé",
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-azul.jpg",
     "category": "remeras",
@@ -214,7 +231,8 @@
   },
   {
     "id": "art-remeraMC-negro-APV",
-    "name": "Remera MC Negra",
+    "item": "1012",
+    "name": "Remera MC Negra Elevé",
     "price": 9900,
     "image": "/images/products/algodonera/remera-mc-algodonera-negra.jpg",
     "category": "remeras",
@@ -228,7 +246,8 @@
   },
   {
     "id": "art-remeraMC-batik-azul-APV",
-    "name": "Remera MC Batik Azul",
+    "item": "1013",
+    "name": "Remera MC Azul Batik",
     "price": 10900,
     "image": "/images/products/algodonera/remera-mc-batik-algodonera-azul.jpg",
     "category": "remeras",
@@ -242,13 +261,14 @@
   },
   {
     "id": "art-remeraMC-batik-verde-APV",
-    "name": "Remera MC Batik Verde",
+    "item": "1013",
+    "name": "Remera MC Verde Batik",
     "price": 10900,
     "image": "/images/products/algodonera/remera-mc-batik-algodonera-verde.jpg",
     "category": "remeras",
     "inStock": true,
     "sizes": [
-      { "size": "S", "quantity": 1 },
+      { "size": "S", "quantity": 0 },
       { "size": "M", "quantity": 1 },
       { "size": "L", "quantity": 1 },
       { "size": "XL", "quantity": 1 }

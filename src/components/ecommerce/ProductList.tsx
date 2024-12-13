@@ -25,7 +25,7 @@ const filteredProducts = availableProducts.filter((product) => product.category 
         
           <img src={product.image} alt={product.name} className="w-full h-48 object-contain" />
           <div className="p-4">
-            <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
+            <h2 className="text-xl font-semibold mb-2">Art-{product.item}: {product.name}</h2>
             <p>${product.price.toFixed(2)}</p>
             {product.inStock ? (
                 <p className="text-green-500">Disponible</p>
