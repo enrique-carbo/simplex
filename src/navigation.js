@@ -82,6 +82,7 @@ export const footerData = {
     {
       title: 'Nosotros',
       links: [
+        { text: 'Origen', href: '/about' },
         { text: 'Ubicación', href: '/location' },
         { text: 'Contacto', href: '/contact' }
       ]
@@ -102,6 +103,6 @@ export const footerData = {
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') }
   ],
   footNote: `
-    Visitanos en Padre Grella 1515. Paraná. Entre Ríos
+    Padre Grella 1515. WhatsApp: 3434 718183
   `,
 };
