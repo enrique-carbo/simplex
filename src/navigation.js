@@ -3,7 +3,7 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Indumentaria',
+      text: 'Productos',
       links: [
         {
           text: 'Remeras',
@@ -24,6 +24,10 @@ export const headerData = {
         {
           text: 'Accesorios',
           href: getPermalink('/homes/accesorios')
+        },
+        {
+          text: 'OFERTAS',
+          href: getPermalink('/homes/ofertas')
         }
       ],
     },
@@ -70,13 +74,14 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Indumentaria',
+      title: 'Productos',
       links: [
         { text: 'Remeras', href: '/homes/remeras' },
         { text: 'Buzos', href: '/homes/buzos' },
         { text: 'Pantalones', href: '/homes/pantalones' },
         { text: 'Bags', href: '/homes/bags' },
         { text: 'Accesorios', href: '/homes/accesorios' },
+        { text: 'OFERTAS', href: '/homes/ofertas' },
       ],
     },
     {
@@ -103,6 +108,6 @@ export const footerData = {
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') }
   ],
   footNote: `
-    Padre Grella 1515. WhatsApp: 3434 718183
+    Padre Grella 1515. WhatsApp 3434 718183
   `,
 };

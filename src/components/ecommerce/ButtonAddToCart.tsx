@@ -1,7 +1,7 @@
 import { useStore } from '@nanostores/react';
 import { $cartItems, addToCart } from '@/store/cart';
 import { Button } from '@/components/ui/button';
-import { type Product } from '@/assets/data/products';
+import { type Product } from '@/assets/data/products/products';
 
 interface ButtonAddToCartProps {
   product: Product;

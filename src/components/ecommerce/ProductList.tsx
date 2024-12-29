@@ -1,5 +1,5 @@
 import React from 'react';
-import { availableProducts, type Product } from '@/assets/data/products';
+import { availableProducts, type Product } from '@/assets/data/products/products';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface ProductListProps {

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sale-remeraMC-basix",
+    "item": "s-1001",
+    "name": "2 Remeras MC Basix",
+    "price": 9999,
+    "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
+    "category": "sales",
+    "inStock": false
+  },
+  {
+    "id": "sale-remeraMC-eleve",
+    "item": "s-1002",
+    "name": "2 Remeras MC Elevé",
+    "price": 19000,
+    "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
+    "category": "sales",
+    "inStock": true
+  },
+  {
+    "id": "sale-buzo-redondo",
+    "item": "s-1003",
+    "name": "2 Buzos Cuello Redondo",
+    "price": 39000,
+    "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
+    "category": "sales",
+    "inStock": true
+  }
+]

@@ -1,0 +1,40 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import SalesList from '@/components/ecommerce/SalesList';
+
+const metadata = {
+  title: 'Ofertas',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero tagline="Oportunidades">
+    <Fragment slot="title">
+      Ofertas
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Importantes ofertas en nuestros productos.
+    </Fragment>
+  </Hero>
+
+  <!---------- Product List --------------------------->
+
+  <SalesList></SalesList>
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Acercate a nuestro local"
+    subtitle="Las ofertas se encuentran disponibles en nuestro local en calle Padre Grella 1515, de la ciudad de Paraná. Las promociones, ofertas y descuentos son al contado efectivo."
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+</Layout>

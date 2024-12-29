@@ -1,5 +1,5 @@
 import { atom, computed } from 'nanostores';
-import type { Product } from '@/assets/data/products';
+import type { Product } from '@/assets/data/products/products';
 
 export interface CartItem extends Product {
   size: string;
