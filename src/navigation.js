@@ -26,7 +26,7 @@ export const headerData = {
           href: getPermalink('/homes/accesorios')
         },
         {
-          text: 'OFERTAS',
+          text: 'Ofertas',
           href: getPermalink('/homes/ofertas')
         }
       ],

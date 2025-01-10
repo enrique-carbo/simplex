@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="600"
+   height="600"
+   viewBox="0 0 158.75 158.75"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="logo-natron.svg"
+   inkscape:version="1.4 (1:1.4+202410161351+e7c3feb100)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.97227182"
+     inkscape:cx="218.56028"
+     inkscape:cy="273.07178"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <path
+       style="font-size:50.8px;line-height:1.05;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
+       d="m 95.93126,57.706337 10.668,18.8976 h -5.4864 l -8.0772,-15.494 -8.1788,15.494 h -5.1816 l 10.5156,-18.6436 -9.6012,-16.3576 h 5.4864 l 7.0612,13.1572 7.112,-13.1572 h 5.1816 z"
+       id="LetterX"
+       transform="translate(7.4008398,20.271666)" />
+    <path
+       style="font-size:50.8px;line-height:1.05;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
+       d="m 52.04843,40.993137 q 3.5052,0 5.9944,1.016 2.4892,0.9652 4.826,3.048 l -2.6416,2.9464 q -1.9812,-1.5748 -3.9116,-2.286 -1.8796,-0.762 -4.064,-0.762 -2.7432,0 -4.5212,1.27 -1.778,1.27 -1.778,3.7084 0,1.524 0.6096,2.5908 0.6096,1.016 2.2352,1.8796 1.6764,0.8636 4.826,1.8288 3.302,1.016 5.4864,2.1844 2.1844,1.1684 3.5052,3.2512 1.3716,2.032 1.3716,5.1816 0,3.048 -1.524,5.3848 -1.4732,2.3368 -4.318,3.6576 -2.794,1.3208 -6.6548,1.3208 -7.2644,0 -11.8872,-4.5212 l 2.6416,-2.9464 q 2.1336,1.7272 4.318,2.6416 2.1844,0.8636 4.8768,0.8636 3.2512,0 5.3848,-1.5748 2.1336,-1.6256 2.1336,-4.6736 0,-1.7272 -0.6604,-2.8448 -0.6604,-1.1684 -2.286,-2.0828 -1.5748,-0.9144 -4.6228,-1.8288 -5.3848,-1.6256 -7.874,-3.9116 -2.4892,-2.286 -2.4892,-6.1976 0,-2.6416 1.3716,-4.7244 1.4224,-2.0828 3.9116,-3.2512 2.54,-1.1684 5.7404,-1.1684 z"
+       id="LetterS"
+       transform="translate(7.4008398,20.271666)" />
+    <g
+       id="Background"
+       transform="translate(7.4008398,20.271666)">
+      <path
+         id="rect2"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.11667;stroke-linecap:square;paint-order:fill markers stroke"
+         d="M 10.054162,23.283335 H 133.89416 V 94.923334 H 10.054162 Z" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+         d="M 71.97416,31.403697 V 85.879204"
+         id="path3" />
+    </g>
+  </g>
+</svg>

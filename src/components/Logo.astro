@@ -1,12 +1,39 @@
 ---
-import { SITE, UI } from 'astrowind:config';
+import { SITE } from 'astrowind:config';
 import { Image } from 'astro:assets';
-import logoSimplex from '@/assets/images/simplex-logo.png';
+import logoSimplexLight from '@/assets/images/logo-simplex-blanco.svg';
+import logoSimplexDark from '@/assets/images/logo-simplex-black.svg'; 
 ---
 
-<Image src={ logoSimplex } alt="Simplex Logo" width="25" height="20"/>
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  {SITE?.name}
-</span>
+<div class="flex items-center">
+  <div class="logo-container">
+    <div class="hidden md:block">
+    <Image 
+      src={logoSimplexDark} 
+      alt="Simplex Logo Dark" 
+      width="75" 
+      height="70"
+      class="block dark:hidden"
+    />
+    <Image 
+      src={logoSimplexLight} 
+      alt="Simplex Logo Light" 
+      width="75" 
+      height="70"
+      class="hidden dark:block"
+    />
+    </div>
+  </div>
+  <span
+    class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+  >
+    {SITE?.name}
+  </span>
+</div>
+
+<style>
+  .logo-container {
+    display: inline-flex;
+    align-items: center;
+  }
+</style>
