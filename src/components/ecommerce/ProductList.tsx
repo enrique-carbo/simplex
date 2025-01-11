@@ -28,7 +28,7 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
             onClick={() => handleProductClick(product)}
           >
             {product.discountedPrice < product.listPrice && (
-              <Badge className="absolute top-2 left-2 text-red-500 bg-white border-red-500 dark:text-white dark:bg-red-500">  
+              <Badge className="absolute top-2 left-2 text-red-500 bg-white border-red-500 dark:text-white dark:bg-red-500 z-10">  
                 {discountPercentage}% OFF
               </Badge>
             )}
