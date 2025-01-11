@@ -58,12 +58,12 @@ function CarritoNanostore() {
           <h3 className="mb-2 font-bold">Tu carrito:</h3>
           {cartItems.length > 0 ? (
             cartItems.map((item) => {
-              const subtotal = item.price * item.quantity; // Calculate subtotal
+              const subtotal = item.discountedPrice * item.quantity; // Calculate subtotal
               return (
                 <div key={item.id + item.size} className="block md:flex justify-between items-center mb-2 border-t p-2">
                   <div className="flex items-center">
                     <span>
-                      {item.item}: {item.name} - {item.size} - ${item.price}
+                      {item.item}: {item.name} - {item.size} - ${item.discountedPrice}
                     </span>
                   </div>
                   <div className="flex items-center p-2">
@@ -88,8 +88,8 @@ function CarritoNanostore() {
 
         {cartItems.length > 0 && (
           <div className="mt-auto py-4 border-t-4 border-t-blue-700">
-            <h3 className="font-bold text-xl text-right">Total: $
-            <span><NumberFlow value={total}/></span>
+            <h3 className="font-bold text-xl text-right">Total: $ 
+              <span><NumberFlow value={total}/></span>
             </h3>
             <div className="mt-10 py-4 flex justify-end">
               <Button variant="destructive" onClick={handleClearCart}>
@@ -104,7 +104,7 @@ function CarritoNanostore() {
                   document={<PDFDocument cartItems={cartItems} total={total} />}
                   fileName="resumen-compra.pdf"
                 >
-                  {({ blob, url, loading, error }) => (
+                  {({ loading }) => (
                     <Button
                       className="ml-1"
                       variant="outline"

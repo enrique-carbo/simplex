@@ -22,7 +22,7 @@ function getInitialCartItems(): CartItem[] {
 export const $cartItems = atom<CartItem[]>(getInitialCartItems());
 
 export const $cartTotal = computed($cartItems, items =>
-  items.reduce((total, item) => total + item.price * item.quantity, 0)
+  items.reduce((total, item) => total + item.discountedPrice * item.quantity, 0)
 );
 
 function updateLocalStorage(cartItems: CartItem[]) {

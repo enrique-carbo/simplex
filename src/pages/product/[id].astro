@@ -2,6 +2,7 @@
 import Layout from '@/layouts/PageLayout.astro';
 import { availableProducts } from '@/assets/data/products/products';
 import ButtonAddToCart from '@/components/ecommerce/ButtonAddToCart';
+import { Badge } from '@/components/ui/badge';
 
 export async function getStaticPaths() {
   return availableProducts.map((product) => ({
@@ -16,6 +17,10 @@ const { product } = Astro.props;
 const metadata = {
   title: `Producto ${id}`,
 };
+
+const discountPercentage = (
+  ((product.listPrice - product.discountedPrice) / product.listPrice) * 100
+).toFixed(0);
 ---
 
 <Layout metadata={metadata}>
@@ -28,11 +33,25 @@ const metadata = {
           <img src={product.image} alt={product.name} class="w-full h-auto rounded-lg shadow-md" />
         </div>
         <div>
-          <p class="text-2xl font-semibold mb-4">${product.price}</p>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+              <p class="text-2xl font-semibold">${product.discountedPrice}</p>
+              {product.discountedPrice < product.listPrice && (
+                <p class="ml-4 line-through text-gray-500">${product.listPrice}</p>
+              )}
+            </div>
+            {product.discountedPrice < product.listPrice && (
+              <Badge className="text-red-500 bg-white border-red-500 dark:bg-red-500 dark:text-white">  
+                {discountPercentage}% OFF
+              </Badge>
+            )}
+          </div>
 
-          {product.inStock ? <p class="text-green-600 mb-4">Disponible</p> :
-          <p class="text-red-600 mb-4">Sin stock</p>
-          } 
+          {product.inStock ? (
+            <p class="text-green-600 mb-4">Disponible</p>
+          ) : (
+            <p class="text-red-600 mb-4">Sin stock</p>
+          )}
 
           {product.sizes.length > 0 && product.inStock && (
             <div>

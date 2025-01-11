@@ -2,7 +2,8 @@ export interface Product {
   id: string;
   item: string;
   name: string;
-  price: number;
+  discountedPrice: number;
+  listPrice: number;
   image: string;
   category: string;
   inStock: boolean;
