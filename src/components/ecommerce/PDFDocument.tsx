@@ -102,11 +102,11 @@ const PDFDocument: React.FC<PDFDocumentProps> = ({ cartItems, total }) => {
           );
         })}
 
-        <Text style={styles.listTotal}>Total Lista: ${totalListPrice.toFixed(2)}</Text>
+        <Text style={styles.listTotal}>Total Precio Lista: ${totalListPrice.toFixed(2)}</Text>
         {totalSavings > 0 && (
-        <Text style={styles.savings}>Ahorro Total: ${totalSavings.toFixed(2)}</Text>
+        <Text style={styles.savings}>Tu Ahorro: ${totalSavings.toFixed(2)}</Text>
         )}
-        <Text style={styles.total}>Total: ${total.toFixed(2)}</Text>
+        <Text style={styles.total}>Total abonar: ${total.toFixed(2)}</Text>
       </Page>
     </Document>
   );
