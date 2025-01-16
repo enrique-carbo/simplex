@@ -97,7 +97,7 @@ function CarritoNanostore() {
               </Button>
               {!isCheckoutComplete ? (
                 <Button onClick={handleFinishPurchase} className="ml-1 text-white">
-                  Finalizar Compra
+                  Finalizar Pedido
                 </Button>
               ) : (
                 <PDFDownloadLink
