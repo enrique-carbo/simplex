@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme';
+import plugin from 'tailwindcss/plugin';
 import typographyPlugin from '@tailwindcss/typography';
 
 module.exports = {
@@ -74,12 +75,21 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        fadeInUp: {
+          '0%': { opacity: 0, transform: 'translateY(2rem)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        fade: 'fadeInUp 1s both',
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), typographyPlugin],
+  plugins: [require("tailwindcss-animate"), typographyPlugin, 
+    plugin(({ addVariant }) => {
+      addVariant('intersect', '&:not([no-intersect])');
+    })
+  ],
 }
