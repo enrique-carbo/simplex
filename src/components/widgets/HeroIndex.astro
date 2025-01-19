@@ -1,19 +1,9 @@
 ---
-import Image from '~/components/common/Image.astro';
-import Button from '~/components/ui/Button.astro';
-import Background from '~/components/ui/Background.astro';
-
 import type { Hero as Props } from '~/types';
 
 const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
-  tagline,
-
-  content = await Astro.slots.render('content'),
-  actions = await Astro.slots.render('actions'),
-  image = await Astro.slots.render('image'),
-
   id,
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
@@ -32,13 +22,16 @@ const {
         {
           title && (
             <h1
-              class="text-3xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200"
+              class="text-3xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200
+              intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
               set:html={title}
             />
           )
         }
         <div class="max-w-3xl mx-auto">
-          {subtitle && <p class="text-xl text-muted mb-6 dark:text-slate-300" set:html={subtitle} />}
+          {subtitle && <p class="text-xl text-muted mb-6 dark:text-slate-300
+          intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade" 
+          set:html={subtitle} />}
         </div>
       </div>
       <div>
