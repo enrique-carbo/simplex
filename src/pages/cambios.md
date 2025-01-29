@@ -28,6 +28,9 @@ Para cambiar una prenda, el cliente debe cumplir con las siguientes condiciones:
 * La prenda debe estar en perfecto estado y no tenga daños o desgaste.
 * La prenda debe ser devuelta dentro del plazo de 7 días desde la fecha de compra.
 
+IMPORTANTE:  
+**NO SE ACEPTAN COMO PRENDAS "FALLADAS" AQUELLAS QUE FUERON USADAS Y/O LAVADAS PREVIAMENTE ANTES DE RECONOCER LA FALLA.**
+
 ### Procedimiento de Cambio
 
 Para cambiar una prenda, el cliente debe seguir los siguientes pasos:
