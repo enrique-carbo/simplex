@@ -32,19 +32,21 @@
     ]
   },
   {
-    "id": "7",
+    "id": "lid-art-1111jo",
     "item": "301",
-    "name": "Producto 7",
-    "discountedPrice": 35000,
-    "listPrice": 43000, 
-    "image": "/images/products/jeans.webp",
+    "name": "Jean Recto Lidase",
+    "discountedPrice": 52800,
+    "listPrice": 58000, 
+    "image": "/images/products/jean-recto-1111jo-1.webp",
     "category": "pantalones",
     "inStock": true,
     "sizes": [
-      { "size": "28", "quantity": 1 },
-      { "size": "30", "quantity": 1 },
-      { "size": "32", "quantity": 1 },
-      { "size": "34", "quantity": 1 }
+      { "size": "38", "quantity": 1 },
+      { "size": "40", "quantity": 1 },
+      { "size": "42", "quantity": 1 },
+      { "size": "44", "quantity": 1 },
+      { "size": "46", "quantity": 1 },
+      { "size": "48", "quantity": 1 }
     ]
   },
   {
