@@ -27,7 +27,7 @@ const SalesList: React.FC = () => {
               <CardContent>
                 <img src={sale.image} alt={sale.name} className="w-full h-48 object-contain" />
                 <div className="p-4">
-                  <h2 className="text-xl font-medium mb-2">Art-{sale.item}:  
+                  <h2 className="text-xl font-medium mb-2">Art-{sale.item}:   
                   <span className='font-semibold'> {sale.name}</span>
                   </h2>
                   <div className="flex">
