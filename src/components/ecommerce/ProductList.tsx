@@ -35,7 +35,9 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
             <CardContent>
               <img src={product.image} alt={product.name} className="w-full h-48 object-contain" />
               <div className="p-4">
-                <h2 className="text-xl font-semibold mb-2">Art-{product.item}: {product.name}</h2>
+                <h2 className="text-xl font-medium mb-2">Art-{product.item}: 
+                <span className='font-semibold'> {product.name}</span>
+                </h2>
                 <div className="flex">
                   <p className="text-gray-900 dark:text-white text-xl font-medium">${product.discountedPrice.toFixed(2)}</p>
                   {product.discountedPrice < product.listPrice && (

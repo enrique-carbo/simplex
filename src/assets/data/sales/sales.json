@@ -1,28 +1,51 @@
 [
   {
     "id": "sale-remeraMC-basix",
-    "item": "s-1001",
-    "name": "2 Remeras MC Basix",
-    "price": 9999,
-    "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
+    "item": "S-1001",
+    "name": "2 Remeras Mangas Cortas Basix",
+    "discountedPrice": 14900,
+    "listPrice": 19900,
+    "image": "/images/products/remera-negra.jpg",
     "category": "sales",
-    "inStock": false
+    "inStock": true
   },
   {
-    "id": "sale-remeraMC-eleve",
-    "item": "s-1002",
-    "name": "2 Remeras MC Elevé",
-    "price": 19000,
+    "id": "sale-remeraMC-elevex2",
+    "item": "S-1002",
+    "name": "2 Remeras Mangas Cortas Elevé",
+    "discountedPrice": 20900,
+    "listPrice": 27800,
     "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
     "category": "sales",
     "inStock": true
   },
   {
-    "id": "sale-buzo-redondo",
-    "item": "s-1003",
-    "name": "2 Buzos Cuello Redondo",
-    "price": 39000,
-    "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
+    "id": "sale-remeraMC-elevex3",
+    "item": "S-1003",
+    "name": "3 Remeras Mangas Cortas Elevé",
+    "discountedPrice": 29999,
+    "listPrice": 41700,
+    "image": "/images/products/algodonera/remera-mc-algodonera-gris.jpg",
+    "category": "sales",
+    "inStock": true
+  },
+  {
+    "id": "sale-boxer-zorba",
+    "item": "S-1004",
+    "name": "3 Boxers Zorba",
+    "discountedPrice": 12999,
+    "listPrice": 18000,
+    "image": "/images/products/boxer.jpg",
+    "category": "sales",
+    "inStock": true
+  },
+  {
+    "id": "sale-medias-mitre",
+    "item": "S-1004",
+    "name": "3 Pares de Medias de Algodón",
+    "discountedPrice": 10500,
+    "listPrice": 13500,
+    "image": "/images/products/medias-2.jpg",
     "category": "sales",
     "inStock": true
   }

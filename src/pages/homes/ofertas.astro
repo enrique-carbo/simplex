@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import SalesList from '@/components/ecommerce/SalesList';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
   title: 'Ofertas',
@@ -17,7 +18,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Importantes ofertas en nuestros productos.
+      Importantes descuentos en nuestros productos.
     </Fragment>
   </Hero>
 
@@ -26,5 +27,16 @@ const metadata = {
   <div class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
   <SalesList></SalesList>
   </div>  
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction>
+    <Fragment slot="title">
+      Visitanos
+    </Fragment>
+    <Fragment slot="subtitle">
+      <span class="font-semibold">Todos los descuentos son al contado efectivo en nuestro showroom.</span>
+    </Fragment>
+  </CallToAction>
 
 </Layout>
