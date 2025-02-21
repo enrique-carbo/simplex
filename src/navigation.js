@@ -103,11 +103,11 @@ export const footerData = {
   ],
   socialLinks: [
     { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://www.tiktok.com/@simplex.ar' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
+    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/simplex.parana/' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') }
   ],
   footNote: `
-    Padre Grella 1515. WhatsApp 3434 718183
+    Padre Grella 1593. WhatsApp 3434 718183
   `,
 };
