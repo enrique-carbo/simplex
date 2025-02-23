@@ -55,16 +55,16 @@ export const headerData = {
           href: getBlogPermalink(),
         },
         {
-          text: 'Cordura',
-          href: getPermalink('cordura-dupont', 'post'),
-        },
-        {
           text: 'Remeras de Algodón',
           href: getPermalink('remera-algodon-tipos', 'post'),
         },
         {
           text: 'Textiles',
           href: getPermalink('textiles', 'category'),
+        },
+        {
+          text: 'Suplementos',
+          href: getPermalink('suplementos', 'category'),
         }
       ],
     }
