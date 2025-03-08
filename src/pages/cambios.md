@@ -35,7 +35,7 @@ IMPORTANTE:
 
 Para cambiar una prenda, el cliente debe seguir los siguientes pasos:
 
-* Presentar la prenda en el establecimiento físico en calle Grella.
+* Presentar la prenda en el establecimiento físico en calle Grella 1593, Paraná, Entre Ríos.
 * Nuestro personal de atención al cliente verificará que la prenda cumpla con las condiciones establecidas en esta política.
 * Si la prenda cumple con las condiciones, nuestro personal de atención al cliente le ofrecerá un cambio por otro producto de igual valor.
 * Si el cliente desea cambiar la prenda por un producto de mayor valor, debe pagar la diferencia entre el valor de la prenda original y el valor del nuevo producto.
@@ -50,10 +50,6 @@ No se aplicará esta política en los siguientes casos:
 * Prendas que hayan sido utilizadas o lavadas.
 * Prendas que hayan sido devueltas previamente.
 * Prendas que no sean originales o no hayan sido compradas en nuestro establecimiento físico o a través de nuestra plataforma de comercio electrónico.
-
-### Garantía
-
-Nuestro negocio se compromete a brindar una garantía de satisfacción a nuestros clientes. Si el cliente no está satisfecho con el cambio, podemos ofrecer una devolución parcial o total del valor de la prenda.
 
 ### Actualizaciones
 

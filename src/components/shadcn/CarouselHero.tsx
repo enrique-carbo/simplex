@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import Autoplay from "embla-carousel-autoplay"
 
 // Images 
-import HoodieImage from '@/assets/images/products/hoodie.jpg';
+import HoodieImage from '@/assets/images/products/buzo-negro.webp';
 import WhiteTShirt from '@/assets/images/products/white-t-shirt.jpg';
 import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg';
 import SimplexModel from '@/assets/images/products/model-simplex-1.jpg'
@@ -15,15 +15,15 @@ const carouselItems = [
   },
   {
     image: HoodieImage,
-    alt: 'Producto 1'
+    alt: 'Buzo capucha'
   },
   {
     image: WhiteTShirt,
-    alt: 'Producto 2'
+    alt: 'Remera Blanca'
   },
   {
     image: WhiteTShirt1,
-    alt: 'Producto 3'
+    alt: 'Remera Blanca 1'
   }
 ];
 

@@ -1,13 +1,13 @@
 [
   {
-    "id": "1",
-    "item": "202",
-    "name": "Producto 1",
-    "discountedPrice": 39000,
-    "listPrice": 45000,
-    "image": "/images/products/hoodie.jpg",
+    "id": "campera-capucha-001",
+    "item": "501",
+    "name": "Campera Algodón Negro con Capucha",
+    "discountedPrice": 29000,
+    "listPrice": 32000,
+    "image": "/images/products/kimikal/buzo-kimikal.webp",
     "category": "buzos",
-    "inStock": false,
+    "inStock": true,
     "sizes": [
       { "size": "S", "quantity": 1 },
       { "size": "M", "quantity": 1 },
@@ -16,12 +16,28 @@
     ]
   },
   {
-    "id": "2",
+    "id": "prince-buzo-001-gris",
     "item": "202",
-    "name": "Producto 2",
-    "discountedPrice": 39000,
-    "listPrice": 45000,
-    "image": "/images/products/hoodie.webp",
+    "name": "Buzo algodón capucha gris",
+    "discountedPrice": 29000,
+    "listPrice": 32000,
+    "image": "/images/products/Wacky/buzo-wacky-grismelange.webp",
+    "category": "buzos",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 0 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "prince-buzo-001-negro",
+    "item": "202",
+    "name": "Buzo algodón capucha negro",
+    "discountedPrice": 29000,
+    "listPrice": 32000,
+    "image": "/images/products/Wacky/buzo-wacky-negro.webp",
     "category": "buzos",
     "inStock": true,
     "sizes": [
@@ -36,7 +52,7 @@
     "item": "301",
     "name": "Jean Recto Lidase",
     "discountedPrice": 52800,
-    "listPrice": 58000, 
+    "listPrice": 59499, 
     "image": "/images/products/lidase/jean-recto-1111jo-1.webp",
     "category": "pantalones",
     "inStock": true,
@@ -45,71 +61,72 @@
       { "size": "40", "quantity": 1 },
       { "size": "42", "quantity": 1 },
       { "size": "44", "quantity": 1 },
-      { "size": "46", "quantity": 1 },
+      { "size": "46", "quantity": 0 },
       { "size": "48", "quantity": 1 }
     ]
   },
   {
-    "id": "8",
-    "item": "301",
-    "name": "Producto 8",
-    "discountedPrice": 35000,
-    "listPrice":43000,
-    "image": "/images/products/pantalon.webp",
-    "category": "pantalones",
-    "inStock": true,
-    "sizes": [
-      { "size": "28", "quantity": 1 },
-      { "size": "30", "quantity": 1 },
-      { "size": "32", "quantity": 1 },
-      { "size": "34", "quantity": 1 }
-    ]
-  },
-  {
-    "id": "9",
-    "item": "301",
-    "name": "Producto 9",
-    "discountedPrice": 20000,
-    "listPrice": 25000,
-    "image": "/images/products/Jogging.webp",
-    "category": "pantalones",
-    "inStock": true,
-    "sizes": [
-      { "size": "S", "quantity": 1 },
-      { "size": "M", "quantity": 1 },
-      { "size": "L", "quantity": 1 },
-      { "size": "XL", "quantity": 1 }
-    ]
-  },
-  {
-    "id": "10",
+    "id": "offe-minibag-001",
     "item": "502",
-    "name": "Producto 10",
-    "discountedPrice": 9900,
-    "listPrice": 11900,
+    "name": "Mini Bag",
+    "discountedPrice": 15899,
+    "listPrice": 17900,
     "image": "/images/products/mini-bag.jpg",
     "category": "bags",
     "inStock": true,
     "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
-    "id": "11",
+    "id": "offe-morral-red-001",
     "item": "502",
-    "name": "Producto 11",
-    "discountedPrice": 11900,
-    "listPrice": 13900,
-    "image": "/images/products/morral-gris.jpg",
+    "name": "Morral red",
+    "discountedPrice": 16899,
+    "listPrice": 18900,
+    "image": "/images/products/morral-negro-red.jpg",
     "category": "bags",
     "inStock": true,
     "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
-    "id": "12",
-    "item": "502",
-    "name": "Producto 12",
-    "discountedPrice": 11900,
-    "listPrice": 13900,
-    "image": "/images/products/morral-negro-red.jpg",
+    "id": "pla-mochila-unicross-001",
+    "item": "503",
+    "name": "Mochila Unicross",
+    "discountedPrice": 38999,
+    "listPrice": 43000,
+    "image": "/images/products/platino/mochila-unicross.webp",
+    "category": "bags",
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
+  },
+  {
+    "id": "pla-mochila-everlast-001",
+    "item": "503-6971",
+    "name": "Mochila Everlast",
+    "discountedPrice": 42499,
+    "listPrice": 46000,
+    "image": "/images/products/platino/mochila-everlast.webp",
+    "category": "bags",
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
+  },
+  {
+    "id": "pla-mochila-everlast-002",
+    "item": "503-6972",
+    "name": "Mochila Everlast Solapa",
+    "discountedPrice": 42499,
+    "listPrice": 46000,
+    "image": "/images/products/platino/mochila-everlast-solapa.webp",
+    "category": "bags",
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
+  },
+  {
+    "id": "pla-mochi-wellinton-001",
+    "item": "503-24683",
+    "name": "Mochila Wellinton",
+    "discountedPrice": 36499,
+    "listPrice": 39000,
+    "image": "/images/products/platino/mochila-wellinton.webp",
     "category": "bags",
     "inStock": true,
     "sizes": [{"size": "unico", "quantity": 1}]
@@ -164,19 +181,20 @@
     "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
-    "id": "16",
-    "item": "202",
-    "name": "Producto 16",
-    "discountedPrice": 39000,
-    "listPrice": 45000,
-    "image": "/images/products/modelo-buzo-gris-sm.jpg",
-    "category": "buzos",
+    "id": "pla-cintos-unicross-001",
+    "item": "004",
+    "name": "Cinturón Unicross Negro",
+    "discountedPrice": 15890,
+    "listPrice": 18999, 
+    "image": "/images/products/platino/cintos-unicross.webp",
+    "category": "accesorios",
     "inStock": true,
     "sizes": [
-      { "size": "S", "quantity": 1 },
-      { "size": "M", "quantity": 1 },
-      { "size": "L", "quantity": 1 },
-      { "size": "XL", "quantity": 1 }
+      { "size": "95", "quantity": 1 },
+      { "size": "100", "quantity": 1 },
+      { "size": "105", "quantity": 1 },
+      { "size": "110", "quantity": 1 },
+      { "size": "115", "quantity": 0 }
     ]
   },
   {
@@ -285,10 +303,10 @@
     "category": "remeras",
     "inStock": true,
     "sizes": [
-      { "size": "S", "quantity": 1 },
-      { "size": "M", "quantity": 1 },
+      { "size": "S", "quantity": 0 },
+      { "size": "M", "quantity": 0 },
       { "size": "L", "quantity": 1 },
-      { "size": "XL", "quantity": 1 }
+      { "size": "XL", "quantity": 0 }
     ]
   },
   {
@@ -302,9 +320,9 @@
     "inStock": true,
     "sizes": [
       { "size": "S", "quantity": 0 },
-      { "size": "M", "quantity": 1 },
+      { "size": "M", "quantity": 0 },
       { "size": "L", "quantity": 1 },
-      { "size": "XL", "quantity": 1 }
+      { "size": "XL", "quantity": 0 }
     ]
   }
 ]

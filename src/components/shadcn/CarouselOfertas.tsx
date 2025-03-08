@@ -3,47 +3,47 @@ import { Card, CardContent } from '@/components/ui/card';
 import Autoplay from "embla-carousel-autoplay"
 
 // Images 
-import HoodieImage from '@/assets/images/products/hoodie.jpg';
-import WhiteTShirt from '@/assets/images/products/white-t-shirt.jpg';
-import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg';
-import MorralGris from '@/assets/images/products/morral-gris.jpg'
-import MorralNegro from '@/assets/images/products/morral-negro.jpg'
-import RemeraBatikAzul from '@/assets/images/products/remera-batik.jpg'
+import BuzoKimikal from '@/assets/images/products/buzo-kimikal.webp';
+import BuzoKimikalGris from '@/assets/images/products/buzo-kimikal-gris.webp';
+import MorralRed from '@/assets/images/products/morral-red.webp'
 import RemeraBatikVerde from '@/assets/images/products/remara-batik-verde.jpg'
 import RemeraAlgodoneraAzul from '@/assets/images/products/remera-algodonera-azul.jpg'
+import MochilaEverlast from '@/assets/images/products/mochila-everlast-solapa.webp'
+import RemeraLisaKimikal from '@/assets/images/products/remera-lisa-kimikal.webp'
+import JeanLidase from '@/assets/images/products/jean-lidase.webp'
 
 const carouselItems = [
   {
-    image: HoodieImage,
-    alt: 'Producto 1'
+    image: BuzoKimikal,
+    alt: 'Campera frisa'
   },
   {
-    image: WhiteTShirt,
-    alt: 'Producto 2'
+    image: MochilaEverlast,
+    alt: 'Mochila Everlast'
   },
   {
-    image: WhiteTShirt1,
-    alt: 'Producto 3'
+    image: RemeraLisaKimikal,
+    alt: 'Remera Lisa'
   },
   {
-    image: MorralGris,
-    alt: 'Producto 4'
+    image: JeanLidase,
+    alt: 'Jean Lidase'
   },
   {
     image: RemeraAlgodoneraAzul,
     alt: 'Remera'
   },
   {
-    image: MorralNegro,
-    alt: 'Producto 5'
+    image: MorralRed,
+    alt: 'Morral'
   },
   {
     image: RemeraBatikVerde,
-    alt: 'Producto 6'
+    alt: 'Remera Batik'
   },
   {
-    image: RemeraBatikAzul,
-    alt: 'Producto 7'
+    image: BuzoKimikalGris,
+    alt: 'Buzo Kimikal Gris'
   }
 ];
 
