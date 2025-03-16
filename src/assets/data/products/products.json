@@ -69,8 +69,8 @@
     "id": "offe-minibag-001",
     "item": "502",
     "name": "Mini Bag",
-    "discountedPrice": 15899,
-    "listPrice": 17900,
+    "discountedPrice": 13900,
+    "listPrice": 15900,
     "image": "/images/products/mini-bag.jpg",
     "category": "bags",
     "inStock": true,
@@ -80,8 +80,8 @@
     "id": "offe-morral-red-001",
     "item": "502",
     "name": "Morral red",
-    "discountedPrice": 16899,
-    "listPrice": 18900,
+    "discountedPrice": 14899,
+    "listPrice": 16900,
     "image": "/images/products/morral-negro-red.jpg",
     "category": "bags",
     "inStock": true,
@@ -294,6 +294,22 @@
     ]
   },
   {
+    "id": "art-remeraMC-petroleo-prince",
+    "item": "1012",
+    "name": "Remera Mangas Cortas Azul Petróleo",
+    "discountedPrice": 12900,
+    "listPrice": 14900,
+    "image": "/images/products/Wacky/remeras/remera-petroleo.webp",
+    "category": "remeras",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
+  },
+  {
     "id": "art-remeraMC-batik-azul-APV",
     "item": "1013",
     "name": "Remera Mangas Cortas Azul Batik",
@@ -323,6 +339,23 @@
       { "size": "M", "quantity": 0 },
       { "size": "L", "quantity": 1 },
       { "size": "XL", "quantity": 0 }
+    ]
+  },
+  {
+    "id": "art-musculosa-capucha-cotton",
+    "item": "105",
+    "name": "Musculosa Capucha 100% Algodón Gris",
+    "discountedPrice": 13900,
+    "listPrice": 15500,
+    "image": "/images/products/cottonclub/musculosa-capucha.webp",
+    "category": "remeras",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 },
+      { "size": "XXL", "quantity": 1 }
     ]
   }
 ]
