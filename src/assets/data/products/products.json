@@ -9,8 +9,71 @@
     "category": "buzos",
     "inStock": true,
     "sizes": [
+      { "size": "S", "quantity": 0 },
+      { "size": "M", "quantity": 0 },
+      { "size": "L", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "buzo-algodon-rustico-rasta-redondo-gris",
+    "item": "201",
+    "name": "Buzo Algodón Rústico Cuello Redondo Gris",
+    "discountedPrice": 29999,
+    "listPrice": 33500,
+    "image": "/images/products/rasta/buzo-redondo/buzo-algodon-rustico-redondo-gris.webp",
+    "category": "buzos",
+    "inStock": true,
+    "sizes": [
       { "size": "S", "quantity": 1 },
       { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 0 },
+      { "size": "XL", "quantity": 0 }
+    ]
+  },
+  {
+    "id": "buzo-algodon-rustico-rasta-redondo-marino",
+    "item": "201",
+    "name": "Buzo Algodón Rústico Cuello Redondo Azul",
+    "discountedPrice": 29999,
+    "listPrice": 33500,
+    "image": "/images/products/rasta/buzo-redondo/buzo-algodon-rustico-redondo-azul.webp",
+    "category": "buzos",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 0 },
+      { "size": "M", "quantity": 0 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "campera-capucha-rasta-gris",
+    "item": "501",
+    "name": "Campera Algodón Rústico con Capucha Gris",
+    "discountedPrice": 39999,
+    "listPrice": 43500,
+    "image": "/images/products/rasta/campera-algodon/campera-algodon-gris.webp",
+    "category": "buzos",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 0 },
+      { "size": "XL", "quantity": 0 }
+    ]
+  },
+  {
+    "id": "campera-capucha-rasta-marino",
+    "item": "501",
+    "name": "Campera Algodón Rústico con Capucha Azul",
+    "discountedPrice": 39999,
+    "listPrice": 43500,
+    "image": "/images/products/rasta/campera-algodon/campera-algodon-azul.webp",
+    "category": "buzos",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 0 },
+      { "size": "M", "quantity": 0 },
       { "size": "L", "quantity": 1 },
       { "size": "XL", "quantity": 1 }
     ]
@@ -63,6 +126,52 @@
       { "size": "44", "quantity": 1 },
       { "size": "46", "quantity": 0 },
       { "size": "48", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "cyd-art-jean-semichupin",
+    "item": "301",
+    "name": "Jean Semichupin C&D",
+    "discountedPrice": 39499,
+    "listPrice": 42800, 
+    "image": "/images/products/jeancyd/jean-cyd.webp",
+    "category": "pantalones",
+    "inStock": true,
+    "sizes": [
+      { "size": "40", "quantity": 1 },
+      { "size": "42", "quantity": 1 },
+      { "size": "44", "quantity": 1 },
+      { "size": "46", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "rasta-art-jogging-gris-oscuro",
+    "item": "302",
+    "name": "Jogging Recto Gris Oscuro Ra",
+    "discountedPrice": 29999,
+    "listPrice": 32800, 
+    "image": "/images/products/rasta/jogging-algodon/Jogging-algodon-gris-oscuro.webp",
+    "category": "pantalones",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 0 }
+    ]
+  },
+  {
+    "id": "rasta-art-jogging-gris-melange",
+    "item": "302",
+    "name": "Jogging Recto Gris Melange Ra",
+    "discountedPrice": 29999,
+    "listPrice": 32800, 
+    "image": "/images/products/rasta/jogging-algodon/Jogging-algodon-melange.webp",
+    "category": "pantalones",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 0 },
+      { "size": "M", "quantity": 0 },
+      { "size": "L", "quantity": 1 }
     ]
   },
   {
@@ -144,7 +253,7 @@
       { "size": "S", "quantity": 0 },
       { "size": "M", "quantity": 1 },
       { "size": "L", "quantity": 1 },
-      { "size": "XL", "quantity": 1 }
+      { "size": "XL", "quantity": 0 }
     ]
   },
   {
@@ -194,7 +303,7 @@
       { "size": "100", "quantity": 1 },
       { "size": "105", "quantity": 1 },
       { "size": "110", "quantity": 1 },
-      { "size": "115", "quantity": 0 }
+      { "size": "115", "quantity": 1 }
     ]
   },
   {
