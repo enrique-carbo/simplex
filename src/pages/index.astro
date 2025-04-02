@@ -7,6 +7,7 @@ import Features from '@/components/widgets/Features.astro';
 import Steps from '@/components/widgets/Steps.astro';
 import BlogLatestPosts from '@/components/widgets/BlogLatestPosts.astro';
 import FAQs from '@/components/widgets/FAQs.astro';
+import Brands from '@/components/widgets/Brands.astro';
 import { CarouselHero } from '@/components/shadcn/CarouselHero';
 import { CarouselOfertas } from '@/components/shadcn/CarouselOfertas'
 
@@ -163,7 +164,7 @@ const metadata = {
       {
         title: "¿Qué métodos de pago son aceptados?",
         description:
-          "Los tipos de pagos aceptados son Efectivo, Transferencias y Mercado Pago.",
+          "Los tipos de pagos aceptados son Efectivo, Transferencias, Tarjetas de Débito y Crédito a través de lector Point de Mercado Pago.",
       },
       {
         title: '¿Qué es el plazo de envío para pedidos en línea?',
@@ -182,6 +183,27 @@ const metadata = {
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </FAQs>
+
+  <!---------------- Medios de Pago ------------------------->
+
+  <Brands
+    title="Formas de Pago"
+    subtitle="Recibimos pagos en Efectivo, Transferencias, Tarjetas de Débito y Cŕedito."
+    icons={[ 'cash', 'mp', 'visa', 'mastercard', 'maestro', 'naranja', 'nativa',
+    'american-express', 'cabal', 'diners']}
+    iconClass="w-16 h-16" 
+    images={[]}
+  />
+
+  <!---------------- Financiación ------------------------->
+
+  <Brands
+    title="Cuotas Fijas"
+    subtitle="Cuota Simple es un plan de financiamiento que te permite comprar en 3 o 6 cuotas con tu tarjeta de crédito."
+    icons={[ 'mp', 'cuota-simple']}
+    iconClass="w-36 h-36" 
+    images={[]}
+  />
 
   <!-- HighlightedPosts Widget ******* -->
 
