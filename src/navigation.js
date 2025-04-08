@@ -104,6 +104,7 @@ export const footerData = {
   socialLinks: [
     { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://www.tiktok.com/@simplex.ar' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/simplex.parana/' },
+    { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@simplex.parana' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') }
   ],
   footNote: `
