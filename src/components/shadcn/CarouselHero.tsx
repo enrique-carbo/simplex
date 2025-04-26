@@ -6,12 +6,17 @@ import Autoplay from "embla-carousel-autoplay"
 import HoodieImage from '@/assets/images/products/buzo-negro.webp';
 import WhiteTShirt from '@/assets/images/products/white-t-shirt.jpg';
 import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg';
-import SimplexModel from '@/assets/images/products/model-simplex-1.jpg'
+import SimplexModel from '@/assets/images/products/model-sign-1.webp'
+import MaleModel from '@/assets/images/products/male-model.webp'
 
 const carouselItems = [
   {
     image: SimplexModel,
     alt: 'Simplex model'
+  },
+  {
+    image: MaleModel,
+    alt: 'Male model'
   },
   {
     image: HoodieImage,

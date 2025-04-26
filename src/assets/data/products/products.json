@@ -197,6 +197,17 @@
     "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
+    "id": "pla-morral-head",
+    "item": "502",
+    "name": "Morral Head",
+    "discountedPrice": 20900,
+    "listPrice": 22900,
+    "image": "/images/products/platino/morral-head.webp",
+    "category": "bags",
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
+  },
+  {
     "id": "pla-mochila-unicross-001",
     "item": "503",
     "name": "Mochila Unicross",
@@ -285,6 +296,17 @@
     "discountedPrice": 8900,
     "listPrice": 12000,
     "image": "/images/products/gorra_gabardina.jpeg",
+    "category": "accesorios",
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
+  },
+  {
+    "id": "gorra-tejida-everlast",
+    "item": "003",
+    "name": "Gorro tejido Everlast",
+    "discountedPrice": 10900,
+    "listPrice": 12500,
+    "image": "/images/products/platino/gorro-tejido.webp",
     "category": "accesorios",
     "inStock": true,
     "sizes": [{"size": "unico", "quantity": 1}]
