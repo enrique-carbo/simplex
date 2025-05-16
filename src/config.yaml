@@ -11,7 +11,7 @@ metadata:
   title:
     default: Simplex
     template: '%s — Simplex'
-  description: "E-commerce website for the sale of basic clothing located in Paraná Entre Ríos called Simplex."
+  description: "Página web de Simplex, local de venta de indumentaria urbana, deportiva y para el tiempo libre. Estamos en calle Grella 1593 en la ciudad de Paraná, Entre Ríos."
   robots:
     index: true
     follow: true
