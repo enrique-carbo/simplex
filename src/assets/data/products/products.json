@@ -1,20 +1,5 @@
 [
   {
-    "id": "campera-capucha-001",
-    "item": "501",
-    "name": "Campera Algodón Negro con Capucha",
-    "discountedPrice": 29000,
-    "listPrice": 32000,
-    "image": "/images/products/kimikal/buzo-kimikal.webp",
-    "category": "buzos",
-    "inStock": true,
-    "sizes": [
-      { "size": "S", "quantity": 0 },
-      { "size": "M", "quantity": 0 },
-      { "size": "L", "quantity": 1 }
-    ]
-  },
-  {
     "id": "buzo-algodon-rustico-rasta-redondo-gris",
     "item": "201",
     "name": "Buzo Algodón Rústico Cuello Redondo Gris",
@@ -47,42 +32,10 @@
     ]
   },
   {
-    "id": "campera-capucha-rasta-gris",
-    "item": "501",
-    "name": "Campera Algodón Rústico con Capucha Gris",
-    "discountedPrice": 39999,
-    "listPrice": 43500,
-    "image": "/images/products/rasta/campera-algodon/campera-algodon-gris.webp",
-    "category": "buzos",
-    "inStock": true,
-    "sizes": [
-      { "size": "S", "quantity": 1 },
-      { "size": "M", "quantity": 1 },
-      { "size": "L", "quantity": 0 },
-      { "size": "XL", "quantity": 0 }
-    ]
-  },
-  {
-    "id": "campera-capucha-rasta-marino",
-    "item": "501",
-    "name": "Campera Algodón Rústico con Capucha Azul",
-    "discountedPrice": 39999,
-    "listPrice": 43500,
-    "image": "/images/products/rasta/campera-algodon/campera-algodon-azul.webp",
-    "category": "buzos",
-    "inStock": true,
-    "sizes": [
-      { "size": "S", "quantity": 0 },
-      { "size": "M", "quantity": 0 },
-      { "size": "L", "quantity": 1 },
-      { "size": "XL", "quantity": 1 }
-    ]
-  },
-  {
     "id": "prince-buzo-001-gris",
     "item": "202",
     "name": "Buzo algodón capucha gris",
-    "discountedPrice": 24900,
+    "discountedPrice": 25900,
     "listPrice": 30000,
     "image": "/images/products/Wacky/buzo-wacky-grismelange.webp",
     "category": "buzos",
@@ -98,7 +51,7 @@
     "id": "prince-buzo-001-negro",
     "item": "202",
     "name": "Buzo algodón capucha negro",
-    "discountedPrice": 24900,
+    "discountedPrice": 25900,
     "listPrice": 30000,
     "image": "/images/products/Wacky/buzo-wacky-negro.webp",
     "category": "buzos",
@@ -114,8 +67,8 @@
     "id": "royalty-buzo-choco",
     "item": "202",
     "name": "Buzo algodón capucha chocolate",
-    "discountedPrice": 23900,
-    "listPrice": 28000,
+    "discountedPrice": 25900,
+    "listPrice": 30000,
     "image": "/images/products/royaltyind/buzo-chocolate.webp",
     "category": "buzos",
     "inStock": true,
@@ -128,11 +81,58 @@
     ]
   },
   {
+    "id": "campera-capucha-001",
+    "item": "501",
+    "name": "Campera Algodón Rústico Negro con Capucha",
+    "discountedPrice": 29900,
+    "listPrice": 34000,
+    "image": "/images/products/kimikal/buzo-kimikal.webp",
+    "category": "buzos",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 0 },
+      { "size": "M", "quantity": 0 },
+      { "size": "L", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "campera-capucha-rasta-gris",
+    "item": "501",
+    "name": "Campera Algodón Rústico con Capucha Gris",
+    "discountedPrice": 39900,
+    "listPrice": 43500,
+    "image": "/images/products/rasta/campera-algodon/campera-algodon-gris.webp",
+    "category": "buzos",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 0 },
+      { "size": "XL", "quantity": 0 }
+    ]
+  },
+  {
+    "id": "campera-capucha-rasta-marino",
+    "item": "501",
+    "name": "Campera Algodón Rústico con Capucha Azul",
+    "discountedPrice": 39900,
+    "listPrice": 43500,
+    "image": "/images/products/rasta/campera-algodon/campera-algodon-azul.webp",
+    "category": "buzos",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 0 },
+      { "size": "M", "quantity": 0 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
+  },
+  {
     "id": "lid-art-1111jo",
     "item": "301",
     "name": "Jean Recto Lidase",
     "discountedPrice": 52800,
-    "listPrice": 59499, 
+    "listPrice": 59400, 
     "image": "/images/products/lidase/jean-recto-1111jo-1.webp",
     "category": "pantalones",
     "inStock": true,
@@ -254,8 +254,8 @@
     "listPrice": 23500,
     "image": "/images/products/platino/morral-head.webp",
     "category": "bags",
-    "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "inStock": false,
+    "sizes": [{"size": "unico", "quantity": 0}]
   },
   {
     "id": "pla-mochila-unicross-001",
