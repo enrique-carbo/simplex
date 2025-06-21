@@ -4,7 +4,13 @@ import typographyPlugin from '@tailwindcss/typography';
 
 module.exports = {
   darkMode: ["class"],
-  content: ['./src/**/*.{astro,html,js,jsx,json,md,mdx,svelte,ts,tsx,vue}'],
+  content: [
+    './src/**/*.{astro,html,js,jsx,json,md,mdx,svelte,ts,tsx,vue}',
+    './components/**/*.{astro,html,js,jsx,ts,tsx}',
+    './pages/**/*.{astro,html,js,jsx,ts,tsx}',
+    './node_modules/@shadcn/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@radix-ui/**/*.{js,ts,jsx,tsx}',
+  ],
   prefix: "",
   theme: {
     container: {
