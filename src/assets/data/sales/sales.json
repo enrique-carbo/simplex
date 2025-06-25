@@ -22,7 +22,7 @@
   {
     "id": "sale-remeraMC-elevex3",
     "item": "S-1003",
-    "name": " 3 Remeras Mangas Cortas Elevé",
+    "name": "3 Remeras Mangas Cortas Elevé",
     "discountedPrice": 29900,
     "listPrice": 42000,
     "image": "/images/products/algodonera/remera-mc-algodonera-gris.jpg",
@@ -32,7 +32,7 @@
   {
     "id": "sale-boxer-zorba",
     "item": "S-1004",
-    "name": " 3 Boxers Zorba",
+    "name": "3 Boxers Zorba",
     "discountedPrice": 12900,
     "listPrice": 19500,
     "image": "/images/products/boxer.jpg",
@@ -42,7 +42,7 @@
   {
     "id": "sale-medias-mitre",
     "item": "S-1004",
-    "name": " 3 Pares de Medias de Algodón",
+    "name": "3 Pares de Medias de Algodón",
     "discountedPrice": 1100,
     "listPrice": 13500,
     "image": "/images/products/medias-2.jpg",
