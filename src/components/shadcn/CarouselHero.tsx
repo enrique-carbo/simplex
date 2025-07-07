@@ -3,11 +3,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import Autoplay from "embla-carousel-autoplay"
 
 // Images 
-import HoodieImage from '@/assets/images/products/buzo-negro.webp';
-import WhiteTShirt from '@/assets/images/products/white-t-shirt.jpg';
-import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg';
+import WhiteTShirt from '@/assets/images/products/white-t-shirt.jpg'
+import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg'
 import SimplexModel from '@/assets/images/products/model-sign-1.webp'
 import MaleModel from '@/assets/images/products/male-model.webp'
+import Grella1593 from '@/assets/images/grella1593.jpg'
+import HorarioInvierno from '@/assets/images/horario-invierno.jpg';
 
 const carouselItems = [
   {
@@ -19,16 +20,20 @@ const carouselItems = [
     alt: 'Male model'
   },
   {
-    image: HoodieImage,
-    alt: 'Buzo capucha'
-  },
-  {
     image: WhiteTShirt,
     alt: 'Remera Blanca'
   },
   {
     image: WhiteTShirt1,
     alt: 'Remera Blanca 1'
+  },
+  {
+    image: Grella1593,
+    alt: 'Ubicacion Grella 1593'
+  },
+  {
+    image: HorarioInvierno,
+    alt: 'Horario invierno'
   }
 ];
 
@@ -40,7 +45,7 @@ export function CarouselHero() {
       <Carousel className="w-full max-w-md" 
       plugins={[
         Autoplay({
-          delay: 3000,
+          delay: 3000
         }),
       ]}
       opts={{
