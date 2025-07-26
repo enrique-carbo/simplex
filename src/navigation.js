@@ -12,7 +12,11 @@ export const headerData = {
         {
           text: 'Buzos',
           href: getPermalink('/homes/buzos'),
-        },        
+        },  
+        {
+          text: 'Bermudas',
+          href: getPermalink('/homes/bermudas'),
+        },      
         {
           text: 'Pantalones',
           href: getPermalink('/homes/pantalones'),
@@ -24,7 +28,12 @@ export const headerData = {
         {
           text: 'Accesorios',
           href: getPermalink('/homes/accesorios')
-        },
+        }
+      ],
+    },
+    {
+      text: 'Ofertas',
+      links: [
         {
           text: 'Ofertas',
           href: getPermalink('/homes/ofertas')

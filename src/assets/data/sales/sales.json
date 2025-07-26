@@ -23,7 +23,7 @@
     "id": "sale-remeraMC-elevex3",
     "item": "S-1003",
     "name": "3 Remeras Mangas Cortas Elevé",
-    "discountedPrice": 29900,
+    "discountedPrice": 29500,
     "listPrice": 42000,
     "image": "/images/products/algodonera/remera-mc-algodonera-gris.jpg",
     "category": "sales",
@@ -43,10 +43,28 @@
     "id": "sale-medias-mitre",
     "item": "S-1004",
     "name": "3 Pares de Medias de Algodón",
-    "discountedPrice": 1100,
+    "discountedPrice": 11000,
     "listPrice": 13500,
     "image": "/images/products/medias-2.jpg",
     "category": "sales",
     "inStock": true
+  },
+  {
+    "id": "pla-cintos-unicross-001",
+    "item": "004",
+    "name": "Cinturón Unicross Negro",
+    "discountedPrice": 14900,
+    "listPrice": 22000, 
+    "image": "/images/products/platino/cintos-unicross.webp",
+    "category": "accesorios",
+    "inStock": true,
+    "sizes": [
+      { "size": "95", "quantity": 1 },
+      { "size": "100", "quantity": 1 },
+      { "size": "105", "quantity": 1 },
+      { "size": "110", "quantity": 1 },
+      { "size": "115", "quantity": 1 }
+    ]
   }
+  
 ]

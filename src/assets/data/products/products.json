@@ -149,7 +149,7 @@
     "id": "cyd-art-jean-semichupin",
     "item": "301",
     "name": "Jean Semichupin C&D",
-    "discountedPrice": 39499,
+    "discountedPrice": 39400,
     "listPrice": 42800, 
     "image": "/images/products/jeancyd/jean-cyd.webp",
     "category": "pantalones",
@@ -159,6 +159,38 @@
       { "size": "42", "quantity": 1 },
       { "size": "44", "quantity": 1 },
       { "size": "46", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "art-jean-c026-semichupin-gris-oscuro",
+    "item": "301",
+    "name": "Jean Semichupin Gris Oscuro",
+    "discountedPrice": 39000,
+    "listPrice": 42800, 
+    "image": "/images/products/c026jeans/jean-gris-oscuro.webp",
+    "category": "pantalones",
+    "inStock": true,
+    "sizes": [
+      { "size": "40", "quantity": 0 },
+      { "size": "42", "quantity": 1 },
+      { "size": "44", "quantity": 1 },
+      { "size": "46", "quantity": 0 }
+    ]
+  },
+  {
+    "id": "art-jean-c026-elastizado-gris",
+    "item": "301",
+    "name": "Jean Elastizado Gris",
+    "discountedPrice": 39000,
+    "listPrice": 42800, 
+    "image": "/images/products/c026jeans/jean-elastizado-gris.webp",
+    "category": "pantalones",
+    "inStock": true,
+    "sizes": [
+      { "size": "40", "quantity": 0 },
+      { "size": "42", "quantity": 1 },
+      { "size": "44", "quantity": 1 },
+      { "size": "46", "quantity": 0 }
     ]
   },
   {
@@ -189,6 +221,40 @@
       { "size": "S", "quantity": 0 },
       { "size": "M", "quantity": 0 },
       { "size": "L", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "art-bermuda-c026-elastizado-negra",
+    "item": "404",
+    "name": "Bermuda elastizada Negra",
+    "discountedPrice": 32000,
+    "listPrice": 37800, 
+    "image": "/images/products/c026jeans/bermuda-negra.webp",
+    "category": "bermudas",
+    "inStock": true,
+    "sizes": [
+      { "size": "40", "quantity": 0 },
+      { "size": "42", "quantity": 0 },
+      { "size": "44", "quantity": 1 },
+      { "size": "46", "quantity": 1 },
+      { "size": "48", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "art-bermuda-c026-elastizado-cemento",
+    "item": "404",
+    "name": "Bermuda elastizada Cemento",
+    "discountedPrice": 32000,
+    "listPrice": 37800, 
+    "image": "/images/products/c026jeans/bermuda-cemento.webp",
+    "category": "bermudas",
+    "inStock": true,
+    "sizes": [
+      { "size": "40", "quantity": 0 },
+      { "size": "42", "quantity": 0 },
+      { "size": "44", "quantity": 1 },
+      { "size": "46", "quantity": 1 },
+      { "size": "48", "quantity": 1 }
     ]
   },
   {
@@ -351,6 +417,39 @@
     "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
+    "id": "gorra-gyl-poliester-negra",
+    "item": "003",
+    "name": "Gorra Poliester Negra",
+    "discountedPrice": 8500,
+    "listPrice": 10500,
+    "image": "/images/products/gyl/gorra-negra-100poliester.webp",
+    "category": "accesorios",
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
+  },
+  {
+    "id": "gorra-gyl-algodon-negra",
+    "item": "003",
+    "name": "Gorra Algodón Negra",
+    "discountedPrice": 10900,
+    "listPrice": 13500,
+    "image": "/images/products/gyl/gorra-negra-algodon.webp",
+    "category": "accesorios",
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
+  },
+  {
+    "id": "gorra-gyl-algodon-verde",
+    "item": "003",
+    "name": "Gorra Algodón Verde",
+    "discountedPrice": 10900,
+    "listPrice": 13500,
+    "image": "/images/products/gyl/gorra-verde-algodon.webp",
+    "category": "accesorios",
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
+  },
+  {
     "id": "offe-estuche-multi-001",
     "item": "005",
     "name": "Estuche Multiuso",
@@ -360,23 +459,6 @@
     "category": "accesorios",
     "inStock": true,
     "sizes": [{"size": "unico", "quantity": 1}]
-  },
-  {
-    "id": "pla-cintos-unicross-001",
-    "item": "004",
-    "name": "Cinturón Unicross Negro",
-    "discountedPrice": 17500,
-    "listPrice": 22000, 
-    "image": "/images/products/platino/cintos-unicross.webp",
-    "category": "accesorios",
-    "inStock": true,
-    "sizes": [
-      { "size": "95", "quantity": 1 },
-      { "size": "100", "quantity": 1 },
-      { "size": "105", "quantity": 1 },
-      { "size": "110", "quantity": 1 },
-      { "size": "115", "quantity": 1 }
-    ]
   },
   {
     "id": "art-remera-mc-gris-basix",

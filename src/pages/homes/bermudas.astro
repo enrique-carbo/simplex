@@ -1,0 +1,30 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import ProductList from '@/components/ecommerce/ProductList';
+
+const metadata = {
+  title: 'Bermudas',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero tagline="Simplex Bermudas">
+    <Fragment slot="title">
+      Bermudas
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Nuestras bermudas en tus dispositivos.
+    </Fragment>
+  </Hero>
+
+  <!---------- Product List --------------------------->
+
+  <div class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+    <ProductList client:load category="bermudas"></ProductList>
+  </div>
+  
+</Layout>
