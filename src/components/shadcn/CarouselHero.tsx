@@ -12,6 +12,14 @@ import HorarioInvierno from '@/assets/images/horario-invierno.jpg';
 
 const carouselItems = [
   {
+    image: Grella1593,
+    alt: 'Ubicacion Grella 1593'
+  },
+  {
+    image: HorarioInvierno,
+    alt: 'Horario invierno'
+  },
+  {
     image: SimplexModel,
     alt: 'Simplex model'
   },
@@ -26,14 +34,6 @@ const carouselItems = [
   {
     image: WhiteTShirt1,
     alt: 'Remera Blanca 1'
-  },
-  {
-    image: Grella1593,
-    alt: 'Ubicacion Grella 1593'
-  },
-  {
-    image: HorarioInvierno,
-    alt: 'Horario invierno'
   }
 ];
 
