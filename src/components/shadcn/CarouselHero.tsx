@@ -8,7 +8,7 @@ import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg'
 import SimplexModel from '@/assets/images/products/model-sign-1.webp'
 import MaleModel from '@/assets/images/products/male-model.webp'
 import Grella1593 from '@/assets/images/grella1593.jpg'
-import HorarioInvierno from '@/assets/images/horario-invierno.jpg';
+import HorarioPrimavera2025 from '@/assets/images/horarioPrimavera2025.jpg';
 
 const carouselItems = [
   {
@@ -16,8 +16,8 @@ const carouselItems = [
     alt: 'Ubicacion Grella 1593'
   },
   {
-    image: HorarioInvierno,
-    alt: 'Horario invierno'
+    image: HorarioPrimavera2025,
+    alt: 'Horario primavera 2025'
   },
   {
     image: SimplexModel,

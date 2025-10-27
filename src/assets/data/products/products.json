@@ -241,6 +241,23 @@
     ]
   },
   {
+    "id": "art-bermuda-c026-elastizado-azul",
+    "item": "404",
+    "name": "Bermuda gabardina azul",
+    "discountedPrice": 32000,
+    "listPrice": 37800, 
+    "image": "/images/products/c026jeans/bermuda-azul.jpg",
+    "category": "bermudas",
+    "inStock": true,
+    "sizes": [
+      { "size": "40", "quantity": 0 },
+      { "size": "42", "quantity": 1 },
+      { "size": "44", "quantity": 1 },
+      { "size": "46", "quantity": 1 },
+      { "size": "48", "quantity": 1 }
+    ]
+  },
+  {
     "id": "art-bermuda-c026-elastizado-cemento",
     "item": "404",
     "name": "Bermuda gabardina cemento",
@@ -251,7 +268,7 @@
     "inStock": true,
     "sizes": [
       { "size": "40", "quantity": 0 },
-      { "size": "42", "quantity": 0 },
+      { "size": "42", "quantity": 1 },
       { "size": "44", "quantity": 1 },
       { "size": "46", "quantity": 1 },
       { "size": "48", "quantity": 1 }
