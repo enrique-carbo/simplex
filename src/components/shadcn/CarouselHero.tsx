@@ -4,11 +4,13 @@ import Autoplay from "embla-carousel-autoplay"
 
 // Images 
 import WhiteTShirt from '@/assets/images/products/white-t-shirt.jpg'
-import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg'
+//import WhiteTShirt1 from '@/assets/images/products/white-t-shirt-1.jpg'
 import SimplexModel from '@/assets/images/products/model-sign-1.webp'
 import MaleModel from '@/assets/images/products/male-model.webp'
 import Grella1593 from '@/assets/images/grella1593.jpg'
 import HorarioPrimavera2025 from '@/assets/images/horarioPrimavera2025.jpg';
+import MusculosaMarron from '@/assets/images/products/musculosa-marron.jpg';
+import ChalecoNegro from '@/assets/images/products/campera-sinmangas.jpg';
 
 const carouselItems = [
   {
@@ -31,9 +33,10 @@ const carouselItems = [
     image: WhiteTShirt,
     alt: 'Remera Blanca'
   },
+  { image: ChalecoNegro, alt: 'Chaleco Negro' },
   {
-    image: WhiteTShirt1,
-    alt: 'Remera Blanca 1'
+    image: MusculosaMarron,
+    alt: 'Musculosa Marrón'
   }
 ];
 

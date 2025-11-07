@@ -11,6 +11,8 @@ import RemeraAlgodoneraAzul from '@/assets/images/products/remera-algodonera-azu
 import MochilaEverlast from '@/assets/images/products/mochila-everlast-solapa.webp'
 import RemeraLisaKimikal from '@/assets/images/products/remera-lisa-kimikal.webp'
 import JeanLidase from '@/assets/images/products/jean-lidase.webp'
+import SudaderaVerde from '@/assets/images/products/sudadera-verde.jpg'
+import RemeraAzul from '@/assets/images/products/remera-azul-bermuda-beige.jpg'
 
 const carouselItems = [
   {
@@ -40,6 +42,13 @@ const carouselItems = [
   {
     image: RemeraBatikVerde,
     alt: 'Remera Batik'
+  },
+  {    image: RemeraAzul,
+    alt: 'Remera Azul'
+  },  
+  {
+    image: SudaderaVerde,
+    alt: 'Sudadera Verde'
   },
   {
     image: BuzoKimikalGris,

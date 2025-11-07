@@ -36,7 +36,7 @@
     "item": "202",
     "name": "Buzo algodón capucha gris",
     "discountedPrice": 26900,
-    "listPrice": 30000,
+    "listPrice": 32000,
     "image": "/images/products/Wacky/buzo-wacky-grismelange.webp",
     "category": "buzos",
     "inStock": true,
@@ -52,7 +52,7 @@
     "item": "202",
     "name": "Buzo algodón capucha negro",
     "discountedPrice": 26900,
-    "listPrice": 30000,
+    "listPrice": 32000,
     "image": "/images/products/Wacky/buzo-wacky-negro.webp",
     "category": "buzos",
     "inStock": true,
@@ -68,7 +68,7 @@
     "item": "202",
     "name": "Buzo algodón capucha chocolate",
     "discountedPrice": 26900,
-    "listPrice": 30000,
+    "listPrice": 32000,
     "image": "/images/products/royaltyind/buzo-chocolate.webp",
     "category": "buzos",
     "inStock": true,
@@ -150,7 +150,7 @@
     "item": "301",
     "name": "Jean Semichupin C&D",
     "discountedPrice": 39400,
-    "listPrice": 42800, 
+    "listPrice": 44800, 
     "image": "/images/products/jeancyd/jean-cyd.webp",
     "category": "pantalones",
     "inStock": true,
@@ -363,8 +363,8 @@
     "id": "offe-minibag-001",
     "item": "502",
     "name": "Mini Bag",
-    "discountedPrice": 12900,
-    "listPrice": 15900,
+    "discountedPrice": 14900,
+    "listPrice": 17900,
     "image": "/images/products/offe/mini-bag.jpg",
     "category": "bags",
     "inStock": true,
@@ -470,6 +470,17 @@
     "sizes": [{"size": "unico", "quantity": 1}]
   },
   {
+    "id": "pla-mochila-matera",
+    "item": "503",
+    "name": "Mochila Matera",
+    "discountedPrice": 43900,
+    "listPrice": 49000,
+    "image": "/images/products/platino/bolso-matero.jpg",
+    "category": "bags",
+    "inStock": true,
+    "sizes": [{"size": "unico", "quantity": 1}]
+  },
+  {
     "id": "boxer-zorba",
     "item": "001",
     "name": "Boxers Algodón",
@@ -480,7 +491,7 @@
     "inStock": true,
     "sizes": [
       { "size": "S", "quantity": 1 },
-      { "size": "M", "quantity": 0 },
+      { "size": "M", "quantity": 1 },
       { "size": "L", "quantity": 1 },
       { "size": "XL", "quantity": 1 }
     ]
@@ -566,8 +577,8 @@
     "id": "art-remera-mc-gris-basix",
     "item": "1011",
     "name": "Remera Mangas Cortas Gris Basix",
-    "discountedPrice": 8900,
-    "listPrice": 11000,
+    "discountedPrice": 9500,
+    "listPrice": 12500,
     "image": "/images/products/remera-gris.jpg",
     "category": "remeras",
     "inStock": true,
@@ -582,8 +593,8 @@
     "id": "art-remera-mc-negra-basix",
     "item": "1011",
     "name": "Remera Mangas Cortas Negra Basix",
-    "discountedPrice": 8900,
-    "listPrice": 11000,
+    "discountedPrice": 9500,
+    "listPrice": 12500,
     "image": "/images/products/remera-negra.jpg",
     "category": "remeras",
     "inStock": true,
@@ -675,6 +686,22 @@
     ]
   },
   {
+    "id": "art-remeramc-20-1-ribar-azul",
+    "item": "1012",
+    "name": "Remera Mangas Cortas Azul Premium",
+    "discountedPrice": 15900,
+    "listPrice": 22000,
+    "image": "/images/products/ribar/remera-azul-20-1.jpg",
+    "category": "remeras",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
+  },
+  {
     "id": "art-remeraMC-batik-azul-APV",
     "item": "1013",
     "name": "Remera Mangas Cortas Azul Batik",
@@ -713,6 +740,40 @@
     "discountedPrice": 13900,
     "listPrice": 16000,
     "image": "/images/products/cottonclub/musculosa-capucha.webp",
+    "category": "remeras",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 },
+      { "size": "XXL", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "art-musculosa-gris-ribar",
+    "item": "105",
+    "name": "Musculosa 100% Algodón Gris",
+    "discountedPrice": 9900,
+    "listPrice": 12600,
+    "image": "/images/products/ribar/musculosa-gris.jpg",
+    "category": "remeras",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 },
+      { "size": "XXL", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "art-musculosa-marron-ribar",
+    "item": "105",
+    "name": "Musculosa 100% Algodón Marron",
+    "discountedPrice": 9900,
+    "listPrice": 12600,
+    "image": "/images/products/ribar/musculosa-marron.jpg",
     "category": "remeras",
     "inStock": true,
     "sizes": [
