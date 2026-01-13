@@ -10,14 +10,16 @@ import compress from 'astro-compress';
 import astrowind from './vendor/integration';
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter.mjs';
 import react from "@astrojs/react";
-import sharp from 'sharp';
+import cloudflare from '@astrojs/cloudflare';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const hasExternalScripts = false;
 const whenExternalScripts = (items = []) => hasExternalScripts ? Array.isArray(items) ? items.map(item => item()) : [items()] : [];
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
+  output: 'server',
+  adapter: cloudflare(),
   integrations: [tailwind({
     applyBaseStyles: false
   }), sitemap(), mdx(), icon({
@@ -44,8 +46,11 @@ export default defineConfig({
     config: './src/config.yaml'
   }), react()],
   image: {
-    service: sharp(),
-    domains: ['cdn.pixabay.com']
+  service: {
+    entrypoint: 'astro/assets/services/sharp', // Referencia simbólica
+    config: {}
+  },
+    imageService: "compile", // Clave para Cloudflare
   },
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],

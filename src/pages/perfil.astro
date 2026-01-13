@@ -1,0 +1,25 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Perfil usuario',
+  ignoreTitleTemplate: true,
+};
+
+// Si no está autenticado, redirige al login
+if (!Astro.locals.pb.authStore.isValid) {
+  return Astro.redirect('/login');
+}
+
+// ✅ CORRECTO: Usar el operador ! para asegurar que no es null
+const user = Astro.locals.pb.authStore.record!;
+---
+
+<Layout metadata={metadata}>
+  <h1>Bienvenido, {user.name}!</h1>
+  <p>Email: {user.email}</p>
+  
+  <form method="POST" action="/api/auth/logout">
+    <button type="submit">Cerrar Sesión</button>
+  </form>
+</Layout>

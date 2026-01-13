@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Registro - Simplex',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <h1>Crear Cuenta</h1>
+  <form method="POST" action="/api/auth/register">
+    <label>Nombre: <input type="text" name="name" required /></label>
+    <label>Email: <input type="email" name="email" required /></label>
+    <label>Contraseña: <input type="password" name="password" required /></label>
+    <button type="submit">Registrarse</button>
+  </form>
+  <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+</Layout>
