@@ -1,0 +1,81 @@
+---
+// src/pages/verificar-correo/[token].astro
+import Layout from '@/layouts/PageLayout.astro';
+//import { Loader2 } from 'lucide-react'; // Si usas lucide
+
+const { token } = Astro.params;
+// Pasamos la URL del env al cliente de forma segura
+const pbUrl = import.meta.env.PUBLIC_POCKETBASE_URL;
+---
+
+<Layout metadata={{title: 'Verificando cuenta...'}}>
+  <div class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+    <div id="status-container" class="space-y-4">
+      <div id="loading-state" class="flex flex-col items-center gap-4">
+        <div class="animate-spin text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+        </div>
+        <h1 class="text-2xl font-semibold">Verificando tu cuenta</h1>
+        <p class="text-muted-foreground">Estamos procesando tu solicitud, un momento por favor...</p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script define:vars={{ token, pbUrl }}>
+  async function verify() {
+    const container = document.getElementById('status-container');
+    
+    try {
+      // Llamada directa a la API de PocketBase
+      const res = await fetch(`${pbUrl}/api/collections/users/confirm-verification`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token })
+      });
+
+      if (!res.ok) throw new Error('Token inválido');
+
+      // Éxito: Feedback visual antes de redirigir
+      container.innerHTML = `
+        <div class="scale-in-center">
+          <div class="bg-green-100 text-green-600 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h1 class="text-2xl font-bold">¡Cuenta verificada!</h1>
+          <p class="text-muted-foreground mb-6">Tu correo ha sido confirmado con éxito. Redirigiendo...</p>
+        </div>
+      `;
+
+      // Redirigir tras 2 segundos para que el usuario lea el mensaje
+      setTimeout(() => {
+        window.location.href = '/perfil?verified=true';
+      }, 2000);
+
+    } catch (e) {
+      container.innerHTML = `
+        <div class="bg-destructive/10 text-destructive p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h1 class="text-2xl font-bold">Error de verificación</h1>
+        <p class="text-muted-foreground mb-6">El enlace es inválido o ha expirado.</p>
+        <a href="/auth/login" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
+          Volver al login
+        </a>
+      `;
+    }
+  }
+
+  // Ejecutar al cargar la página
+  verify();
+</script>
+
+<style>
+  .scale-in-center {
+    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+  @keyframes scale-in-center {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+</style>
