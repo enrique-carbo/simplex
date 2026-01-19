@@ -1,5 +1,11 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Loader2 } from 'lucide-react';
 
 const metadata = {
   title: 'Registro - Simplex',
@@ -8,12 +14,179 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <h1>Crear Cuenta</h1>
-  <form method="POST" action="/api/auth/register">
-    <label>Nombre: <input type="text" name="name" required /></label>
-    <label>Email: <input type="email" name="email" required /></label>
-    <label>Contraseña: <input type="password" name="password" required /></label>
-    <button type="submit">Registrarse</button>
-  </form>
-  <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+  <div class="min-h-screen flex items-center justify-center px-4 py-8">
+    <Card className="w-full max-w-sm">
+      <form id="register-form">
+        <CardHeader>
+          <CardTitle>Crear cuenta</CardTitle>
+          <CardDescription> Regístrate para empezar a usar Simplex </CardDescription>
+        </CardHeader>
+
+        <CardContent className="space-y-4">
+          <div id="error-alert" class="hidden">
+            <Alert variant="destructive">
+              <AlertDescription id="error-message" />
+            </Alert>
+          </div>
+
+          <div class="space-y-2">
+            <Label htmlFor="email">Correo electrónico</Label>
+            <Input id="email" type="email" name="email" placeholder="tunombre@correo.com" data-validate="email" />
+            <p id="email-error" class="text-sm text-destructive hidden"></p>
+          </div>
+
+          <div class="space-y-2">
+            <Label htmlFor="password">Contraseña</Label>
+            <Input id="password" type="password" name="password" placeholder="••••••••" data-validate="password" />
+            <p id="password-error" class="text-sm text-destructive hidden"></p>
+          </div>
+
+          <div class="space-y-2">
+            <Label htmlFor="passwordConfirm">Confirmar contraseña</Label>
+            <Input id="passwordConfirm" type="password" name="passwordConfirm" placeholder="••••••••" data-validate="passwordConfirm" />
+            <p id="passwordConfirm-error" class="text-sm text-destructive hidden"></p>
+          </div>
+        </CardContent>
+
+        <CardFooter className="flex-col gap-4">
+          <Button type="submit" className="w-full" id="submit-button">
+            <span id="button-text">Crear cuenta</span>
+            <span id="button-loader" class="hidden">
+              <span class="inline-flex items-center">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Procesando...
+              </span>
+            </span>
+          </Button>
+          <p class="text-sm text-center text-muted-foreground">
+            ¿Ya tienes cuenta? <a href="/login" class="text-primary hover:underline">Inicia sesión</a>
+          </p>
+        </CardFooter>
+      </form>
+    </Card>
+  </div>
 </Layout>
+
+<script>
+  type ValidField = 'email' | 'password' | 'passwordConfirm';
+
+  const registerSchema = {
+    email: (val: string) => {
+      if (!val) return 'El correo es requerido';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return 'Formato inválido';
+      return null;
+    },
+    password: (val: string) => {
+      if (!val) return 'La contraseña es requerida';
+      if (val.length < 8) return 'Mínimo 8 caracteres';
+      return null;
+    },
+    passwordConfirm: (val: string) => {
+      const pass = (document.getElementById('password') as HTMLInputElement).value;
+      if (!val) return 'Confirme su contraseña';
+      if (val !== pass) return 'Las contraseñas no coinciden';
+      return null;
+    }
+  };
+
+  const form = document.getElementById('register-form') as HTMLFormElement | null;
+  const submitButton = document.getElementById('submit-button') as HTMLButtonElement | null;
+  const errorAlert = document.getElementById('error-alert') as HTMLElement | null;
+  const errorMessage = document.getElementById('error-message') as HTMLElement | null;
+  let isSubmitting = false;
+
+  if (!form || !submitButton) throw new Error('DOM Elements missing');
+
+  function showFieldError(fieldId: string, message: string) {
+    const errorEl = document.getElementById(`${fieldId}-error`);
+    const input = document.getElementById(fieldId);
+    if (errorEl && input) {
+      errorEl.textContent = message;
+      errorEl.classList.remove('hidden');
+      input.classList.add('border-destructive');
+    }
+  }
+
+  function clearFieldError(fieldId: string) {
+    const errorEl = document.getElementById(`${fieldId}-error`);
+    const input = document.getElementById(fieldId);
+    if (errorEl && input) {
+      errorEl.classList.add('hidden');
+      input.classList.remove('border-destructive');
+    }
+  }
+
+  function validateField(fieldName: ValidField, value: string) {
+    const validator = registerSchema[fieldName];
+    const error = validator(value);
+    if (error) {
+      showFieldError(fieldName, error);
+      return false;
+    }
+    clearFieldError(fieldName);
+    return true;
+  }
+
+  form.querySelectorAll<HTMLInputElement>('[data-validate]').forEach(input => {
+    input.addEventListener('blur', (e) => {
+      const target = e.target as HTMLInputElement;
+      
+      // 2. Extraemos el valor del dataset
+      const fieldName = target.dataset.validate;
+
+      // 3. Validamos que el nombre del campo sea uno de los esperados por el esquema
+      if (fieldName === 'email' || fieldName === 'password' || fieldName === 'passwordConfirm') {
+        validateField(fieldName, target.value);
+      }
+    });
+
+    input.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement;
+      clearFieldError(target.id);
+      errorAlert?.classList.add('hidden');
+    });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    const formData = new FormData(form);
+    const email = (formData.get('email') as string || '').trim();
+    const password = formData.get('password') as string || '';
+    const passwordConfirm = formData.get('passwordConfirm') as string || '';
+
+    if (!validateField('email', email) || !validateField('password', password) || !validateField('passwordConfirm', passwordConfirm)) return;
+
+    isSubmitting = true;
+    submitButton.disabled = true;
+    document.getElementById('button-text')?.classList.add('hidden');
+    document.getElementById('button-loader')?.classList.remove('hidden');
+
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        body: new URLSearchParams({ email, password, passwordConfirm }),
+      });
+
+      if (response.redirected) {
+        window.location.href = response.url;
+        return;
+      }
+
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || 'Error en el registro');
+
+      window.location.href = '/perfil';
+    } catch (err: unknown) {
+      if (errorMessage && errorAlert) {
+        errorMessage.textContent = err instanceof Error ? err.message : 'Error desconocido';
+        errorAlert.classList.remove('hidden');
+      }
+      isSubmitting = false;
+      submitButton.disabled = false;
+      document.getElementById('button-text')?.classList.remove('hidden');
+      document.getElementById('button-loader')?.classList.add('hidden');
+    }
+  });
+</script>

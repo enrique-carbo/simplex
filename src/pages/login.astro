@@ -1,16 +1,11 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Loader2 } from 'lucide-react';
 
 const metadata = {
   title: 'Login - Simplex',
@@ -19,53 +14,203 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <div class="min-h-screen flex items-center justify-center px-4">
+  <div class="min-h-screen flex items-center justify-center px-4 py-8">
+    <Card className="w-full max-w-sm">
+      <form id="login-form" method="POST" action="/api/auth/login">
+        <CardHeader>
+          <CardTitle>Iniciar sesión</CardTitle>
+          <CardDescription> Ingrese sus credenciales para continuar </CardDescription>
+        </CardHeader>
 
-  <Card className="w-full max-w-sm">
-    <form method="POST" action="/api/auth/login">
-      <CardHeader>
-        <CardTitle>Iniciar sesión</CardTitle>
-        <CardDescription>
-          Ingrese su correo electrónico a continuación para iniciar sesión en su cuenta
-        </CardDescription>
-      </CardHeader>
-      <CardContent>        
-          <div class="flex flex-col gap-6">
-            <div class="grid gap-2">
-              <Label htmlFor="email">Correo</Label>
-              <Input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="m@example.com"
-                required
-              />
-            </div>
-            <div class="grid gap-2">
-              <div class="flex items-center">
-                <Label htmlFor="password">Contraseña</Label>
-                <a
-                  href="#"
-                  class="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                >
-                  Olvidó su contraseña?
-                </a>
-              </div>
-              <Input id="password" type="password" name="password" required />
-            </div>
+        <CardContent className="space-y-4">
+          <div id="error-alert" class="hidden">
+            <Alert variant="destructive">
+              <AlertDescription id="error-message" />
+            </Alert>
           </div>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full text-white" variant="default">
-          Ingresar
-        </Button>
-      </CardFooter>
+
+          <div class="space-y-2">
+            <Label htmlFor="email">Correo electrónico</Label>
+            <Input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="tunombre@correo.com"
+              autoComplete="email"
+              data-validate="email"
+            />
+            <p id="email-error" class="text-sm text-destructive hidden"></p>
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <Label htmlFor="password">Contraseña</Label>
+              <a href="/recuperar-contrasena" class="text-sm text-muted-foreground underline-offset-4 hover:underline">
+                ¿Olvidó su contraseña?
+              </a>
+            </div>
+            <Input
+              id="password"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+              data-validate="password"
+            />
+            <p id="password-error" class="text-sm text-destructive hidden"></p>
+          </div>
+        </CardContent>
+
+        <CardFooter className="flex-col gap-4">
+          <Button type="submit" className="w-full" id="submit-button">
+            <span id="button-text">Ingresar</span>
+            <span id="button-loader" class="hidden">
+              <span class="inline-flex items-center">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Ingresando...
+              </span>
+            </span>
+          </Button>
+
+          <p class="text-sm text-center text-muted-foreground">
+            ¿No tienes cuenta?{' '}
+            <a href="/register" class="text-primary underline-offset-4 hover:underline"> Regístrate </a>
+          </p>
+        </CardFooter>
       </form>
-
-      <div>
-          <p>¿No tienes cuenta? <a href="/register">Regístrate</a></p>
-      </div>
     </Card>
-
-    </div>
+  </div>
 </Layout>
+
+<script>
+  // Esquema de validación tipado
+  const loginSchema = {
+    email: (val: string) => {
+      if (!val) return 'El correo es requerido';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return 'Formato de correo inválido';
+      return null;
+    },
+    password: (val: string) => {
+      if (!val) return 'La contraseña es requerida';
+      if (val.length < 8) return 'Mínimo 8 caracteres';
+      return null;
+    },
+  };
+
+  // Referencias con Type Casting
+  const form = document.getElementById('login-form') as HTMLFormElement | null;
+  const submitButton = document.getElementById('submit-button') as HTMLButtonElement | null;
+  const errorAlert = document.getElementById('error-alert') as HTMLElement | null;
+  const errorMessage = document.getElementById('error-message') as HTMLElement | null;
+  
+  let isSubmitting = false;
+
+  if (!form || !submitButton) throw new Error('Elementos del DOM no encontrados');
+
+  // Funciones UI
+  function showFieldError(fieldId: string, message: string) {
+    const errorElement = document.getElementById(`${fieldId}-error`);
+    const input = document.getElementById(fieldId);
+    if (errorElement && input) {
+      errorElement.textContent = message;
+      errorElement.classList.remove('hidden');
+      input.classList.add('border-destructive');
+    }
+  }
+
+  function clearFieldError(fieldId: string) {
+    const errorElement = document.getElementById(`${fieldId}-error`);
+    const input = document.getElementById(fieldId);
+    if (errorElement && input) {
+      errorElement.classList.add('hidden');
+      input.classList.remove('border-destructive');
+    }
+  }
+
+  function validateField(fieldName: 'email' | 'password', value: string) {
+    const validator = loginSchema[fieldName];
+    const error = validator(value);
+    if (error) {
+      showFieldError(fieldName, error);
+      return false;
+    }
+    clearFieldError(fieldName);
+    return true;
+  }
+
+  // Listeners de validación en tiempo real
+  form.querySelectorAll<HTMLInputElement>('[data-validate]').forEach((input) => {
+    input.addEventListener('blur', (e) => {
+      const target = e.target as HTMLInputElement;
+      const fieldName = target.dataset.validate as 'email' | 'password';
+      validateField(fieldName, target.value);
+    });
+
+    input.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement;
+      clearFieldError(target.id);
+      errorAlert?.classList.add('hidden');
+    });
+  });
+
+  // Manejador del envío
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    const formData = new FormData(form);
+    const email = (formData.get('email') as string || '').trim();
+    const password = formData.get('password') as string || '';
+
+    // Validación final
+    if (!validateField('email', email) || !validateField('password', password)) return;
+
+    // Bloquear UI
+    isSubmitting = true;
+    submitButton.disabled = true;
+    document.getElementById('button-text')?.classList.add('hidden');
+    document.getElementById('button-loader')?.classList.remove('hidden');
+
+    try {
+      const params = new URLSearchParams();
+      params.append('email', email);
+      params.append('password', password);
+
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json'
+        },
+        body: params,
+      });
+
+      // Si el backend responde con redirect("/perfil")
+      if (response.redirected) {
+        window.location.href = response.url;
+        return;
+      }
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Credenciales inválidas');
+      }
+
+      // Redirección manual si el status es 200 OK
+      window.location.href = '/perfil';
+
+    } catch (err: unknown) {
+      if (errorMessage && errorAlert) {
+        const message = err instanceof Error ? err.message : 'Ocurrió un error inesperado';
+        errorMessage.textContent = message;
+        errorAlert.classList.remove('hidden');
+      }
+
+      // Desbloquear UI
+      isSubmitting = false;
+      submitButton.disabled = false;
+      document.getElementById('button-text')?.classList.remove('hidden');
+      document.getElementById('button-loader')?.classList.add('hidden');
+    }
+  });
+</script>
