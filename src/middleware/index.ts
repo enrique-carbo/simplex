@@ -3,8 +3,7 @@ import { defineMiddleware } from 'astro/middleware';
 
 export const onRequest = defineMiddleware(async ({ locals, request }, next) => {
   /**
-   * 1. Inicialización de PocketBase
-   * Usamos la URL de tu VPS (ej: https://pb.tu-dominio.com)
+   * 1. Inicialización de PocketBase   
    */
   locals.pb = new PocketBase(import.meta.env.PUBLIC_POCKETBASE_URL);
 
