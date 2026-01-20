@@ -1,23 +1,19 @@
 ---
-export const prerender = true; // Habilita la generación estática
-
 import Layout from '@/layouts/PageLayout.astro';
 import { availableProducts } from '@/assets/data/products/products';
 import ButtonAddToCart from '@/components/ecommerce/ButtonAddToCart';
 import { Badge } from '@/components/ui/badge';
 
-export async function getStaticPaths() {
-  return availableProducts.map((product) => ({
-    params: { id: product.id.toString() },
-    props: { product },
-  }));
+const { id } = Astro.params;
+
+const product = availableProducts.find((p) => p.id.toString() === id);
+
+if (!product) {
+  return Astro.redirect('/404'); 
 }
 
-const { id } = Astro.params;
-const { product } = Astro.props;
-
 const metadata = {
-  title: `Producto ${id}`,
+  title: `Producto ${product.name}`,
 };
 
 const discountPercentage = (
