@@ -1,0 +1,115 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowLeft, Save } from 'lucide-react';
+
+const pb = Astro.locals.pb;
+
+interface CustomerData {
+  id: string;
+  user: string;
+  nombre: string;
+  apellido: string;
+  documento: number;
+  direccionCalle: string;
+  direccionNumero: string;
+  ciudad: string;
+  provincia: string;
+  phone: string;
+  created: string;
+  updated: string;
+}
+
+// 1. Protección de ruta: Solo usuarios logueados
+if (!pb.authStore.isValid) {
+  return Astro.redirect('/auth/login');
+}
+
+const user = pb.authStore.record!;
+
+let customerData: CustomerData | null = null;
+
+// 2. Intentar cargar datos existentes para rellenar el formulario
+try {
+  customerData = await pb.collection('customer_data').getFirstListItem<CustomerData>(`user = "${user.id}"`);
+} catch (e) {
+  customerData = null;
+}
+
+const metadata = { title: 'Editar Perfil - Simplex' };
+
+
+---
+
+<Layout metadata={metadata}>
+  <div class="max-w-2xl mx-auto px-4 py-10">
+    <a href="/dashboard/perfil" class="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6 transition-colors">
+      <ArrowLeft className="h-4 w-4" /> Volver al perfil
+    </a>
+
+    <Card>
+      <CardHeader>
+        <CardTitle>{customerData ? 'Actualizar mis datos' : 'Completar mi perfil'}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form action="/api/perfil/update" method="POST" class="space-y-6">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <Label htmlFor="nombre">Nombre</Label>
+              <Input type="text" name="nombre" id="nombre" defaultValue={customerData?.nombre} required />
+            </div>
+            <div class="space-y-2">
+              <Label htmlFor="apellido">Apellido</Label>
+              <Input type="text" name="apellido" id="apellido" defaultValue={customerData?.apellido} required />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <Label htmlFor="documento">Documento (DNI)</Label>
+              <Input type="number" name="documento" id="documento" defaultValue={customerData?.documento} placeholder="Sin puntos ni espacios" />
+            </div>
+            <div class="space-y-2">
+              <Label htmlFor="phone">Teléfono Celular</Label>
+              <Input type="tel" name="phone" id="phone" defaultValue={customerData?.phone} placeholder="+54 9..." />
+            </div>
+          </div>
+
+          <div class="space-y-4 pt-4 border-t">
+            <h3 class="font-semibold">Dirección de Envío</h3>
+            <div class="grid grid-cols-4 gap-4">
+              <div class="col-span-3 space-y-2">
+                <Label htmlFor="direccionCalle">Calle</Label>
+                <Input type="text" name="direccionCalle" id="direccionCalle" defaultValue={customerData?.direccionCalle} />
+              </div>
+              <div class="space-y-2">
+                <Label htmlFor="direccionNumero">Número</Label>
+                <Input type="text" name="direccionNumero" id="direccionNumero" defaultValue={customerData?.direccionNumero} />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <Label htmlFor="ciudad">Ciudad</Label>
+                <Input type="text" name="ciudad" id="ciudad" defaultValue={customerData?.ciudad} />
+              </div>
+              <div class="space-y-2">
+                <Label htmlFor="provincia">Provincia</Label>
+                <Input type="text" name="provincia" id="provincia" defaultValue={customerData?.provincia} />
+              </div>
+            </div>
+          </div>
+
+          <Button type="submit" className="w-full gap-2">
+            <Save className="h-4 w-4" />
+            {customerData ? 'Guardar cambios' : 'Crear perfil'}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  </div>
+</Layout>

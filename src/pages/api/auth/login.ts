@@ -30,7 +30,7 @@ export const POST: APIRoute = async ({ request, locals, redirect }) => {
     await locals.pb.collection('users').authWithPassword(data.email!, data.password!);
     
     // 3. Éxito - Redirección
-    return redirect("/perfil", 302);
+    return redirect("/dashboard/perfil", 302);
 
   } catch (error) {
     // 3. Manejo de errores específicos

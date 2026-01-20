@@ -1,0 +1,182 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { User, Mail, Calendar, ShieldCheck, LogOut, MapPin, Phone, CreditCard } from 'lucide-react';
+
+const metadata = {
+  title: 'Mi Perfil - Simplex',
+  ignoreTitleTemplate: true,
+};
+
+interface CustomerData {
+  id: string;
+  user: string;
+  nombre: string;
+  apellido: string;
+  documento: number;
+  direccionCalle: string;
+  direccionNumero: string;
+  ciudad: string;
+  provincia: string;
+  phone: string;
+  created: string;
+  updated: string;
+}
+
+const pb = Astro.locals.pb;
+
+// Protección de ruta
+if (!pb.authStore.isValid) {
+  return Astro.redirect('/auth/login');
+}
+
+const user = pb.authStore.record!;
+const isVerified = user.verified;
+
+// Obtener datos personales ---
+let customerData: CustomerData | null = null;
+try {
+  customerData = await pb.collection('customer_data').getFirstListItem<CustomerData>(`user = "${user.id}"`);
+} catch (e) {
+  customerData = null;
+}
+---
+
+<Layout metadata={metadata}>
+  <div class="max-w-4xl mx-auto px-4 py-10 space-y-6">
+    
+    { !isVerified && (
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-center justify-between shadow-sm">
+        <div class="flex items-center gap-3">
+          <div class="bg-amber-100 p-2 rounded-full">
+            <Mail className="h-5 w-5 text-amber-600" />
+          </div>
+          <div>
+            <p class="text-sm font-medium text-amber-800">Verifica tu correo electrónico</p>
+            <p class="text-xs text-amber-700">Revisa tu bandeja de entrada para activar todas las funciones.</p>
+          </div>
+        </div>
+        <Button variant="outline" size="sm" id="resend-btn" className="border-amber-300 hover:bg-amber-100 text-amber-800">
+          Reenviar email
+        </Button>
+      </div>
+    )}
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <Card className="md:col-span-1 h-fit">
+        <CardContent className="pt-6 text-center space-y-4">
+          <div class="mx-auto w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center">
+            <User className="h-12 w-12 text-primary" />
+          </div>
+          <div>
+            <h2 class="font-bold text-lg leading-tight">
+              {customerData ? `${customerData.nombre} ${customerData.apellido}` : (user.name || 'Usuario Simplex')}
+            </h2>
+            <p class="text-sm text-muted-foreground">{user.email}</p>
+          </div>
+          <Badge variant={isVerified ? "default" : "secondary"} className={isVerified ? "bg-green-500 hover:bg-green-600" : ""}>
+            {isVerified ? 'Verificado' : 'Pendiente'}
+          </Badge>
+          
+          <Separator />
+          
+          <form method="POST" action="/api/auth/logout">
+            <Button type="submit" variant="ghost" className="w-full text-destructive hover:bg-destructive/5 gap-2">
+              <LogOut className="h-4 w-4" />
+              Cerrar Sesión
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+
+      <div class="md:col-span-2 space-y-6">
+        
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+              <CardTitle>Datos Personales</CardTitle>
+              <CardDescription>Información necesaria para tus compras y envíos.</CardDescription>
+            </div>
+            <Button variant="outline" size="sm" asChild>
+                <a href="/dashboard/editar">{customerData ? 'Editar' : 'Completar'}</a>
+            </Button>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {customerData ? (
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 text-sm">
+                <div class="flex items-center gap-2">
+                  <CreditCard className="h-4 w-4 text-muted-foreground" />
+                  <span class="font-medium">DNI:</span> {customerData.documento}
+                </div>
+                <div class="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <span class="font-medium">Celular:</span> {customerData.phone}
+                </div>
+                <div class="flex items-center gap-2 sm:col-span-2">
+                  <MapPin className="h-4 w-4 text-muted-foreground" />
+                  <span class="font-medium">Dirección:</span> 
+                  {customerData.direccionCalle} {customerData.direccionNumero}, {customerData.ciudad} ({customerData.provincia})
+                </div>
+              </div>
+            ) : (
+              <div class="text-center py-4">
+                <p class="text-sm text-muted-foreground mb-4">Aún no has completado tus datos de envío.</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Seguridad y Cuenta</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              <div class="space-y-1">
+                <p class="text-xs font-medium text-muted-foreground uppercase">ID de Cliente</p>
+                <p class="font-mono bg-muted p-1 rounded inline-block text-[10px]">{user.id}</p>
+              </div>
+              <div class="space-y-1">
+                <p class="text-xs font-medium text-muted-foreground uppercase flex items-center gap-1">
+                  <Calendar className="h-3 w-3" /> Miembro desde
+                </p>
+                <p>{new Date(user.created).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+              </div>
+            </div>
+            <Separator />
+            <div class="space-y-3">
+               <h3 class="text-sm font-semibold flex items-center gap-2">
+                 <ShieldCheck className="h-4 w-4 text-primary" /> Contraseña
+               </h3>
+               <p class="text-xs text-muted-foreground">Última actualización: {new Date(user.updated).toLocaleDateString()}.</p>
+               <Button variant="outline" size="sm" disabled>Cambiar contraseña</Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Lógica para reenviar email (sin cambios)
+  const resendBtn = document.getElementById('resend-btn') as HTMLButtonElement | null;
+  resendBtn?.addEventListener('click', async () => {
+    resendBtn.disabled = true;
+    resendBtn.textContent = 'Enviando...';
+    try {
+      const res = await fetch('/api/auth/resend-verification', { method: 'POST' });
+      if (res.ok) {
+        alert('Correo enviado con éxito.');
+        resendBtn.textContent = 'Enviado';
+      } else { throw new Error(); }
+    } catch (e) {
+      alert('Error al enviar el correo.');
+      resendBtn.disabled = false;
+      resendBtn.textContent = 'Reenviar email';
+    }
+  });
+</script>

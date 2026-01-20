@@ -184,7 +184,7 @@ const metadata = {
         body: params,
       });
 
-      // Si el backend responde con redirect("/perfil")
+      // Si el backend responde con redirect("/dashboard/perfil")
       if (response.redirected) {
         window.location.href = response.url;
         return;
@@ -197,7 +197,7 @@ const metadata = {
       }
 
       // Redirección manual si el status es 200 OK
-      window.location.href = '/perfil';
+      window.location.href = '/dashboard/perfil';
 
     } catch (err: unknown) {
       if (errorMessage && errorAlert) {
