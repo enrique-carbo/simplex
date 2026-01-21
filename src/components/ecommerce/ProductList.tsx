@@ -5,10 +5,18 @@ import { Badge } from '@/components/ui/badge';
 
 interface ProductListProps {
   category: string;
+  isLoggedIn: boolean;
 }
 
-const ProductList: React.FC<ProductListProps> = ({ category }) => {
+const ProductList: React.FC<ProductListProps> = ({ category, isLoggedIn }) => {
   const handleProductClick = (product: Product) => {
+    // Si no está logueado, redirigir
+    if (!isLoggedIn) {
+      window.location.href = '/auth/login';
+      // window.location.href = `/auth/login?redirect=/product/${product.id}`;
+      return;
+    }
+    // Si está logueado, ir al producto
     window.location.href = `/product/${product.id}`;
   };
 
@@ -49,6 +57,9 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
                 ) : (
                   <p className="text-red-500">Sin stock</p>
                 )}
+              </div>
+              <div className="p-1">
+                {!isLoggedIn && <p className="text-xs text-muted-foreground italic m-1">Inicia sesión para ver detalle</p>}
               </div>
             </CardContent>
           </Card>

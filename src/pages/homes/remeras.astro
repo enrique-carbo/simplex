@@ -3,6 +3,9 @@ import Layout from '@/layouts/PageLayout.astro';
 import Hero from '@/components/widgets/Hero.astro';
 import ProductList from '@/components/ecommerce/ProductList';
 
+// 1. Extraemos el estado de autenticación desde el servidor
+const isLoggedIn = Astro.locals.pb.authStore.isValid;
+
 const metadata = {
   title: 'Remeras',
 };
@@ -24,7 +27,7 @@ const metadata = {
   <!---------- Product List --------------------------->
 
   <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-  <ProductList client:load category="remeras"></ProductList>
+  <ProductList client:load category="remeras" isLoggedIn={isLoggedIn}></ProductList>
   </div>  
 
 </Layout>

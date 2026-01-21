@@ -6,11 +6,12 @@ import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
-import { trimSlash, getAsset } from '~/utils/permalinks';
-import type { CallToAction } from '~/types';
+import { trimSlash } from '~/utils/permalinks';
+
+// 1. Obtener el estado de login
+const isLoggedIn = Astro.locals.pb.authStore.isValid;
 
 import CarritoNanostore from '@/components/shadcn/CarritoNanostore';
-
 
 interface Link {
   text?: string;
@@ -19,8 +20,6 @@ interface Link {
   icon?: string;
 }
 
-interface ActionLink extends CallToAction {}
-
 interface MenuLink extends Link {
   links?: Array<MenuLink>;
 }
@@ -28,7 +27,6 @@ interface MenuLink extends Link {
 export interface Props {
   id?: string;
   links?: Array<MenuLink>;
-  actions?: Array<ActionLink>;
   isSticky?: boolean;
   isDark?: boolean;
   isFullWidth?: boolean;
@@ -40,12 +38,10 @@ export interface Props {
 const {
   id = 'header',
   links = [],
-  actions = [],
   isSticky = false,
   isDark = false,
   isFullWidth = false,
   showToggleTheme = false,
-  showRssFeed = false,
   position = 'center',
 } = Astro.props;
 
@@ -138,32 +134,39 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       ]}
     >
       <div class="items-center flex justify-between w-full md:w-auto">
-        <div class="flex">
-          <CarritoNanostore client:only="react"></CarritoNanostore>
-          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
+        <div class="flex items-center">
           {
-            showRssFeed && (
+            isLoggedIn && (
+              <div class="mr-1">
+                <CarritoNanostore client:only="react" />
+              </div>
+            )
+          }
+
+          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
+        </div>
+
+        <div class="ml-3 flex items-center">
+          {
+            isLoggedIn ? (
               <a
-                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                aria-label="RSS Feed"
-                href={getAsset('/rss.xml')}
+                href="/dashboard/perfil"
+                class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-default hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-600"
               >
-                <Icon name="tabler:rss" class="w-5 h-5" />
+                <Icon name="tabler:user-circle" class="w-6 h-6 text-primary" />
+                <span class="hidden lg:inline">Mi Cuenta</span>
               </a>
+            ) : (
+              <Button
+                href="/auth/login"
+                variant="primary"
+                class="py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto"
+              >
+                Ingresar
+              </Button>
             )
           }
         </div>
-        {
-          actions?.length ? (
-            <span class="ml-4 rtl:ml-0 rtl:mr-4">
-              {actions.map((btnProps) => (
-                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
-              ))}
-            </span>
-          ) : (
-            ''
-          )
-        }
       </div>
     </div>
   </div>
