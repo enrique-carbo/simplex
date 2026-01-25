@@ -2,48 +2,53 @@ import PocketBase from 'pocketbase';
 import { defineMiddleware } from 'astro/middleware';
 
 export const onRequest = defineMiddleware(async ({ locals, request }, next) => {
-  /**
-   * 1. Inicialización de PocketBase   
-   */
+  // 1. Inicialización
   locals.pb = new PocketBase(import.meta.env.PUBLIC_POCKETBASE_URL);
-
-  /**
-   * 2. Cargar la sesión desde la cookie del navegador
-   */
+  
+  // 2. Cargar sesión desde cookie
   const cookieHeader = request.headers.get('cookie') || '';
   locals.pb.authStore.loadFromCookie(cookieHeader);
-
-  /**
-   * 3. Sincronización de sesión
-   * Intentamos refrescar el token para asegurar que los datos del usuario 
-   * (como 'verified' o 'name') estén actualizados.
-   */
+  
+  // 3. Sincronización de sesión CONDICIONAL
+  // Solo refrescar si estamos en una ruta protegida o si es necesario
   try {
-    if (locals.pb.authStore.isValid) {
-      await locals.pb.collection('users').authRefresh();
+    const isProtectedRoute = request.url.includes('/dashboard') || 
+                            request.url.includes('/account') ||
+                            request.url.includes('/checkout');
+    
+    // Refrescar solo si hay token válido Y es ruta protegida
+    if (locals.pb.authStore.isValid && isProtectedRoute) {
+      // Refrescar solo si el token expira pronto (ej: en menos de 5 min)
+      const token = locals.pb.authStore.token;
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expiresAt = payload.exp * 1000; // Convertir a ms
+      const fiveMinutesFromNow = Date.now() + (5 * 60 * 1000);
+      
+      if (expiresAt < fiveMinutesFromNow) {
+        await locals.pb.collection('users').authRefresh();
+      }
     }
   } catch (_) {
-    // Si el token es inválido o expiró, limpiamos el store
     locals.pb.authStore.clear();
   }
 
-  /**
-   * 4. Ejecutar la ruta (página o API)
-   */
+  // 4. Añadir helpers útiles al contexto
+  locals.user = locals.pb.authStore.record;
+  locals.isLoggedIn = locals.pb.authStore.isValid;
+  
+  // 5. Ejecutar la ruta
   const response = await next();
-
-  /**
-   * 5. Persistencia de la sesión (Set-Cookie)
-   * Configuramos la cookie con las opciones de seguridad necesarias 
-   * para que funcione entre tu Local (Astro) y tu VPS (PocketBase HTTPS).
-   */
-  response.headers.append('set-cookie', locals.pb.authStore.exportToCookie({
-    httpOnly: true,    // Protege contra ataques XSS
-    secure: true,      // Obligatorio para HTTPS (VPS). En localhost funciona igual.
-    sameSite: 'Lax',   // Permite la navegación entre sitios manteniendo la sesión
-    path: '/',         // Disponible en toda la web
-    maxAge: 60 * 60 * 24 * 7, // 7 días de duración
-  }));
-
+  
+  // 6. Persistencia de sesión (SOLO si hubo cambios)
+  if (locals.pb.authStore.isValid) {
+    response.headers.append('set-cookie', locals.pb.authStore.exportToCookie({
+      httpOnly: true,
+      secure: import.meta.env.PROD, // true en producción, false en desarrollo
+      sameSite: 'Lax',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
+    }));
+  }
+  
   return response;
 });

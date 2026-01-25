@@ -7,5 +7,7 @@
 declare namespace App {
   interface Locals {
     pb: import('pocketbase').default;
+    user: UserRecord | null;
+    isLoggedIn: boolean;
   }
 }

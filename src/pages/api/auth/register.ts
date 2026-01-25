@@ -39,8 +39,8 @@ export const POST: APIRoute = async ({ request, locals, redirect }) => {
     // 2. Autenticar inmediatamente para establecer la cookie de sesión
     await locals.pb.collection('users').authWithPassword(email!, password!);
 
-    // 3. Redirigir al perfil (el middleware guardará la cookie)
-    return redirect("/dashboard/perfil");
+    // 3. Redirigir al dashboard usuario (el middleware guardará la cookie)
+    return redirect("/dashboard");
 
   } catch (error) {
     console.error("Register Error:", error);

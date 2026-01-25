@@ -5,35 +5,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { User, Mail, Calendar, ShieldCheck, LogOut, MapPin, Phone, CreditCard } from 'lucide-react';
+import type { CustomerData } from '@/types/customer';
 
 const metadata = {
   title: 'Mi Perfil - Simplex',
   ignoreTitleTemplate: true,
 };
 
-interface CustomerData {
-  id: string;
-  user: string;
-  nombre: string;
-  apellido: string;
-  documento: number;
-  direccionCalle: string;
-  direccionNumero: string;
-  ciudad: string;
-  provincia: string;
-  phone: string;
-  created: string;
-  updated: string;
-}
-
 const pb = Astro.locals.pb;
 
+const { user, isLoggedIn } = Astro.locals;
+
 // Protección de ruta
-if (!pb.authStore.isValid) {
+if (!isLoggedIn) {
   return Astro.redirect('/auth/login');
 }
 
-const user = pb.authStore.record!;
 const isVerified = user.verified;
 
 // Obtener datos personales ---

@@ -5,30 +5,17 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Save } from 'lucide-react';
+import type { CustomerData } from '@/types/customer';
 
 const pb = Astro.locals.pb;
-
-interface CustomerData {
-  id: string;
-  user: string;
-  nombre: string;
-  apellido: string;
-  documento: number;
-  direccionCalle: string;
-  direccionNumero: string;
-  ciudad: string;
-  provincia: string;
-  phone: string;
-  created: string;
-  updated: string;
-}
+const { user, isLoggedIn } = Astro.locals;
 
 // 1. Protección de ruta: Solo usuarios logueados
-if (!pb.authStore.isValid) {
+if (!isLoggedIn) {
   return Astro.redirect('/auth/login');
 }
 
-const user = pb.authStore.record!;
+
 
 let customerData: CustomerData | null = null;
 
@@ -46,7 +33,7 @@ const metadata = { title: 'Editar Perfil - Simplex' };
 
 <Layout metadata={metadata}>
   <div class="max-w-2xl mx-auto px-4 py-10">
-    <a href="/dashboard/perfil" class="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6 transition-colors">
+    <a href="/dashboard" class="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6 transition-colors">
       <ArrowLeft className="h-4 w-4" /> Volver al perfil
     </a>
 
@@ -104,7 +91,7 @@ const metadata = { title: 'Editar Perfil - Simplex' };
             </div>
           </div>
 
-          <Button type="submit" className="w-full gap-2">
+          <Button type="submit" className="w-full gap-2 text-white">
             <Save className="h-4 w-4" />
             {customerData ? 'Guardar cambios' : 'Crear perfil'}
           </Button>

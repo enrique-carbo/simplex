@@ -58,11 +58,11 @@ export const POST: APIRoute = async ({ request, locals, redirect }) => {
       await pb.collection('customer_data').create(data);
     }
 
-    // 6. Redirigir al perfil con un parámetro de éxito
-    return redirect('/dashboard/perfil?success=true');
+    // 6. Redirigir al dashboard usuario con un parámetro de éxito
+    return redirect('/dashboard?success=true');
     
   } catch (error) {
-    console.error('Error al procesar el perfil:', error);
+    console.error('Error al procesar el usuario:', error);
     
     // Si hay un error de validación en PocketBase (ej: campo requerido vacío)
     return new Response(JSON.stringify({

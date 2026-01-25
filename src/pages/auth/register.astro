@@ -177,7 +177,7 @@ const metadata = {
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.error || 'Error en el registro');
 
-      window.location.href = '/dashboard/perfil';
+      window.location.href = '/dashboard';
     } catch (err: unknown) {
       if (errorMessage && errorAlert) {
         errorMessage.textContent = err instanceof Error ? err.message : 'Error desconocido';
