@@ -2,9 +2,16 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import ProductList from '@/components/ecommerce/ProductList';
+import { getProducts } from '@/lib/products';
 
 // 1. Extraemos el estado de autenticación desde el servidor
 const isLoggedIn = Astro.locals.pb.authStore.isValid;
+
+// 2. Obtener productos DESDE POCKETBASE (servidor)
+const products = await getProducts('bermudas');
+
+console.log('Productos obtenidos:', products?.length || 0, 'productos');
+console.log('Tipo de products:', typeof products);
 
 const metadata = {
   title: 'Bermudas',
@@ -27,7 +34,7 @@ const metadata = {
   <!---------- Product List --------------------------->
 
   <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-    <ProductList client:load category="bermudas" isLoggedIn={isLoggedIn}></ProductList>
+    <ProductList client:load products={products || []} isLoggedIn={isLoggedIn}></ProductList>
   </div>
   
 </Layout>
