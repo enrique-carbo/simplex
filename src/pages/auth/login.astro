@@ -19,7 +19,7 @@ const metadata = {
       <form id="login-form" method="POST" action="/api/auth/login">
         <CardHeader>
           <CardTitle>Iniciar sesión</CardTitle>
-          <CardDescription> Ingrese sus credenciales para continuar </CardDescription>
+          <CardDescription> Ingrese sus datos para continuar </CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
@@ -62,7 +62,7 @@ const metadata = {
 
         <CardFooter className="flex-col gap-4">
           <Button type="submit" className="w-full" id="submit-button">
-            <span id="button-text">Ingresar</span>
+            <span id="button-text" class="text-white">Ingresar</span>
             <span id="button-loader" class="hidden">
               <span class="inline-flex items-center">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -73,7 +73,7 @@ const metadata = {
 
           <p class="text-sm text-center text-muted-foreground">
             ¿No tienes cuenta?{' '}
-            <a href="/auth/register" class="text-primary underline-offset-4 hover:underline"> Regístrate </a>
+            <a href="/auth/register" class="text-primary underline-offset-4 hover:underline"> Registrate </a>
           </p>
         </CardFooter>
       </form>
