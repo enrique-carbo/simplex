@@ -14,7 +14,8 @@ export const onRequest = defineMiddleware(async ({ locals, request }, next) => {
   try {
     const isProtectedRoute = request.url.includes('/dashboard') || 
                             request.url.includes('/account') ||
-                            request.url.includes('/checkout');
+                            request.url.includes('/checkout') ||
+                            request.url.includes('/api/');
     
     // Refrescar solo si hay token válido Y es ruta protegida
     if (locals.pb.authStore.isValid && isProtectedRoute) {

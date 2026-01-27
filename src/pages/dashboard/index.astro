@@ -4,8 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { User, Mail, Calendar, ShieldCheck, LogOut, MapPin, Phone, CreditCard } from 'lucide-react';
+import { 
+  User, Mail, Calendar, ShieldCheck, LogOut, 
+  MapPin, Phone, CreditCard, Package, ShoppingBag, ChevronRight 
+} from 'lucide-react';
 import type { CustomerData } from '@/types/customer';
+import type { Order } from '@/types/order';
 
 const metadata = {
   title: 'Mi Perfil - Simplex',
@@ -13,7 +17,6 @@ const metadata = {
 };
 
 const pb = Astro.locals.pb;
-
 const { user, isLoggedIn } = Astro.locals;
 
 // Protección de ruta
@@ -21,14 +24,53 @@ if (!isLoggedIn) {
   return Astro.redirect('/auth/login');
 }
 
-const isVerified = user.verified;
+const isVerified = user?.verified === true;
 
-// Obtener datos personales ---
+// Obtener datos personales
 let customerData: CustomerData | null = null;
 try {
   customerData = await pb.collection('customer_data').getFirstListItem<CustomerData>(`user = "${user.id}"`);
 } catch (e) {
   customerData = null;
+}
+
+// Obtener órdenes recientes del usuario
+let recentOrders: Order[] = [];
+let totalOrders = 0;
+try {
+  const orders = await pb.collection('orders').getList(1, 5, {
+    filter: `user = "${user.id}"`,
+    sort: '-created',
+    expand: 'user'
+  });
+  
+  recentOrders = orders.items as Order[];
+  totalOrders = orders.totalItems;
+} catch (error) {
+  console.error('Error obteniendo órdenes:', error);
+  recentOrders = [];
+}
+
+// Función para formatear estado
+function getOrderStatusBadge(status: string) {
+  const statusConfig: Record<string, { color: string, text: string }> = {
+    pending: { color: 'bg-amber-100 text-amber-800', text: 'Pendiente' },
+    processing: { color: 'bg-blue-100 text-blue-800', text: 'Procesando' },
+    shipped: { color: 'bg-purple-100 text-purple-800', text: 'Enviado' },
+    delivered: { color: 'bg-green-100 text-green-800', text: 'Entregado' },
+    cancelled: { color: 'bg-red-100 text-red-800', text: 'Cancelado' }
+  };
+  
+  return statusConfig[status] || { color: 'bg-gray-100 text-gray-800', text: status };
+}
+
+// Función para formatear fecha
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  });
 }
 ---
 
@@ -141,6 +183,96 @@ try {
                <p class="text-xs text-muted-foreground">Última actualización: {new Date(user.updated).toLocaleDateString()}.</p>
                <Button variant="outline" size="sm" disabled>Cambiar contraseña</Button>
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Sección de Órdenes - NUEVA */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <ShoppingBag className="h-5 w-5" />
+                Mis Pedidos
+              </CardTitle>
+              <CardDescription>
+                {totalOrders > 0 
+                  ? `Tienes ${totalOrders} pedido${totalOrders !== 1 ? 's' : ''} en total` 
+                  : 'Aún no has realizado pedidos'}
+              </CardDescription>
+            </div>
+            {totalOrders > 0 && (
+              <Button variant="outline" size="sm" asChild>
+                <a href="/dashboard/orders" class="flex items-center gap-1">
+                  Ver todos
+                  <ChevronRight className="h-4 w-4" />
+                </a>
+              </Button>
+            )}
+          </CardHeader>
+          <CardContent>
+            {recentOrders.length > 0 ? (
+              <div class="space-y-4">
+                {recentOrders.map((order) => {
+                  const status = getOrderStatusBadge(order.status);
+                  const itemCount = Array.isArray(order.items) 
+                    ? order.items.reduce((sum, item) => sum + (item.quantity || 1), 0)
+                    : 0;
+                  
+                  return (
+                    <a 
+                      href={`/dashboard/orders/${order.id}`}
+                      class="block border rounded-lg p-4 hover:bg-accent/50 transition-colors group"
+                    >
+                      <div class="flex items-center justify-between">
+                        <div class="space-y-1">
+                          <div class="flex items-center gap-2">
+                            <span class="font-medium text-sm">
+                              Pedido #{order.id.substring(0, 8).toUpperCase()}
+                            </span>
+                            <Badge className={`text-xs ${status.color}`}>
+                              {status.text}
+                            </Badge>
+                          </div>
+                          <p class="text-xs text-muted-foreground">
+                            {formatDate(order.created)} • {itemCount} producto{itemCount !== 1 ? 's' : ''}
+                          </p>
+                        </div>
+                        <div class="text-right">
+                          <p class="font-bold">${order.total?.toFixed(2) || '0.00'}</p>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </div>
+                    </a>
+                  );
+                })}
+                
+                {totalOrders > recentOrders.length && (
+                  <div class="pt-2 text-center">
+                    <a 
+                      href="/dashboard/orders" 
+                      class="text-sm text-primary hover:underline inline-flex items-center gap-1"
+                    >
+                      Ver {totalOrders - recentOrders.length} pedido{(totalOrders - recentOrders.length) !== 1 ? 's' : ''} más
+                    </a>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div class="text-center py-8 space-y-4">
+                <div class="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center">
+                  <Package className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <div>
+                  <h3 class="font-medium">Aún no has realizado pedidos</h3>
+                  <p class="text-sm text-muted-foreground mt-1">
+                    Cuando hagas un pedido, aparecerá aquí.
+                  </p>
+                </div>
+                <Button asChild>
+                  <a href="/productos">Explorar productos</a>
+                </Button>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

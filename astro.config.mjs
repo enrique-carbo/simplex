@@ -47,7 +47,7 @@ export default defineConfig({
   }), react()],
   image: {
   service: {
-    entrypoint: 'astro/assets/services/sharp', // Referencia simbólica
+    entrypoint: 'astro/assets/services/compile', // Referencia simbólica
     config: {}
   },
     imageService: "compile", // Clave para Cloudflare

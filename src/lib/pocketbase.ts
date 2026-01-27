@@ -29,3 +29,26 @@ export interface User {
   created: string;
   updated: string;
 }
+
+export async function createOrder(cartItems: Product[], total: number,  userId: string) {
+    const user = pb.authStore.record;
+    
+    if (!user) {
+        throw new Error('Usuario no autenticado');
+    }
+
+    const orderData = {
+        user: userId,
+        status: 'pending',
+        total: total,
+        items: cartItems
+    };
+
+    try {
+        const record = await pb.collection('orders').create(orderData);
+        return record;
+    } catch (error) {
+        console.error('Error creando la orden:', error);
+        throw error;
+    }
+}
