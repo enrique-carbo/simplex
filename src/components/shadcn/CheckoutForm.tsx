@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Truck, CreditCard } from 'lucide-react';
+import { checkoutConfig } from '@/lib/checkout';
 
 interface CheckoutFormProps {
   orderTotal: number;
@@ -23,18 +24,15 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
   const [paymentMethod, setPaymentMethod] = useState('transferencia');
   const [shippingCost, setShippingCost] = useState(0);
 
-  const shippingCosts = {
-    correo: 10000,
-    uber: 8000,
-    retiro_local: 0
-  };
+  const shippingCosts = checkoutConfig.shippingCosts;
 
   const transferData = {
-    cbu: '0170204660000008787653',
-    alias: 'simplex.ar',
-    razonSocial: 'Simplex Ecommerce',
-    cuit: '30-12345678-9'
+    cvu: import.meta.env.PUBLIC_TRANSFER_CVU,
+    alias: import.meta.env.PUBLIC_TRANSFER_ALIAS,
+    razonSocial: import.meta.env.PUBLIC_TRANSFER_RAZON_SOCIAL,
+    cuit: import.meta.env.PUBLIC_TRANSFER_CUIT
   };
+
 
     useEffect(() => {
     const cost = shippingCosts[shippingMethod as keyof typeof shippingCosts] || 0;
@@ -88,7 +86,7 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
               <RadioGroupItem value="uber" id="uber" />
               <div className="flex-1">
                 <Label htmlFor="uber" className="font-medium cursor-pointer">Uber/Delivery</Label>
-                <p className="text-sm text-muted-foreground">Entrega el mismo día en Paraná (16 a 20 hs)</p>
+                <p className="text-sm text-muted-foreground">Entrega en 48 hs en Paraná (16 a 20 hs)</p>
               </div>
               <Badge variant="outline">{shippingCosts.uber}</Badge>
             </div>
@@ -196,8 +194,8 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
                 <h4 className="font-medium text-blue-800 mb-2">Datos para la transferencia:</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-blue-700">CBU:</span>
-                    <span className="font-mono font-bold">{transferData.cbu}</span>
+                    <span className="text-blue-700">CVU:</span>
+                    <span className="font-mono font-bold">{transferData.cvu}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-blue-700">Alias:</span>
