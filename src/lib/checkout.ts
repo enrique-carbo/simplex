@@ -7,5 +7,5 @@ export const checkoutConfig = {
   
   // Configuraciones adicionales
   maxFileSize: 1 * 1024 * 1024, // 1MB
-  allowedFileTypes: ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf']
+  allowedFileTypes: ['image/jpeg', 'image/webp', 'image/jpg', 'application/pdf']
 } as const;

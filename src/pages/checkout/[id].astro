@@ -73,7 +73,7 @@ const checkoutData = {
     </div>
 
     <form method="POST" action={`/api/checkout/${order.id}`} 
-    class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="checkout-form">
+    class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="checkout-form" enctype="multipart/form-data">
       <div class="lg:col-span-2 space-y-8">
         {/* Productos del pedido */}
         <Card>

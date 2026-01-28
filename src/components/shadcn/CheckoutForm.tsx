@@ -33,12 +33,11 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
     cuit: import.meta.env.PUBLIC_TRANSFER_CUIT
   };
 
-
-    useEffect(() => {
+  useEffect(() => {
     const cost = shippingCosts[shippingMethod as keyof typeof shippingCosts] || 0;
     setShippingCost(cost);
     
-    // ACTUALIZAR LOS TOTALES VISIBLES EN LA PÁGINA
+    // Actualizar totales visibles
     const shippingCostEl = document.getElementById('shipping-cost');
     const totalWithShippingEl = document.getElementById('total-with-shipping');
     
@@ -49,7 +48,7 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
     if (totalWithShippingEl) {
       totalWithShippingEl.textContent = `$${(orderTotal + cost).toFixed(2)}`;
     }
-  }, [shippingMethod, orderTotal]);
+  }, [shippingMethod, orderTotal, shippingCosts]);
 
   const showAddressFields = shippingMethod !== 'retiro_local';
   const showTransferFields = paymentMethod === 'transferencia';
@@ -79,7 +78,7 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
                 <Label htmlFor="correo" className="font-medium cursor-pointer">Correo Argentino</Label>
                 <p className="text-sm text-muted-foreground">Envío a domicilio en 5-10 días hábiles</p>
               </div>
-              <Badge variant="outline">{shippingCosts.correo}</Badge>
+              <Badge variant="outline">${shippingCosts.correo.toFixed(2)}</Badge>
             </div>
             
             <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-gray-400 cursor-pointer">
@@ -88,7 +87,7 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
                 <Label htmlFor="uber" className="font-medium cursor-pointer">Uber/Delivery</Label>
                 <p className="text-sm text-muted-foreground">Entrega en 48 hs en Paraná (16 a 20 hs)</p>
               </div>
-              <Badge variant="outline">{shippingCosts.uber}</Badge>
+              <Badge variant="outline">${shippingCosts.uber.toFixed(2)}</Badge>
             </div>
             
             <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-gray-400 cursor-pointer">
@@ -248,7 +247,7 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
         </CardContent>
       </Card>
 
-      {/* Hidden fields para enviar datos al formulario principal */}
+      {/* Hidden fields */}
       <input type="hidden" name="shipping_cost" value={shippingCost} />
       <input type="hidden" name="total_with_shipping" value={orderTotal + shippingCost} />
       <input type="hidden" name="shipping_method_value" value={shippingMethod} />
