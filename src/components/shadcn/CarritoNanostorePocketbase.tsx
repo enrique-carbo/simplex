@@ -30,52 +30,33 @@ function CarritoNanostorePocketbase({ userId }: CarritoNanostoreProps) {
     if (cartItems.length === 0) return;
     
     setIsProcessingOrder(true);
-    setOrderError(null); // Limpiar errores previos
+    setOrderError(null);
     
     try {
       const response = await fetch('/api/create-order', {
         method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          // Las cookies se envían automáticamente al mismo dominio
-        },
-        body: JSON.stringify({ 
-          cartItems, 
-          total,
-          userId // También puedes enviarlo para validación extra
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cartItems, total, userId }),
       });
       
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.error || 'Error desconocido');
+        throw new Error(result.error || `Error ${response.status}`);
       }
       
       if (result.success) {
-        // Éxito: limpiar carrito y mostrar confirmación
+        // ✅ Redirigir a la página de checkout
         clearCart();
-        setOrderSuccess(true);
-        
-        // Opcional: redirigir a la página de órdenes o mostrar ID
-        console.log('Pedido creado con ID:', result.orderId);
-        
-        // Ocultar mensaje después de 3 segundos
-        setTimeout(() => {
-          setOrderSuccess(false);
-        }, 3000);
+        window.location.href = result.checkoutUrl;
       } else {
         throw new Error(result.error || 'Error en la respuesta');
       }
       
     } catch (error) {
-      console.error('Error al crear el pedido:', error);
-      setOrderError(error.message || 'No se pudo crear el pedido. Intenta nuevamente.');
-      
-      // Ocultar error después de 5 segundos
-      setTimeout(() => {
-        setOrderError(null);
-      }, 5000);
+      console.error('❌ Error:', error);
+      setOrderError(error.message || 'No se pudo crear el pedido.');
+      setTimeout(() => setOrderError(null), 5000);
     } finally {
       setIsProcessingOrder(false);
     }

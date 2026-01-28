@@ -1,0 +1,259 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import CheckoutForm from '@/components/shadcn/CheckoutForm';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import { Textarea } from '@/components/ui/textarea';
+import { Package, Mail, MapPin, Phone, User, CheckCircle, AlertCircle } from 'lucide-react';
+import type { Order } from '@/types/order';
+import type { CustomerData } from '@/types/customer';
+
+const metadata = {
+  title: 'Checkout - Simplex',
+  ignoreTitleTemplate: true,
+};
+
+const pb = Astro.locals.pb;
+const { user, isLoggedIn } = Astro.locals;
+const { id } = Astro.params;
+
+// Protección
+if (!isLoggedIn) {
+  return Astro.redirect('/auth/login');
+}
+
+if (!id) {
+  return Astro.redirect('/cart');
+}
+
+// Obtener orden
+let order: Order | null = null;
+try {
+  order = await pb.collection('orders').getOne<Order>(id);
+  
+  if (order.user !== user.id) {
+    return Astro.redirect('/dashboard/orders');
+  }
+  
+  if (order.status !== 'draft' && order.status !== 'pending') {
+    return Astro.redirect(`/dashboard/orders/${order.id}`);
+  }
+} catch (error) {
+  return Astro.redirect('/dashboard/orders');
+}
+
+// Obtener datos del cliente
+let customerData: CustomerData | null = null;
+try {
+  customerData = await pb.collection('customer_data').getFirstListItem<CustomerData>(`user = "${user.id}"`);
+} catch (e) {
+  customerData = null;
+}
+
+// Datos para el componente
+const checkoutData = {
+  orderTotal: order.total,
+  customerData: customerData ? {
+    direccionCalle: customerData.direccionCalle || '',
+    ciudad: customerData.ciudad || '',
+    phone: customerData.phone || ''
+  } : null,
+  orderId: order.id
+};
+---
+
+<Layout metadata={metadata}>
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="mb-8 text-center">
+      <h1 class="text-3xl font-bold">Finalizar Compra</h1>
+      <p class="text-muted-foreground mt-2">
+        Completa los datos para procesar tu pedido #{order.id.substring(0, 8).toUpperCase()}
+      </p>
+    </div>
+
+    <form method="POST" action={`/api/checkout/${order.id}`} 
+    class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="checkout-form">
+      <div class="lg:col-span-2 space-y-8">
+        {/* Productos del pedido */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Package className="h-5 w-5" />
+              Tu Pedido
+            </CardTitle>
+            <CardDescription>
+              {order.items.length} producto{order.items.length !== 1 ? 's' : ''} en tu carrito
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div class="space-y-4">
+              {order.items.map((item) => (
+                <div class="flex items-center justify-between py-3 border-b last:border-0">
+                  <div>
+                    <p class="font-medium">{item.name}</p>
+                    <p class="text-sm text-muted-foreground">
+                      {item.item} • Talla: {item.size} • Cantidad: {item.quantity}
+                    </p>
+                  </div>
+                  <p class="font-bold">
+                    ${(item.discountedPrice * item.quantity).toFixed(2)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Método de envío y pago (React Component) */}
+        <CheckoutForm 
+          orderTotal={order.total} 
+          customerData={checkoutData.customerData}
+          client:load
+        />
+
+        {/* Notas adicionales */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Notas Adicionales</CardTitle>
+            <CardDescription>¿Alguna indicación especial para tu pedido?</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Textarea 
+              name="notes" 
+              placeholder="Ej: Dejar el paquete con el portero, llamar antes de entregar, etc."
+              rows={3}
+              className="resize-none"
+            />
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Resumen del Pedido */}
+      <div class="space-y-6">
+        <Card className="sticky top-24">
+          <CardHeader>
+            <CardTitle>Resumen del Pedido</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div class="space-y-3">
+              <div class="flex justify-between">
+                <span>Subtotal</span>
+                <span class="font-medium">${order.total.toFixed(2)}</span>
+              </div>
+              
+              <div class="flex justify-between">
+                <span>Envío</span>
+                <span id="shipping-cost">$0.00</span>
+              </div>
+              
+              <Separator />
+              
+              <div class="flex justify-between text-lg font-bold">
+                <span>Total</span>
+                <span id="total-with-shipping">${order.total.toFixed(2)}</span>
+              </div>
+            </div>
+            
+            <div class="space-y-3 pt-4">
+              <Button type="submit" className="w-full text-white" size="lg">
+                <CheckCircle className="h-5 w-5 mr-2 text-white" />
+                Confirmar Pedido
+              </Button>
+            </div>
+            
+            <div class="text-xs text-muted-foreground pt-4 border-t">
+              <p class="flex items-start gap-1">
+                <AlertCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                Al confirmar, recibirás un email con los detalles y datos de pago.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Información de contacto */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Tu Información</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div class="flex items-center gap-2">
+              <User className="h-4 w-4 text-muted-foreground" />
+              <span>{customerData ? `${customerData.nombre} ${customerData.apellido}` : user.email}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <Mail className="h-4 w-4 text-muted-foreground" />
+              <span>{user.email}</span>
+            </div>
+            {customerData?.phone && (
+              <div class="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-muted-foreground" />
+                <span>{customerData.phone}</span>
+              </div>
+            )}
+            {customerData?.direccionCalle && (
+              <div class="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-muted-foreground" />
+                <span class="text-sm">
+                  {customerData.direccionCalle} {customerData.direccionNumero}, {customerData.ciudad}
+                </span>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </form>
+  </div>
+
+  <!-- Data container para el script -->
+  <div id="checkout-data" data-order-total={order.total} style="display: none;"></div>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Obtener orderTotal del div oculto
+    /* const checkoutDataEl = document.getElementById('checkout-data');
+    const orderTotal = checkoutDataEl ? parseFloat(checkoutDataEl.dataset.orderTotal || '0') : 0; */
+    
+    const form = document.getElementById('checkout-form');
+    const shippingCostEl = document.getElementById('shipping-cost');
+    const totalWithShippingEl = document.getElementById('total-with-shipping');
+
+    // Escuchar cambios en los hidden fields del componente React
+    if (form) {
+      form.addEventListener('change', (e) => {
+        const target = e.target as HTMLInputElement;
+        if (!target || !target.name) return;
+        
+        if (target.name === 'shipping_cost' && shippingCostEl) {
+          shippingCostEl.textContent = '$' + parseFloat(target.value).toFixed(2);
+        }
+        if (target.name === 'total_with_shipping' && totalWithShippingEl) {
+          totalWithShippingEl.textContent = '$' + parseFloat(target.value).toFixed(2);
+        }
+      });
+
+      // Validación básica
+      form.addEventListener('submit', (e) => {
+        const hasShipping = document.querySelector('input[name="shipping_method"]:checked');
+        const hasPayment = document.querySelector('input[name="payment_method"]:checked') as HTMLInputElement;
+        
+        if (!hasShipping || !hasPayment) {
+          e.preventDefault();
+          alert('Por favor, completa todos los campos requeridos.');
+          return;
+        }
+        
+        // Validar archivo para transferencia
+        if (hasPayment.value === 'transferencia') {
+          const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+          const hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+          if (!hasFile) {
+            e.preventDefault();
+            alert('Para transferencia bancaria, debes subir el comprobante.');
+          }
+        }
+      });
+    }
+  });
+</script>

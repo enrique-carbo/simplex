@@ -43,26 +43,25 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Crear orden
+    // Crear orden TEMPORAL (solo con datos básicos)
     const orderData = {
       user: locals.pb.authStore.record?.id,
-      status: 'pending',
+      status: 'draft', // Nuevo estado para pedidos en proceso
       total: total,
       items: cartItems,
-      // created y updated los genera PocketBase automáticamente
+      payment_status: 'pending',
+      // Los demás campos (shipping_method, etc.) se completarán en el checkout
     };
 
     const record = await locals.pb.collection('orders').create(orderData);
     
-    // Respuesta exitosa con más detalles
+    // Respuesta exitosa con redirección al checkout
     return new Response(
       JSON.stringify({ 
         success: true, 
         orderId: record.id,
-        orderNumber: `ORD-${record.id.substring(0, 8).toUpperCase()}`,
-        total: record.total,
-        createdAt: record.created,
-        message: 'Pedido creado exitosamente'
+        checkoutUrl: `/checkout/${record.id}`, // URL para redirigir
+        message: 'Pedido creado, redirigiendo al checkout...'
       }),
       { 
         status: 200, 
@@ -73,7 +72,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
   } catch (error) {
     console.error('❌ Error en create-order:', error);
     
-    // Errores específicos de PocketBase
     let errorMessage = 'Error interno del servidor';
     let statusCode = 500;
     let errorCode = 'SERVER_ERROR';
@@ -86,17 +84,13 @@ export const POST: APIRoute = async ({ request, locals }) => {
       errorMessage = 'Datos inválidos en la solicitud';
       statusCode = 400;
       errorCode = 'BAD_REQUEST';
-    } else if (error?.message?.includes('network')) {
-      errorMessage = 'Error de conexión con el servidor';
-      errorCode = 'NETWORK_ERROR';
     }
     
     return new Response(
       JSON.stringify({ 
         error: errorMessage, 
         code: errorCode,
-        success: false,
-        details: import.meta.env.DEV ? error.message : undefined
+        success: false
       }),
       { 
         status: statusCode, 
