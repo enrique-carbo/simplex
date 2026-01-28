@@ -1,0 +1,242 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CheckCircle, Package, Mail, CreditCard, Home} from 'lucide-react';
+import type { Order, OrderItem } from '@/types/order';
+import type { CustomerData } from '@/types/customer';
+
+const { pb, user, isLoggedIn } = Astro.locals;
+const { id } = Astro.params;
+
+// Protección
+if (!isLoggedIn) {
+  return Astro.redirect('/auth/login');
+}
+
+// Validar que id existe
+if (!id) {
+  return Astro.redirect('/dashboard/orders');
+}
+
+// Obtener orden
+let order: Order | null = null;
+let orderItems: OrderItem[] = [];
+let customerData: CustomerData | null = null;
+
+try {
+  order = await pb.collection('orders').getOne<Order>(id);
+
+  if (order?.user !== user.id) {
+    return Astro.redirect('/dashboard/orders');
+  }
+
+  // Obtener items del pedido
+  orderItems = order?.items || [];
+
+  // Obtener datos del cliente
+  try {
+    customerData = await pb.collection('customer_data').getFirstListItem(`user = "${user.id}"`);
+  } catch (e) {
+    customerData = null;
+  }
+} catch (error) {
+  return Astro.redirect('/dashboard/orders');
+}
+
+const metadata = {
+  title: `Confirmación Pedido #${order?.id.substring(0, 8).toUpperCase()}`,
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-center mb-10">
+      <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
+      <h1 class="text-3xl font-bold">¡Pedido Confirmado!</h1>
+      <p class="text-muted-foreground mt-2">
+        Tu pedido #{order?.id.substring(0, 8).toUpperCase()} ha sido recibido correctamente
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Resumen del Pedido -->
+      <div class="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Package className="h-5 w-5" />
+              Detalles del Pedido
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <!-- Items -->
+            <div class="space-y-3">
+              {
+                orderItems.map((item) => (
+                  <div class="flex justify-between items-start py-2 border-b last:border-0">
+                    <div>
+                      <p class="font-medium">{item.name}</p>
+                      <p class="text-sm text-muted-foreground">
+                        {item.item} • Talla: {item.size} • Cantidad: {item.quantity}
+                      </p>
+                    </div>
+                    <p class="font-bold">${(item.discountedPrice * item.quantity).toFixed(2)}</p>
+                  </div>
+                ))
+              }
+            </div>
+
+            <!-- Totales -->
+            <div class="space-y-2 pt-4 border-t">
+              <div class="flex justify-between">
+                <span>Subtotal:</span>
+                <span>${order ? (order.total - (order.shipping_cost || 0)).toFixed(2) : '0.00'}</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Envío:</span>
+                <span>${order ? (order.shipping_cost || 0).toFixed(2) : '0.00'}</span>
+              </div>
+              <div class="flex justify-between text-lg font-bold pt-2 border-t">
+                <span>Total:</span>
+                <span>${order ? order.total.toFixed(2) : '0.00'}</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Información del Cliente -->
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Mail className="h-5 w-5" />
+              Tus Datos
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <p><span class="font-medium">Email:</span> {user.email}</p>
+            {
+              customerData?.phone && (
+                <p>
+                  <span class="font-medium">Teléfono:</span> {customerData.phone}
+                </p>
+              )
+            }
+            {
+              order?.shipping_address &&
+                typeof order.shipping_address === 'object' &&
+                'direccion' in order.shipping_address && (
+                  <div>
+                    <p class="font-medium">Dirección de envío:</p>
+                    <p class="text-sm">
+                      {order.shipping_address.direccion}, {order.shipping_address.ciudad}
+                    </p>
+                  </div>
+                )
+            }
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Información de Entrega y Pago -->
+      <div class="space-y-6">
+        <!-- Método de Envío -->
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Home className="h-5 w-5" />
+              Método de Entrega
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div class="space-y-2">
+              <p class="font-medium capitalize">
+                {order?.shipping_method === 'correo' && 'Correo Argentino'}
+                {order?.shipping_method === 'uber' && 'Uber/Delivery'}
+                {order?.shipping_method === 'retiro_local' && 'Retiro en Local'}
+              </p>
+              {
+                order?.shipping_method === 'retiro_local' ? (
+                  <p class="text-sm text-muted-foreground">
+                    Padre Grella 1593, Paraná
+                    <br />
+                    Lunes a Viernes 16-20hs
+                  </p>
+                ) : (
+                  <p class="text-sm text-muted-foreground">
+                    {order?.shipping_method === 'correo'
+                      ? 'Envío a domicilio en 5-10 días hábiles'
+                      : 'Entrega 48 hs en Paraná (16 a 20 hs)'}
+                  </p>
+                )
+              }
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Método de Pago -->
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <CreditCard className="h-5 w-5" />
+              Método de Pago
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <p class="font-medium capitalize">
+                {order?.payment_method === 'transferencia' && 'Transferencia Bancaria'}
+                {order?.payment_method === 'efectivo' && 'Efectivo'}
+              </p>
+              <p class="text-sm text-muted-foreground mt-1">
+                Estado: <span class="font-medium capitalize">{order?.payment_status || 'pendiente'}</span>
+              </p>
+            </div>
+
+            {
+              order?.payment_method === 'transferencia' && (
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 class="font-medium text-blue-800 mb-2">Próximos pasos:</h4>
+                  <ol class="text-sm space-y-2">
+                    <li>1. Realiza la transferencia con los datos proporcionados</li>
+                    <li>2. Envía el comprobante a "simplex.parana@gmail.com"</li>
+                    <li>3. Envía el comprobante al WhattsApp: 3434718183</li>
+                    <li>4. Tu pedido será procesado una vez verificado</li>
+                  </ol>
+                </div>
+              )
+            }
+
+            {
+              order?.notes && (
+                <div>
+                  <p class="font-medium">Notas adicionales:</p>
+                  <p class="text-sm text-muted-foreground">{order.notes}</p>
+                </div>
+              )
+            }
+          </CardContent>
+        </Card>
+
+        <!-- Acciones -->
+        <Card>
+          <CardContent className="pt-6 space-y-4">
+            <a href="/dashboard/orders" class="text-blue-600 hover:text-blue-800 underline hover:underline">
+                Ver todos mis pedidos
+            </a>
+            <br/>
+            <a href="/" class="text-blue-600 hover:text-blue-800 underline hover:underline">
+                Ir a la tienda
+            </a>
+
+            <div class="text-center text-sm text-muted-foreground pt-4 border-t">
+              <p>Recibirás un email con los detalles del pedido.</p>
+              <p>Para consultas: simplex.parana@gmail.com</p>
+              <p>Consultas WhattsApp: 3434718183</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -223,7 +223,7 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
                   accept="image/*,.pdf"
                   required={showTransferFields}
                 />
-                <p className="text-xs text-muted-foreground">Subí una foto o PDF del comprobante (máx. 5MB)</p>
+                <p className="text-xs text-muted-foreground">Subí una foto o PDF del comprobante (máx. 1MB)</p>
               </div>
               
               <div className="space-y-2">

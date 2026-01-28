@@ -1,6 +1,5 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
-import { Button } from '@/components/ui/button';
 import { Package } from 'lucide-react';
 import type { Order } from '@/types/order';
 
@@ -26,7 +25,7 @@ if (!id) {
 let order: Order | null = null;
 try {
   order = await pb.collection('orders').getOne<Order>(id);
-  
+
   // Verificar que la orden pertenezca al usuario
   if (order && order.user !== user.id && !user.isAdmin) {
     return Astro.redirect('/dashboard/orders');
@@ -47,9 +46,9 @@ function getOrderStatus(status: string) {
     processing: { color: 'bg-blue-100 text-blue-800', text: 'Procesando', desc: 'Estamos preparando tu pedido.' },
     shipped: { color: 'bg-purple-100 text-purple-800', text: 'Enviado', desc: 'Tu pedido está en camino.' },
     delivered: { color: 'bg-green-100 text-green-800', text: 'Entregado', desc: 'Pedido entregado exitosamente.' },
-    cancelled: { color: 'bg-red-100 text-red-800', text: 'Cancelado', desc: 'Este pedido ha sido cancelado.' }
+    cancelled: { color: 'bg-red-100 text-red-800', text: 'Cancelado', desc: 'Este pedido ha sido cancelado.' },
   };
-  
+
   return statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
 }
 ---
@@ -57,21 +56,20 @@ function getOrderStatus(status: string) {
 <Layout metadata={metadata}>
   <div class="max-w-4xl mx-auto px-4 py-10">
     <div class="mb-8">
-      <a 
-        href="/dashboard/orders" 
-        class="text-sm text-primary hover:underline inline-flex items-center gap-1 mb-4"
-      >
+      <a href="/dashboard/orders" class="text-sm text-primary hover:underline inline-flex items-center gap-1 mb-4">
         ← Volver a mis pedidos
       </a>
       <h1 class="text-3xl font-bold">Pedido #{order.id.substring(0, 8).toUpperCase()}</h1>
       <p class="text-muted-foreground mt-2">
-        Realizado el {new Date(order.created).toLocaleDateString('es-ES', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
-        })}
+        Realizado el {
+          new Date(order.created).toLocaleDateString('es-ES', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+          })
+        }
       </p>
     </div>
 
@@ -81,23 +79,26 @@ function getOrderStatus(status: string) {
         <div class="border rounded-lg p-6">
           <h2 class="text-xl font-semibold mb-4">Productos</h2>
           <div class="space-y-4">
-            {Array.isArray(order.items) && order.items.map((item) => (
-              <div class="flex items-center gap-4 py-4 border-b last:border-0">
-                <div class="w-16 h-16 bg-muted rounded flex items-center justify-center">
-                  <Package className="h-8 w-8 text-muted-foreground" />
-                </div>
-                <div class="flex-1">
-                  <h3 class="font-medium">{item.name}</h3>
-                  <p class="text-sm text-muted-foreground">
-                    {item.item} • Talla: {item.size} • Cantidad: {item.quantity}
-                  </p>
-                </div>
-                <div class="text-right">
-                  <p class="font-bold">${(item.discountedPrice * item.quantity).toFixed(2)}</p>
-                  <p class="text-sm text-muted-foreground">${item.discountedPrice} c/u</p>
-                </div>
-              </div>
-            ))}
+            {
+              Array.isArray(order.items) &&
+                order.items.map((item) => (
+                  <div class="flex items-center gap-4 py-4 border-b last:border-0">
+                    <div class="w-16 h-16 bg-muted rounded flex items-center justify-center">
+                      <Package className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="font-medium">{item.name}</h3>
+                      <p class="text-sm text-muted-foreground">
+                        {item.item} • Talla: {item.size} • Cantidad: {item.quantity}
+                      </p>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-bold">${(item.discountedPrice * item.quantity).toFixed(2)}</p>
+                      <p class="text-sm text-muted-foreground">${item.discountedPrice} c/u</p>
+                    </div>
+                  </div>
+                ))
+            }
           </div>
         </div>
 
@@ -128,7 +129,7 @@ function getOrderStatus(status: string) {
           <div class="space-y-3">
             <div class="flex justify-between">
               <span>Subtotal</span>
-              <span>${(order.total && order.shipping_cost ? (order.total - order.shipping_cost).toFixed(2) : '0.00')}</span>
+              <span>${((order?.total ?? 0) - (order?.shipping_cost ?? 0)).toFixed(2)}</span>
             </div>
             <div class="flex justify-between">
               <span>Envío</span>
@@ -144,34 +145,34 @@ function getOrderStatus(status: string) {
         <div class="border rounded-lg p-6">
           <h2 class="text-xl font-semibold mb-4">Estado</h2>
           <div class="space-y-3">
-            {(() => {
-              const status = getOrderStatus(order.status);
-              return (
-                <>
-                  <span class={`px-3 py-1 rounded-full text-sm font-medium ${status.color}`}>
-                    {status.text}
-                  </span>
-                  <p class="text-sm text-muted-foreground">{status.desc}</p>
-                </>
-              );
-            })()}
+            {
+              (() => {
+                const status = getOrderStatus(order.status);
+                return (
+                  <>
+                    <span class={`px-3 py-1 rounded-full text-sm font-medium ${status.color}`}>{status.text}</span>
+                    <p class="text-sm text-muted-foreground">{status.desc}</p>
+                  </>
+                );
+              })()
+            }
           </div>
         </div>
 
         <div class="border rounded-lg p-6">
           <h2 class="text-xl font-semibold mb-4">Acciones</h2>
           <div class="space-y-3">
-            <Button variant="outline" className="w-full" onClick={() => window.print()}>
+            <button
+              class="w-full border border-input bg-background hover:bg-gray-400 hover:text-accent-foreground h-10 px-4 py-2 rounded-md"
+              onclick="window.print()"
+            >
               Imprimir comprobante
-            </Button>
-            {order.status === 'pending' && (
+            </button>
+            <!-- {order.status === 'pending' && (
               <Button variant="destructive" className="w-full">
                 Cancelar pedido
               </Button>
-            )}
-            <Button variant="ghost" className="w-full" asChild>
-              <a href="/dashboard/orders">Ver todos los pedidos</a>
-            </Button>
+            )} -->
           </div>
         </div>
       </div>
