@@ -1,28 +1,15 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Layout from '@/layouts/PageLayout.astro';
+import Hero from '@/components/widgets/Hero.astro';
 import ProductList from '@/components/ecommerce/ProductList';
-import { getProducts } from '@/lib/products';
-
-// Obtener productos DESDE POCKETBASE (servidor)
-const products = await getProducts('bermudas');
-
-console.log('Productos obtenidos:', products?.length || 0, 'productos');
-console.log('Tipo de products:', typeof products);
-
-const metadata = {
-  title: 'Bermudas',
-};
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={{ title: 'Bermudas' }}>
   <!-- Hero Widget ******************* -->
-
   <Hero tagline="Simplex Bermudas">
     <Fragment slot="title">
       Bermudas
     </Fragment>
-
     <Fragment slot="subtitle">
       Nuestras bermudas en tus dispositivos.
     </Fragment>
@@ -31,7 +18,7 @@ const metadata = {
   <!---------- Product List --------------------------->
 
   <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-    <ProductList client:load products={products || []}></ProductList>
+    <ProductList client:load category="bermudas"/>
   </div>
-  
+
 </Layout>

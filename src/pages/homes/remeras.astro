@@ -2,27 +2,14 @@
 import Layout from '@/layouts/PageLayout.astro';
 import Hero from '@/components/widgets/Hero.astro';
 import ProductList from '@/components/ecommerce/ProductList';
-import { getProducts } from '@/lib/products';
-
-// 2. Obtener productos DESDE POCKETBASE (servidor)
-const products = await getProducts('remeras');
-
-console.log('Productos obtenidos:', products?.length || 0, 'productos');
-console.log('Tipo de products:', typeof products);
-
-const metadata = {
-  title: 'Remeras',
-};
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={{ title: 'Remeras' }}>
   <!-- Hero Widget ******************* -->
-
   <Hero tagline="Simplex Remeras">
     <Fragment slot="title">
       Remeras
     </Fragment>
-
     <Fragment slot="subtitle">
       Nuestras remeras en tus dispositivos.
     </Fragment>
@@ -31,7 +18,30 @@ const metadata = {
   <!---------- Product List --------------------------->
 
   <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-  <ProductList client:load  products={products || []}></ProductList>
-  </div>  
+    <!-- ProductList ahora maneja su propia data desde Nanostores
+      - client:only="react" asegura que se ejecute solo en cliente
+      - category="remeras" filtra desde el store global
+      - showCategoryTitle={true} muestra el título de categoría
+    -->
+    <ProductList client:load category="remeras"/>
+  </div>
 
+  <!-- Script de diagnóstico (opcional, para debug) -->
+  <script>
+    console.log('🏪 Página /remeras cargada');
+    console.log('🔗 PocketBase URL:', import.meta.env.PUBLIC_POCKETBASE_URL);
+    console.log('📱 Entorno:', import.meta.env.MODE);
+    
+    // Verificar si hay cache de productos en localStorage
+    const cached = localStorage.getItem('simplex_products_cache_v1');
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        console.log(`📦 Cache encontrado: ${parsed.data?.length || 0} productos`);
+        console.log(`🕐 Cache fecha: ${new Date(parsed.timestamp).toLocaleString()}`);
+      } catch(e) {
+        console.log('📦 Cache inválido');
+      }
+    }
+  </script>
 </Layout>

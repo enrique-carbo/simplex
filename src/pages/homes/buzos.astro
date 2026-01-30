@@ -1,38 +1,30 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Layout from '@/layouts/PageLayout.astro';
+import Hero from '@/components/widgets/Hero.astro';
 import ProductList from '@/components/ecommerce/ProductList';
-import { getProducts } from '@/lib/products';
-
-// 1. Obtener productos DESDE POCKETBASE (servidor)
-const products = await getProducts('buzos');
-
-console.log('Productos obtenidos:', products?.length || 0, 'productos');
-console.log('Tipo de products:', typeof products);
-
-
-const metadata = {
-  title: 'Buzos',
-};
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={{ title: 'Buzos' }}>
   <!-- Hero Widget ******************* -->
-
   <Hero tagline="Simplex Buzos">
     <Fragment slot="title">
       Buzos
     </Fragment>
-
     <Fragment slot="subtitle">
       Nuestros buzos en tus dispositivos.
     </Fragment>
   </Hero>
 
   <!---------- Product List --------------------------->
-  
+
   <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-    <ProductList client:load products={products || []}></ProductList>
+    <!-- ProductList ahora maneja su propia data desde Nanostores
+      - client:only="react" asegura que se ejecute solo en cliente
+      - category="remeras" filtra desde el store global
+      - showCategoryTitle={true} muestra el título de categoría
+    -->
+    <ProductList client:load category="buzos"/>
   </div>
+
   
 </Layout>
