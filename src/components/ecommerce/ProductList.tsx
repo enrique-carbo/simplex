@@ -6,6 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { Product } from '@/lib/pocketbase';
 
+const POCKETBASE_URL = import.meta.env.PUBLIC_POCKETBASE_URL || 'https://pb.simplex.ar';
+
 interface ProductListProps {
   category: string;
 }
@@ -70,7 +72,9 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
         setDebug('Cargando desde API...');
         console.log('🔄 Cargando desde API');
         
-        const url = `${import.meta.env.PUBLIC_POCKETBASE_URL}/api/collections/products/records?perPage=100`;
+        const url = `${POCKETBASE_URL}/api/collections/products/records?perPage=100`;
+        console.log('📡 Fetch URL:', url);
+        
         const response = await fetch(url);
         
         if (!response.ok) throw new Error(`HTTP ${response.status}`);

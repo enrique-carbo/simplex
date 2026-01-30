@@ -26,12 +26,18 @@ import ProductList from '@/components/ecommerce/ProductList';
     <ProductList client:load category="remeras"/>
   </div>
 
-  <!-- Script de diagnóstico (opcional, para debug) -->
+</Layout>
+
+<!-- Script de diagnóstico (opcional, para debug) -->
   <script>
     console.log('🏪 Página /remeras cargada');
-    console.log('🔗 PocketBase URL:', import.meta.env.PUBLIC_POCKETBASE_URL);
+
+    // ⭐⭐ FALLBACK TAMBIÉN AQUÍ ⭐⭐
+    const PB_URL = import.meta.env.PUBLIC_POCKETBASE_URL || 'https://pb.simplex.ar';
+    console.log('🔗 PocketBase URL (con fallback):', PB_URL);
+    console.log('🔗 import.meta.env.PUBLIC_POCKETBASE_URL:', import.meta.env.PUBLIC_POCKETBASE_URL);
     console.log('📱 Entorno:', import.meta.env.MODE);
-    
+
     // Verificar si hay cache de productos en localStorage
     const cached = localStorage.getItem('simplex_products_cache_v1');
     if (cached) {
@@ -43,5 +49,16 @@ import ProductList from '@/components/ecommerce/ProductList';
         console.log('📦 Cache inválido');
       }
     }
+
+    // Test directo a la API
+    fetch(`${PB_URL}/api/collections/products/records?filter=category="remeras"`)
+    .then(r => {
+      console.log('Test API - Status:', r.status, 'OK:', r.ok);
+      return r.json();
+    })
+    .then(data => {
+      console.log('Test API - Productos:', data.items?.length || 0);
+    })
+    .catch(e => console.error('Test API - Error:', e));
+    
   </script>
-</Layout>
