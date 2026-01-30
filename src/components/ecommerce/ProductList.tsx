@@ -6,10 +6,9 @@ import type { Product } from '@/lib/pocketbase';
 
 interface ProductListProps {
   products?: Product[];  
-  isLoggedIn: boolean; 
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products, isLoggedIn }) => {
+const ProductList: React.FC<ProductListProps> = ({ products }) => {
   // 1. VALIDACIÓN INICIAL
   if (!products || !Array.isArray(products)) {
     return (
@@ -32,11 +31,6 @@ const ProductList: React.FC<ProductListProps> = ({ products, isLoggedIn }) => {
   }
   
   const handleProductClick = (product: Product) => {
-    if (!isLoggedIn) {
-      window.location.href = '/auth/login';
-      return;
-    }
-    // Usar originalId para URLs amigables
     window.location.href = `/product/${product.originalId}`;
   };
 
@@ -101,13 +95,7 @@ const ProductList: React.FC<ProductListProps> = ({ products, isLoggedIn }) => {
                   }
                 </div>
               </div>
-              <div className="p-1">
-                {!isLoggedIn && (
-                  <p className="text-xs text-muted-foreground italic m-1">
-                    Inicia sesión para ver detalle
-                  </p>
-                )}
-              </div>
+              
             </CardContent>
           </Card>
         );

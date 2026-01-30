@@ -34,7 +34,7 @@ export const POST: APIRoute = async ({ params, request, locals }) => {
     }
     
     // Verificar propiedad
-    if (order.user !== pb.authStore.model?.id) {
+    if (order.user !== pb.authStore.record?.id) {
       return new Response(
         JSON.stringify({ error: 'No autorizado' }),
         { status: 403 }
