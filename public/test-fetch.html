@@ -1,0 +1,5 @@
+<script>
+fetch('/api/health-check')
+  .then(r => r.json())
+  .then(data => console.log('Health Check:', data));
+</script>
