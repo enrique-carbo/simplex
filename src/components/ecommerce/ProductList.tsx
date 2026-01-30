@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { Product } from '@/lib/pocketbase';
 
-const POCKETBASE_URL = import.meta.env.PUBLIC_POCKETBASE_URL || 'https://pb.simplex.ar';
+const POCKETBASE_URL = import.meta.env.PUBLIC_POCKETBASE_URL;
 
 interface ProductListProps {
   category: string;
