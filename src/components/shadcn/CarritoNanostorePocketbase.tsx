@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import NumberFlow from '@number-flow/react';
 
 interface CarritoNanostoreProps {
-  userId: string; // Recibes el userId desde Astro
+  userId: string | null; // Recibes el userId desde Astro
 }
 
 function CarritoNanostorePocketbase({ userId }: CarritoNanostoreProps) {
@@ -27,6 +27,12 @@ function CarritoNanostorePocketbase({ userId }: CarritoNanostoreProps) {
 
   // Nueva función para crear la orden vía endpoint seguro
   const handleFinishPurchase = async () => {
+    if (!userId) {
+      setOrderError('Debes iniciar sesión para finalizar la compra');
+      setTimeout(() => setOrderError(null), 3000);
+      return;
+    }
+
     if (cartItems.length === 0) return;
     
     setIsProcessingOrder(true);

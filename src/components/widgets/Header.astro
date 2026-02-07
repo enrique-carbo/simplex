@@ -13,7 +13,7 @@ const pb = Astro.locals.pb;
 const isLoggedIn = pb?.authStore?.isValid ?? false;
 const user = pb?.authStore?.record;
 
-const userId = isLoggedIn && user ? user.id : undefined;
+const userId = isLoggedIn ? (user?.id ?? null) : null;
 
 // import CarritoNanostore from '@/components/shadcn/CarritoNanostore';
 import CarritoNanostorePocketbase from '../shadcn/CarritoNanostorePocketbase';
@@ -143,7 +143,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           {
             (
               <div class="mr-1">
-                <CarritoNanostorePocketbase client:only="react" userId={userId || 'guest'} />
+                <CarritoNanostorePocketbase client:only="react" userId={userId} />
               </div>
             )
           }
