@@ -10,9 +10,7 @@ interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = ({ category }) => {
-  const filteredProducts = availableProducts.filter(p => 
-    p.category.toLowerCase() === category.toLowerCase()
-  );
+  const filteredProducts = availableProducts.filter((p) => p.category.toLowerCase() === category.toLowerCase());
 
   if (filteredProducts.length === 0) {
     return (
@@ -26,29 +24,22 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 md:mx-10">
       {filteredProducts.map((product) => {
         const hasDiscount = product.discountedPrice < product.listPrice;
-        const discountPercent = hasDiscount 
+        const discountPercent = hasDiscount
           ? Math.round(((product.listPrice - product.discountedPrice) / product.listPrice) * 100)
           : 0;
 
         return (
-          <Card 
+          <Card
             key={product.id}
             className="overflow-hidden hover:shadow-md cursor-pointer border"
-            onClick={() => window.location.href = `/product/${product.id}`}
+            onClick={() => (window.location.href = `/product/${product.id}`)}
           >
             {/* Imagen */}
             <div className="aspect-square bg-gray-50 p-2 relative">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-contain"
-                loading="lazy"
-              />
+              <img src={product.image} alt={product.name} className="w-full h-full object-contain" loading="lazy" />
               {hasDiscount && (
                 <div className="absolute top-2 left-2">
-                  <span className="text-xs font-bold bg-red-500 text-white px-2 py-1 rounded">
-                    -{discountPercent}%
-                  </span>
+                  <span className="text-xs font-bold bg-red-500 text-white px-2 py-1 rounded">-{discountPercent}%</span>
                 </div>
               )}
             </div>
@@ -58,26 +49,18 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
               {/* Precios */}
               <div className="space-y-1">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-lg font-bold text-gray-900">
-                    ${product.discountedPrice.toFixed(2)}
-                  </span>
+                  <span className="text-lg font-bold text-gray-900">${product.discountedPrice.toFixed(2)}</span>
                   {hasDiscount && (
-                    <span className="text-sm text-gray-400 line-through">
-                      ${product.listPrice.toFixed(2)}
-                    </span>
+                    <span className="text-sm text-gray-400 line-through">${product.listPrice.toFixed(2)}</span>
                   )}
                 </div>
               </div>
 
               {/* Nombre */}
-              <p className="text-sm font-medium line-clamp-2 h-10 text-gray-800">
-                {product.name}
-              </p>
+              <p className="text-sm font-medium line-clamp-2 h-10 text-gray-800">{product.name}</p>
 
               {/* Referencia */}
-              <p className="text-xs text-gray-500">
-                Art-{product.item}
-              </p>
+              <p className="text-xs text-gray-500">Art-{product.item}</p>
 
               {/* Stock y talles */}
               <div className="flex items-center justify-between pt-1 border-t">
@@ -86,13 +69,9 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
                 </span>
                 <div className="flex gap-1">
                   {product.sizes
-                    ?.filter(s => s.quantity > 0)
-                    .slice(0, 3)
-                    .map(size => (
-                      <span 
-                        key={size.size} 
-                        className="text-xs px-1.5 py-0.5 bg-gray-100 rounded text-gray-700"
-                      >
+                    ?.filter((s) => s.quantity > 0)
+                    .map((size) => (
+                      <span key={size.size} className="text-xs px-1.5 py-0.5 bg-gray-100 rounded text-gray-700">
                         {size.size}
                       </span>
                     ))}

@@ -132,7 +132,7 @@
     "item": "301",
     "name": "Jean Recto Lidase",
     "discountedPrice": 52800,
-    "listPrice": 60000, 
+    "listPrice": 60000,
     "image": "/images/products/lidase/jean-recto-1111jo-1.webp",
     "category": "pantalones",
     "inStock": true,
@@ -150,7 +150,7 @@
     "item": "301",
     "name": "Jean Semichupin C&D",
     "discountedPrice": 39400,
-    "listPrice": 44800, 
+    "listPrice": 44800,
     "image": "/images/products/jeancyd/jean-cyd.webp",
     "category": "pantalones",
     "inStock": true,
@@ -166,7 +166,7 @@
     "item": "301",
     "name": "Jean Semichupin Gris Oscuro",
     "discountedPrice": 39000,
-    "listPrice": 44000, 
+    "listPrice": 44000,
     "image": "/images/products/c026jeans/jean-gris-oscuro.webp",
     "category": "pantalones",
     "inStock": true,
@@ -182,7 +182,7 @@
     "item": "301",
     "name": "Jean Elastizado Gris",
     "discountedPrice": 39000,
-    "listPrice": 44000, 
+    "listPrice": 44000,
     "image": "/images/products/c026jeans/jean-elastizado-gris.webp",
     "category": "pantalones",
     "inStock": true,
@@ -198,7 +198,7 @@
     "item": "302",
     "name": "Jogging Recto Gris Oscuro Ra",
     "discountedPrice": 29900,
-    "listPrice": 35000, 
+    "listPrice": 35000,
     "image": "/images/products/rasta/jogging-algodon/Jogging-algodon-gris-oscuro.webp",
     "category": "pantalones",
     "inStock": true,
@@ -213,7 +213,7 @@
     "item": "302",
     "name": "Jogging Recto Gris Melange Ra",
     "discountedPrice": 29900,
-    "listPrice": 35000, 
+    "listPrice": 35000,
     "image": "/images/products/rasta/jogging-algodon/Jogging-algodon-melange.webp",
     "category": "pantalones",
     "inStock": true,
@@ -228,7 +228,7 @@
     "item": "404",
     "name": "Bermuda gabardina negra",
     "discountedPrice": 32000,
-    "listPrice": 37800, 
+    "listPrice": 37800,
     "image": "/images/products/c026jeans/bermuda-negra.webp",
     "category": "bermudas",
     "inStock": true,
@@ -245,7 +245,7 @@
     "item": "404",
     "name": "Bermuda gabardina azul",
     "discountedPrice": 32000,
-    "listPrice": 37800, 
+    "listPrice": 37800,
     "image": "/images/products/c026jeans/bermuda-azul.jpg",
     "category": "bermudas",
     "inStock": true,
@@ -262,7 +262,7 @@
     "item": "404",
     "name": "Bermuda gabardina cemento",
     "discountedPrice": 32000,
-    "listPrice": 37800, 
+    "listPrice": 37800,
     "image": "/images/products/c026jeans/bermuda-cemento.webp",
     "category": "bermudas",
     "inStock": true,
@@ -279,7 +279,7 @@
     "item": "401",
     "name": "Bermuda jean azul",
     "discountedPrice": 40000,
-    "listPrice": 47000, 
+    "listPrice": 47000,
     "image": "/images/products/bross/bermuda-azul.jpg",
     "category": "bermudas",
     "inStock": true,
@@ -296,14 +296,14 @@
     "item": "401",
     "name": "Bermuda jean negra",
     "discountedPrice": 40000,
-    "listPrice": 47000, 
+    "listPrice": 47000,
     "image": "/images/products/bross/bermuda-negra.jpg",
     "category": "bermudas",
     "inStock": true,
     "sizes": [
       { "size": "38", "quantity": 0 },
       { "size": "40", "quantity": 1 },
-      { "size": "42", "quantity": 1 },
+      { "size": "42", "quantity": 0 },
       { "size": "44", "quantity": 0 },
       { "size": "46", "quantity": 0 }
     ]
@@ -313,7 +313,7 @@
     "item": "402",
     "name": "Short algodón negro",
     "discountedPrice": 16000,
-    "listPrice": 22000, 
+    "listPrice": 22000,
     "image": "/images/products/Wacky/shorts/short-algodon-negro.webp",
     "category": "bermudas",
     "inStock": true,
@@ -330,7 +330,7 @@
     "item": "402",
     "name": "Short algodón gris",
     "discountedPrice": 16000,
-    "listPrice": 22000, 
+    "listPrice": 22000,
     "image": "/images/products/Wacky/shorts/short-algodon-gris.webp",
     "category": "bermudas",
     "inStock": true,
@@ -347,7 +347,7 @@
     "item": "402",
     "name": "Short algodón azul",
     "discountedPrice": 16000,
-    "listPrice": 22000, 
+    "listPrice": 22000,
     "image": "/images/products/Wacky/shorts/short-algodon-azul.webp",
     "category": "bermudas",
     "inStock": true,
@@ -368,7 +368,7 @@
     "image": "/images/products/offe/mini-bag.jpg",
     "category": "bags",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "offe-minibag-ultra-001",
@@ -378,8 +378,8 @@
     "listPrice": 22900,
     "image": "/images/products/offe/MiniBagUrbana.webp",
     "category": "bags",
-    "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "inStock": false,
+    "sizes": [{ "size": "unico", "quantity": 0 }]
   },
   {
     "id": "offe-street-basic-001",
@@ -390,7 +390,7 @@
     "image": "/images/products/offe/MorralStreetClasic.webp",
     "category": "bags",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "offe-morral-red-001",
@@ -401,7 +401,7 @@
     "image": "/images/products/morral-negro-red.jpg",
     "category": "bags",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "offe-morral-red-ultra-001",
@@ -412,7 +412,7 @@
     "image": "/images/products/offe/MorralRedUltra.webp",
     "category": "bags",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "pla-morral-head",
@@ -423,7 +423,7 @@
     "image": "/images/products/platino/morral-head.webp",
     "category": "bags",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 0}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "pla-mochila-unicross-001",
@@ -433,8 +433,8 @@
     "listPrice": 43000,
     "image": "/images/products/platino/mochila-unicross.webp",
     "category": "bags",
-    "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "inStock": false,
+    "sizes": [{ "size": "unico", "quantity": 0 }]
   },
   {
     "id": "pla-mochila-everlast-001",
@@ -445,7 +445,7 @@
     "image": "/images/products/platino/mochila-everlast.webp",
     "category": "bags",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "pla-mochila-everlast-002",
@@ -456,7 +456,7 @@
     "image": "/images/products/platino/mochila-everlast-solapa.webp",
     "category": "bags",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "pla-mochi-wellinton-001",
@@ -467,7 +467,7 @@
     "image": "/images/products/platino/mochila-wellinton.webp",
     "category": "bags",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "pla-mochila-matera",
@@ -478,7 +478,18 @@
     "image": "/images/products/platino/bolso-matero.jpg",
     "category": "bags",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
+  },
+  {
+    "id": "pla-mochila-AlpineSkate",
+    "item": "503",
+    "name": "Mochila Alpine Skate",
+    "discountedPrice": 40900,
+    "listPrice": 45000,
+    "image": "/images/products/platino/mochila-AlpineSkate27247.jpg",
+    "category": "bags",
+    "inStock": true,
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "boxer-zorba",
@@ -505,7 +516,7 @@
     "image": "/images/products/medias-2.jpg",
     "category": "accesorios",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "gorra-trucker-negra",
@@ -516,7 +527,7 @@
     "image": "/images/products/gorra.jpg",
     "category": "accesorios",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "gorra-gabardina-lisa",
@@ -527,7 +538,7 @@
     "image": "/images/products/gorra_gabardina.jpeg",
     "category": "accesorios",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "gorra-gyl-poliester-negra",
@@ -538,7 +549,7 @@
     "image": "/images/products/gyl/gorra-negra-100poliester.webp",
     "category": "accesorios",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "gorra-gyl-algodon-negra",
@@ -549,7 +560,7 @@
     "image": "/images/products/gyl/gorra-negra-algodon.webp",
     "category": "accesorios",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "gorra-gyl-algodon-verde",
@@ -560,7 +571,7 @@
     "image": "/images/products/gyl/gorra-verde-algodon.webp",
     "category": "accesorios",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "offe-estuche-multi-001",
@@ -571,7 +582,7 @@
     "image": "/images/products/offe/estuche.webp",
     "category": "accesorios",
     "inStock": true,
-    "sizes": [{"size": "unico", "quantity": 1}]
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "art-remera-mc-gris-basix",
@@ -579,7 +590,7 @@
     "name": "Remera Mangas Cortas Gris Basix",
     "discountedPrice": 9500,
     "listPrice": 12500,
-    "image": "/images/products/remera-gris.jpg",
+    "image": "/images/products/remeras/remeraGris-fondoBlanco.jpg",
     "category": "remeras",
     "inStock": true,
     "sizes": [
@@ -595,7 +606,7 @@
     "name": "Remera Mangas Cortas Negra Basix",
     "discountedPrice": 9500,
     "listPrice": 12500,
-    "image": "/images/products/remera-negra.jpg",
+    "image": "/images/products/remeras/remeraNegra-fondoBlanco.jpg",
     "category": "remeras",
     "inStock": true,
     "sizes": [
@@ -606,12 +617,12 @@
     ]
   },
   {
-    "id": "art-remeraMC-blanca-APV",
-    "item": "1012",
-    "name": "Remera Mangas Cortas Blanca Elevé",
-    "discountedPrice": 11900,
-    "listPrice": 14000,
-    "image": "/images/products/algodonera/remera-mc-algodonera-blanca.jpg",
+    "id": "art-remera-mc-azul-basix",
+    "item": "1011",
+    "name": "Remera Mangas Cortas Azul Marino Basix",
+    "discountedPrice": 9500,
+    "listPrice": 12500,
+    "image": "/images/products/remeras/remeraAzul-fondoBlanco.jpg",
     "category": "remeras",
     "inStock": true,
     "sizes": [
@@ -622,44 +633,12 @@
     ]
   },
   {
-    "id": "art-remeraMC-gris-APV",
-    "item": "1012",
-    "name": "Remera Mangas Cortas Gris Elevé",
-    "discountedPrice": 11900,
-    "listPrice": 14000,
-    "image": "/images/products/algodonera/remera-mc-algodonera-gris.jpg",
-    "category": "remeras",
-    "inStock": true,
-    "sizes": [
-      { "size": "S", "quantity": 1 },
-      { "size": "M", "quantity": 1 },
-      { "size": "L", "quantity": 1 },
-      { "size": "XL", "quantity": 1 }
-    ]
-  },
-  {
-    "id": "art-remeraMC-azulmarino-APV",
-    "item": "1012",
-    "name": "Remera Mangas Cortas Azul Elevé",
-    "discountedPrice": 11900,
-    "listPrice": 14000,
-    "image": "/images/products/algodonera/remera-mc-algodonera-azul.jpg",
-    "category": "remeras",
-    "inStock": true,
-    "sizes": [
-      { "size": "S", "quantity": 1 },
-      { "size": "M", "quantity": 1 },
-      { "size": "L", "quantity": 1 },
-      { "size": "XL", "quantity": 1 }
-    ]
-  },
-  {
-    "id": "art-remeraMC-negro-APV",
-    "item": "1012",
-    "name": "Remera Mangas Cortas Negra Elevé",
-    "discountedPrice": 11900,
-    "listPrice": 14000,
-    "image": "/images/products/algodonera/remera-mc-algodonera-negra.jpg",
+    "id": "art-remera-mc-blanca-basix",
+    "item": "1011",
+    "name": "Remera Mangas Cortas Blanca Basix",
+    "discountedPrice": 9500,
+    "listPrice": 12500,
+    "image": "/images/products/remeras/remeraBlanca-fondogris.jpg",
     "category": "remeras",
     "inStock": true,
     "sizes": [
@@ -681,7 +660,7 @@
     "sizes": [
       { "size": "S", "quantity": 1 },
       { "size": "M", "quantity": 1 },
-      { "size": "L", "quantity": 1 },
+      { "size": "L", "quantity": 0 },
       { "size": "XL", "quantity": 1 }
     ]
   },
@@ -691,7 +670,71 @@
     "name": "Remera Mangas Cortas Azul Premium",
     "discountedPrice": 15900,
     "listPrice": 22000,
-    "image": "/images/products/ribar/remera-azul-20-1.jpg",
+    "image": "/images/products/ribar/remera-azul-fondoBlanco.jpg",
+    "category": "remeras",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "art-remeramc-20-1-ribar-beige",
+    "item": "1012",
+    "name": "Remera Mangas Cortas Beige Premium",
+    "discountedPrice": 15900,
+    "listPrice": 22000,
+    "image": "/images/products/ribar/remera-beige-fondoBlanco.jpg",
+    "category": "remeras",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "art-remeramc-20-1-ribar-blanca",
+    "item": "1012",
+    "name": "Remera Mangas Cortas Blanca Premium",
+    "discountedPrice": 15900,
+    "listPrice": 22000,
+    "image": "/images/products/ribar/remeraBlanca-fondoGris.jpg",
+    "category": "remeras",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "art-remeramc-20-1-ribar-gris",
+    "item": "1012",
+    "name": "Remera Mangas Cortas Gris Premium",
+    "discountedPrice": 15900,
+    "listPrice": 22000,
+    "image": "/images/products/ribar/remera-gris-fondoBlanco.jpg",
+    "category": "remeras",
+    "inStock": true,
+    "sizes": [
+      { "size": "S", "quantity": 1 },
+      { "size": "M", "quantity": 1 },
+      { "size": "L", "quantity": 1 },
+      { "size": "XL", "quantity": 1 }
+    ]
+  },
+  {
+    "id": "art-remeramc-20-1-ribar-negra",
+    "item": "1012",
+    "name": "Remera Mangas Cortas Negra Premium",
+    "discountedPrice": 15900,
+    "listPrice": 22000,
+    "image": "/images/products/ribar/remeraNegra-fondoBlanco.jpg",
     "category": "remeras",
     "inStock": true,
     "sizes": [
@@ -746,7 +789,7 @@
       { "size": "S", "quantity": 1 },
       { "size": "M", "quantity": 1 },
       { "size": "L", "quantity": 1 },
-      { "size": "XL", "quantity": 1 },
+      { "size": "XL", "quantity": 0 },
       { "size": "XXL", "quantity": 1 }
     ]
   },
@@ -760,7 +803,7 @@
     "category": "remeras",
     "inStock": true,
     "sizes": [
-      { "size": "S", "quantity": 1 },
+      { "size": "S", "quantity": 0 },
       { "size": "M", "quantity": 1 },
       { "size": "L", "quantity": 1 },
       { "size": "XL", "quantity": 1 },
@@ -777,11 +820,11 @@
     "category": "remeras",
     "inStock": true,
     "sizes": [
-      { "size": "S", "quantity": 1 },
+      { "size": "S", "quantity": 0 },
       { "size": "M", "quantity": 1 },
       { "size": "L", "quantity": 1 },
       { "size": "XL", "quantity": 1 },
-      { "size": "XXL", "quantity": 1 }
+      { "size": "XXL", "quantity": 0 }
     ]
   }
 ]
