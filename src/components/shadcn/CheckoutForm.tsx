@@ -99,11 +99,15 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
               <Badge variant="outline">Gratis</Badge>
             </div>
           </RadioGroup>
+        </CardContent>
+        </Card>  
 
+        <Card>
+          <CardContent>
           {/* Datos de envío (condicional) */}
           {showAddressFields && (
             <div className="mt-6 space-y-4">
-              <h4 className="font-medium">Dirección de entrega</h4>
+              <h4 className="font-extrabold text-lg">Dirección de entrega</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="direccion">Dirección</Label>
@@ -212,7 +216,9 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="comprobante">Comprobante de Transferencia</Label>
+                <Label htmlFor="comprobante" className='font-extrabold text-lg'>
+                  Comprobante de Transferencia
+                  </Label>
                 <Input 
                   id="comprobante" 
                   name="payment_receipt"
