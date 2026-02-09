@@ -1,4 +1,4 @@
-// components/ecommerce/ProductList.tsx - VERSIÓN CON LÍMITE DE 1 HORA
+// components/ecommerce/ProductList.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -165,12 +165,14 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
               </Badge>
             )}
             <CardContent>
+              <div className="overflow-hidden">
               <img 
                 src={product.image} 
                 alt={product.name} 
-                className="w-full h-48 object-contain" 
+                className="w-full h-48 object-contain transition-transform duration-300 ease-in-out hover:scale-105" 
                 loading="lazy"
               />
+              </div>
               <div className="p-4">
                 <h2 className="text-xl font-medium mb-2">
                   Art-{product.item}: 

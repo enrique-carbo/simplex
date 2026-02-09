@@ -55,6 +55,7 @@ try {
       <div class="space-y-4">
         {orders.map((order) => {
           const statusConfig = {
+            draft: { color: 'bg-gray-100 text-gray-800', text: 'Borrador' },
             pending: { color: 'bg-amber-100 text-amber-800', text: 'Pendiente' },
             processing: { color: 'bg-blue-100 text-blue-800', text: 'Procesando' },
             shipped: { color: 'bg-purple-100 text-purple-800', text: 'Enviado' },

@@ -42,6 +42,11 @@ if (!order) {
 // Función para formatear estado
 function getOrderStatus(status: string) {
   const statusConfig = {
+    draft: {
+      color: 'bg-gray-100 text-gray-800',
+      text: 'Borrador',
+      desc: 'Tu pedido está en borrador y aún no ha sido procesado.',
+    },
     pending: { color: 'bg-amber-100 text-amber-800', text: 'Pendiente', desc: 'Tu pedido está siendo procesado.' },
     processing: { color: 'bg-blue-100 text-blue-800', text: 'Procesando', desc: 'Estamos preparando tu pedido.' },
     shipped: { color: 'bg-purple-100 text-purple-800', text: 'Enviado', desc: 'Tu pedido está en camino.' },
@@ -168,11 +173,17 @@ function getOrderStatus(status: string) {
             >
               Imprimir comprobante
             </button>
-            <!-- {order.status === 'pending' && (
-              <Button variant="destructive" className="w-full">
-                Cancelar pedido
-              </Button>
-            )} -->
+
+            {
+              order.status === 'draft' && (
+                <a
+                  href={`/checkout/${order.id}`}
+                  class="w-full bg-primary text-white hover:bg-primary/90 h-10 px-4 py-2 rounded-md inline-flex items-center justify-center font-medium"
+                >
+                  Completar compra
+                </a>
+              )
+            }
           </div>
         </div>
       </div>

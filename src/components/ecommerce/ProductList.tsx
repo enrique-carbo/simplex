@@ -36,7 +36,9 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
           >
             {/* Imagen */}
             <div className="aspect-square bg-gray-50 p-2 relative">
-              <img src={product.image} alt={product.name} className="w-full h-full object-contain" loading="lazy" />
+              <img 
+                src={product.image} alt={product.name} 
+                className="w-full h-full object-contain transition-transform duration-300 ease-in-out hover:scale-105" loading="lazy" />
               {hasDiscount && (
                 <div className="absolute top-2 left-2">
                   <span className="text-xs font-bold bg-red-500 text-white px-2 py-1 rounded">-{discountPercent}%</span>
