@@ -1,302 +1,68 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { 
-  User, Mail, Calendar, ShieldCheck, LogOut, 
-  MapPin, Phone, CreditCard, Package, ShoppingBag, ChevronRight 
-} from 'lucide-react';
-import type { CustomerData } from '@/types/customer';
-import type { Order } from '@/types/order';
+import DashboardShell from '@/components/dashboard/DashboardShell.tsx';
+import ResendVerification from '@/components/dashboard/ResendVerification';
+import LogoutButton from '@/components/dashboard/LogoutButton';
+import { User } from 'lucide-react'
 
 const metadata = {
   title: 'Mi Perfil - Simplex',
   ignoreTitleTemplate: true,
 };
 
-const pb = Astro.locals.pb;
 const { user, isLoggedIn } = Astro.locals;
 
-// Protección de ruta
+// Protección de ruta (mínimo CPU)
 if (!isLoggedIn) {
   return Astro.redirect('/auth/login');
 }
 
+// Solo datos ABSOLUTAMENTE necesarios en SSR
 const isVerified = user?.verified === true;
-
-// Obtener datos personales
-let customerData: CustomerData | null = null;
-try {
-  customerData = await pb.collection('customer_data').getFirstListItem<CustomerData>(`user = "${user.id}"`);
-} catch (e) {
-  customerData = null;
-}
-
-// Obtener órdenes recientes del usuario
-let recentOrders: Order[] = [];
-let totalOrders = 0;
-try {
-  const orders = await pb.collection('orders').getList(1, 5, {
-    filter: `user = "${user.id}"`,
-    sort: '-created',
-    expand: 'user'
-  });
-  
-  recentOrders = orders.items as Order[];
-  totalOrders = orders.totalItems;
-} catch (error) {
-  console.error('Error obteniendo órdenes:', error);
-  recentOrders = [];
-}
-
-// Función para formatear estado
-function getOrderStatusBadge(status: string) {
-  const statusConfig: Record<string, { color: string, text: string }> = {
-    draft: { color: 'bg-gray-100 text-gray-800', text: 'Borrador' },
-    pending: { color: 'bg-amber-100 text-amber-800', text: 'Pendiente' },
-    processing: { color: 'bg-blue-100 text-blue-800', text: 'Procesando' },
-    shipped: { color: 'bg-purple-100 text-purple-800', text: 'Enviado' },
-    delivered: { color: 'bg-green-100 text-green-800', text: 'Entregado' },
-    cancelled: { color: 'bg-red-100 text-red-800', text: 'Cancelado' }
-  };
-  
-  return statusConfig[status] || { color: 'bg-gray-100 text-gray-800', text: status };
-}
-
-// Función para formatear fecha
-function formatDate(dateString: string) {
-  return new Date(dateString).toLocaleDateString('es-ES', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric'
-  });
-}
 ---
 
 <Layout metadata={metadata}>
-  <div class="max-w-4xl mx-auto px-4 py-10 space-y-6">
+  <div class="max-w-4xl mx-auto px-4 py-6 space-y-6">
     
-    { !isVerified && (
-      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-center justify-between shadow-sm">
-        <div class="flex items-center gap-3">
-          <div class="bg-amber-100 p-2 rounded-full">
-            <Mail className="h-5 w-5 text-amber-600" />
-          </div>
-          <div>
-            <p class="text-sm font-medium text-amber-800">Verifica tu correo electrónico</p>
-            <p class="text-xs text-amber-700">Revisa tu bandeja de entrada para activar todas las funciones.</p>
-          </div>
-        </div>
-        <Button variant="outline" size="sm" id="resend-btn" className="border-amber-300 hover:bg-amber-100 text-amber-800">
-          Reenviar email
-        </Button>
-      </div>
+    {/* Banner de verificación - Solo si no verificado */}
+    {!isVerified && (
+      <ResendVerification client:load />
     )}
 
+    {/* Layout básico - Skeleton de la página */}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <Card className="md:col-span-1 h-fit">
-        <CardContent className="pt-6 text-center space-y-4">
-          <div class="mx-auto w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center">
-            <User className="h-12 w-12 text-primary" />
+      
+      {/* Columna izquierda - Perfil básico */}
+      <div class="md:col-span-1">
+        <div class="border rounded-lg p-6 text-center space-y-4">
+          <div class="mx-auto w-20 h-20 flex items-center justify-center">
+            <User className="h-10 w-10" />
           </div>
           <div>
-            <h2 class="font-bold text-lg leading-tight">
-              {customerData ? `${customerData.nombre} ${customerData.apellido}` : (user.name || 'Usuario Simplex')}
+            <h2 class="font-bold text-lg leading-tight truncate">
+              {user.nombre || 'Usuario'}
             </h2>
-            <p class="text-sm text-muted-foreground">{user.email}</p>
+            <p class="text-sm text-muted-foreground truncate">{user.email}</p>
           </div>
-          <Badge variant={isVerified ? "default" : "secondary"} className={isVerified ? "bg-green-500 hover:bg-green-600" : ""}>
-            {isVerified ? 'Verificado' : 'Pendiente'}
-          </Badge>
+          <div>
+            <span class={`px-3 py-1 rounded-full text-xs font-medium ${isVerified ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
+              {isVerified ? 'Verificado' : 'Pendiente'}
+            </span>
+          </div>
           
-          <Separator />
-          
-          <form method="POST" action="/api/auth/logout">
-            <Button type="submit" variant="ghost" className="w-full text-destructive hover:bg-destructive/5 gap-2">
-              <LogOut className="h-4 w-4" />
-              Cerrar Sesión
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+          <div class="pt-4 border-t">
+            <LogoutButton client:load />
+          </div>
+        </div>
+      </div>
 
+      {/* Columna derecha - Contenido cargado en cliente */}
       <div class="md:col-span-2 space-y-6">
         
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <div>
-              <CardTitle>Datos Personales</CardTitle>
-              <CardDescription>Información necesaria para tus compras y envíos.</CardDescription>
-            </div>
-            <Button variant="outline" size="sm" asChild>
-                <a href="/dashboard/editar">{customerData ? 'Editar' : 'Completar'}</a>
-            </Button>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {customerData ? (
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 text-sm">
-                <div class="flex items-center gap-2">
-                  <CreditCard className="h-4 w-4 text-muted-foreground" />
-                  <span class="font-medium">DNI:</span> {customerData.documento}
-                </div>
-                <div class="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-muted-foreground" />
-                  <span class="font-medium">Celular:</span> {customerData.phone}
-                </div>
-                <div class="flex items-center gap-2 sm:col-span-2">
-                  <MapPin className="h-4 w-4 text-muted-foreground" />
-                  <span class="font-medium">Dirección:</span> 
-                  {customerData.direccionCalle} {customerData.direccionNumero}, {customerData.ciudad} ({customerData.provincia})
-                </div>
-              </div>
-            ) : (
-              <div class="text-center py-4">
-                <p class="text-sm text-muted-foreground mb-4">Aún no has completado tus datos de envío.</p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Seguridad y Cuenta</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <div class="space-y-1">
-                <p class="text-xs font-medium text-muted-foreground uppercase">ID de Cliente</p>
-                <p class="font-mono bg-muted p-1 rounded inline-block text-[10px]">{user.id}</p>
-              </div>
-              <div class="space-y-1">
-                <p class="text-xs font-medium text-muted-foreground uppercase flex items-center gap-1">
-                  <Calendar className="h-3 w-3" /> Miembro desde
-                </p>
-                <p>{new Date(user.created).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
-              </div>
-            </div>
-            <Separator />
-            <div class="space-y-3">
-               <h3 class="text-sm font-semibold flex items-center gap-2">
-                 <ShieldCheck className="h-4 w-4 text-primary" /> Contraseña
-               </h3>
-               <p class="text-xs text-muted-foreground">Última actualización: {new Date(user.updated).toLocaleDateString()}.</p>
-               <Button variant="outline" size="sm" disabled>Cambiar contraseña</Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Sección de Órdenes */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <div>
-              <CardTitle className="flex items-center gap-2">
-                <ShoppingBag className="h-5 w-5" />
-                Mis Pedidos
-              </CardTitle>
-              <CardDescription>
-                {totalOrders > 0 
-                  ? `Tienes ${totalOrders} pedido${totalOrders !== 1 ? 's' : ''} en total` 
-                  : 'Aún no has realizado pedidos'}
-              </CardDescription>
-            </div>
-            {totalOrders > 0 && (
-              <Button variant="outline" size="sm" asChild>
-                <a href="/dashboard/orders" class="flex items-center gap-1">
-                  Ver todos
-                  <ChevronRight className="h-4 w-4" />
-                </a>
-              </Button>
-            )}
-          </CardHeader>
-          <CardContent>
-            {recentOrders.length > 0 ? (
-              <div class="space-y-4">
-                {recentOrders.map((order) => {
-                  const status = getOrderStatusBadge(order.status);
-                  const itemCount = Array.isArray(order.items) 
-                    ? order.items.reduce((sum, item) => sum + (item.quantity || 1), 0)
-                    : 0;
-                  
-                  return (
-                    <a 
-                      href={`/dashboard/orders/${order.id}`}
-                      class="block border rounded-lg p-4 hover:bg-accent/50 transition-colors group"
-                    >
-                      <div class="flex items-center justify-between">
-                        <div class="space-y-1">
-                          <div class="flex items-center gap-2">
-                            <span class="font-medium text-sm">
-                              Pedido #{order.id.substring(0, 8).toUpperCase()}
-                            </span>
-                            <Badge className={`text-xs ${status.color}`}>
-                              {status.text}
-                            </Badge>
-                          </div>
-                          <p class="text-xs text-muted-foreground">
-                            {formatDate(order.created)} • {itemCount} producto{itemCount !== 1 ? 's' : ''}
-                          </p>
-                        </div>
-                        <div class="text-right">
-                          <p class="font-bold">${order.total?.toFixed(2) || '0.00'}</p>
-                          <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </div>
-                    </a>
-                  );
-                })}
-                
-                {totalOrders > recentOrders.length && (
-                  <div class="pt-2 text-center">
-                    <a 
-                      href="/dashboard/orders" 
-                      class="text-sm text-primary hover:underline inline-flex items-center gap-1"
-                    >
-                      Ver {totalOrders - recentOrders.length} pedido{(totalOrders - recentOrders.length) !== 1 ? 's' : ''} más
-                    </a>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div class="text-center py-8 space-y-4">
-                <div class="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center">
-                  <Package className="h-8 w-8 text-muted-foreground" />
-                </div>
-                <div>
-                  <h3 class="font-medium">Aún no has realizado pedidos</h3>
-                  <p class="text-sm text-muted-foreground mt-1">
-                    Cuando hagas un pedido, aparecerá aquí.
-                  </p>
-                </div>
-                <Button asChild>
-                  <a href="/productos">Explorar productos</a>
-                </Button>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+        {/* Dashboard dinámico - TODO carga en cliente */}
+        <DashboardShell userId={user.id} client:load />
+        
       </div>
     </div>
   </div>
 </Layout>
-
-<script>
-  // Lógica para reenviar email (sin cambios)
-  const resendBtn = document.getElementById('resend-btn') as HTMLButtonElement | null;
-  resendBtn?.addEventListener('click', async () => {
-    resendBtn.disabled = true;
-    resendBtn.textContent = 'Enviando...';
-    try {
-      const res = await fetch('/api/auth/resend-verification', { method: 'POST' });
-      if (res.ok) {
-        alert('Correo enviado con éxito.');
-        resendBtn.textContent = 'Enviado';
-      } else { throw new Error(); }
-    } catch (e) {
-      alert('Error al enviar el correo.');
-      resendBtn.disabled = false;
-      resendBtn.textContent = 'Reenviar email';
-    }
-  });
-</script>

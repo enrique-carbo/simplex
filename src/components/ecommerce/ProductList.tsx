@@ -70,8 +70,7 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
                   {product.inStock ? '✔ Stock' : 'Agotado'}
                 </span>
                 <div className="flex gap-1">
-                  {product.sizes
-                    ?.filter((s) => s.quantity > 0)
+                  {product.sizes?.filter((s) => s.quantity > 0)
                     .map((size) => (
                       <span key={size.size} className="text-xs px-1.5 py-0.5 bg-gray-100 rounded text-gray-700">
                         {size.size}
