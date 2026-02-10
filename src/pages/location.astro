@@ -13,9 +13,9 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero
-    image={{ src: '~/assets/images/location.gif', alt: 'Ubicación Hero Image', width: '600' }}
-  >
+  <div class="container mx-auto">
+
+  <Hero>
     <Fragment slot="title">
       <span class="text-3xl md:text-5xl">¿Dónde nos encontramos?</span>
     </Fragment>
@@ -23,7 +23,18 @@ const metadata = {
     <Fragment slot="subtitle">
         ¡Estamos ubicados en <span class="font-bold">Padre Bartolomé Grella 1593</span>, casi esquina Comandante Espora! 
     </Fragment>
+
+    <Fragment slot="image">
+    <img 
+      src="/images/location.svg" 
+      alt="Ubicación Hero Image" 
+      class="mx-auto"  
+      width="400"
+    />
+  </Fragment>
   </Hero>
+
+  </div>
 
     <!-- Features2 Widget ************** -->
 

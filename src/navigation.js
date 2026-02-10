@@ -32,15 +32,6 @@ export const headerData = {
       ],
     },
     {
-      text: 'Ofertas',
-      links: [
-        {
-          text: 'Ofertas',
-          href: getPermalink('/homes/ofertas')
-        }
-      ],
-    },
-    {
       text: 'Nosotros',
       links: [
         {
