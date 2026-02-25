@@ -363,8 +363,8 @@
     "id": "offe-minibag-001",
     "item": "502",
     "name": "Mini Bag",
-    "discountedPrice": 14900,
-    "listPrice": 17900,
+    "discountedPrice": 12900,
+    "listPrice": 15900,
     "image": "/images/products/offe/mini-bag.jpg",
     "category": "bags",
     "inStock": true,
@@ -374,8 +374,8 @@
     "id": "offe-minibag-ultra-001",
     "item": "502",
     "name": "Mini Bag Ultra",
-    "discountedPrice": 19900,
-    "listPrice": 22900,
+    "discountedPrice": 16900,
+    "listPrice": 19900,
     "image": "/images/products/offe/MiniBagUrbana.webp",
     "category": "bags",
     "inStock": false,
@@ -790,7 +790,7 @@
       { "size": "M", "quantity": 1 },
       { "size": "L", "quantity": 1 },
       { "size": "XL", "quantity": 0 },
-      { "size": "XXL", "quantity": 1 }
+      { "size": "XXL", "quantity": 0 }
     ]
   },
   {

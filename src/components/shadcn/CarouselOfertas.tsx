@@ -6,7 +6,6 @@ import Autoplay from 'embla-carousel-autoplay';
 import BuzoKimikal from '@/assets/images/products/buzo-kimikal.webp';
 import BuzoKimikalGris from '@/assets/images/products/buzo-kimikal-gris.webp';
 import MorralRed from '@/assets/images/products/morral-red.jpg';
-import RemeraBatikVerde from '@/assets/images/products/remara-batik-verde.jpg';
 import RemeraAlgodoneraAzul from '@/assets/images/products/remera-algodonera-azul.jpg';
 import MochilaEverlast from '@/assets/images/products/mochila-everlast-solapa.webp';
 import RemeraLisaKimikal from '@/assets/images/products/remera-lisa-kimikal.webp';
