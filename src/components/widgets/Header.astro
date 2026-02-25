@@ -9,11 +9,16 @@ import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash } from '~/utils/permalinks';
 
 // 1. Obtener el estado de login
-const pb = Astro.locals.pb;
-const isLoggedIn = pb?.authStore?.isValid ?? false;
-const user = pb?.authStore?.record;
+// Antes
+// const pb = Astro.locals.pb;
+// const isLoggedIn = pb?.authStore?.isValid ?? false;
+// const user = pb?.authStore?.record;
+// //const userId = isLoggedIn ? (user?.id ?? null) : null;
 
-const userId = isLoggedIn ? (user?.id ?? null) : null;
+// DESPUÉS:
+const isLoggedIn = Astro.locals.isLoggedIn ?? false;
+const user = Astro.locals.user ?? null;
+const userId = user?.id ?? null;
 
 // import CarritoNanostore from '@/components/shadcn/CarritoNanostore';
 import CarritoNanostorePocketbase from '../shadcn/CarritoNanostorePocketbase';
@@ -143,7 +148,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           {
             (
               <div class="mr-1">
-                <CarritoNanostorePocketbase client:only="react" userId={userId} />
+                <CarritoNanostorePocketbase client:only="react" userId={userId} isLoggedIn={isLoggedIn} />
               </div>
             )
           }
@@ -153,7 +158,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
         <div class="ml-3 flex items-center">
           {
-            userId ? (
+            isLoggedIn ? (
               <a
                 href="/dashboard"
                 class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-default hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-600"

@@ -378,8 +378,8 @@
     "listPrice": 19900,
     "image": "/images/products/offe/MiniBagUrbana.webp",
     "category": "bags",
-    "inStock": false,
-    "sizes": [{ "size": "unico", "quantity": 0 }]
+    "inStock": true,
+    "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
     "id": "offe-street-basic-001",

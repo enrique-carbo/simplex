@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useStore } from '@nanostores/react';
-import { $cartItems, $cartTotal, clearCart, removeFromCart, addToCart  } from '@/store/cart';
+import { $cartItems, $cartTotal, clearCart, removeFromCart, addToCart } from '@/store/cart';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import NumberFlow from '@number-flow/react';
 
+// 🟢 CAMBIO 1: Añadir isLoggedIn a las props
 interface CarritoNanostoreProps {
-  userId: string | null; // Recibes el userId desde Astro
+  userId: string | null;
+  isLoggedIn?: boolean; // 👈 NUEVA PROP (opcional para compatibilidad)
 }
 
-function CarritoNanostorePocketbase({ userId }: CarritoNanostoreProps) {
+// 🟢 CAMBIO 2: Recibir isLoggedIn
+function CarritoNanostorePocketbase({ isLoggedIn = false }: CarritoNanostoreProps) {
   const cartItems = useStore($cartItems);
   const total = useStore($cartTotal);
   const [isProcessingOrder, setIsProcessingOrder] = useState(false);
@@ -25,40 +28,48 @@ function CarritoNanostorePocketbase({ userId }: CarritoNanostoreProps) {
     return cartItems.reduce((sum, item) => sum + item.quantity, 0);
   };
 
-  // Nueva función para crear la orden vía endpoint seguro
+  // 🟢 CAMBIO 3: Usar isLoggedIn en validación (más eficiente)
   const handleFinishPurchase = async () => {
-    if (!userId) {
+    // Usar isLoggedIn en lugar de !userId
+    if (!isLoggedIn) {
+      // 👈 CAMBIADO
       setOrderError('Debes iniciar sesión para finalizar la compra');
       setTimeout(() => setOrderError(null), 3000);
       return;
     }
 
     if (cartItems.length === 0) return;
-    
+
     setIsProcessingOrder(true);
     setOrderError(null);
-    
+
     try {
+      // 🟢 CAMBIO 4: NO enviar userId en el body (confiamos en cookie)
       const response = await fetch('/api/create-order', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cartItems, total, userId }),
+        headers: {
+          'Content-Type': 'application/json',
+          // Las cookies se envían automáticamente
+        },
+        body: JSON.stringify({
+          cartItems,
+          total,
+          // userId NO se envía 👈
+        }),
       });
-      
+
       const result = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.error || `Error ${response.status}`);
       }
-      
+
       if (result.success) {
-        // ✅ Redirigir a la página de checkout
         clearCart();
         window.location.href = result.checkoutUrl;
       } else {
         throw new Error(result.error || 'Error en la respuesta');
       }
-      
     } catch (error) {
       console.error('❌ Error:', error);
       setOrderError(error.message || 'No se pudo crear el pedido.');
@@ -81,7 +92,13 @@ function CarritoNanostorePocketbase({ userId }: CarritoNanostoreProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">Carrito ({getTotalItems()})</Button>
+        {/* 🟢 CAMBIO 5: Indicador visual opcional (solo 3 líneas) */}
+        <Button variant="outline" className="relative">
+          Carrito ({getTotalItems()})
+          {!isLoggedIn && getTotalItems() > 0 && (
+            <span className="absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+          )}
+        </Button>
       </SheetTrigger>
 
       <SheetContent side="right" className="w-[300px] sm:w-[540px] flex-grow overflow-y-auto">
@@ -92,12 +109,13 @@ function CarritoNanostorePocketbase({ userId }: CarritoNanostoreProps) {
               <span className="text-green-600 font-semibold">¡Pedido creado exitosamente!</span>
             ) : orderError ? (
               <span className="text-red-600 font-semibold">{orderError}</span>
+            ) : !isLoggedIn ? ( // 👈 Mensaje adicional opcional
+              <span className="text-yellow-600 font-semibold">Inicia sesión para comprar</span>
             ) : (
               'Productos en tu carrito'
             )}
           </SheetDescription>
         </SheetHeader>
-
 
         <div className="py-4">
           <h3 className="mb-2 font-bold">Tu carrito:</h3>
@@ -131,29 +149,31 @@ function CarritoNanostorePocketbase({ userId }: CarritoNanostoreProps) {
           )}
         </div>
 
-         {cartItems.length > 0 && (
+        {cartItems.length > 0 && (
           <div className="mt-auto py-4 border-t-4 border-t-blue-700">
-            <h3 className="font-bold text-xl text-right">Total: $ 
-              <span><NumberFlow value={total}/></span>
+            <h3 className="font-bold text-xl text-right">
+              Total: $
+              <span>
+                <NumberFlow value={total} />
+              </span>
             </h3>
             <div className="mt-10 py-4 flex justify-end space-x-2">
-              <Button 
-                variant="destructive" 
-                onClick={handleClearCart} 
-                disabled={isProcessingOrder}
-              >
+              <Button variant="destructive" onClick={handleClearCart} disabled={isProcessingOrder}>
                 Vaciar
               </Button>
-              <Button 
-                onClick={handleFinishPurchase} 
+              <Button
+                onClick={handleFinishPurchase}
                 className="text-white bg-green-600 hover:bg-green-700"
-                disabled={isProcessingOrder || cartItems.length === 0}
+                disabled={isProcessingOrder || cartItems.length === 0 || !isLoggedIn} // 👈 Deshabilitar si no logueado
+                title={!isLoggedIn ? 'Inicia sesión para comprar' : ''}
               >
                 {isProcessingOrder ? (
                   <>
                     <span className="animate-spin inline-block mr-2">⟳</span>
                     Procesando...
                   </>
+                ) : !isLoggedIn ? ( // 👈 Texto diferente si no logueado
+                  'Inicia Sesión'
                 ) : (
                   'Finalizar Pedido'
                 )}

@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Package, Mail, CreditCard, Home} from 'lucide-react';
+import { CheckCircle, Package, Mail, CreditCard, Home } from 'lucide-react';
 import type { Order, OrderItem } from '@/types/order';
 import type { CustomerData } from '@/types/customer';
 
@@ -222,15 +222,12 @@ const metadata = {
         <Card>
           <CardContent className="pt-6 space-y-4">
             <a href="/dashboard/orders" class="text-blue-600 hover:text-blue-800 underline hover:underline">
-                Ver todos mis pedidos
+              Ver todos mis pedidos
             </a>
-            <br/>
-            <a href="/" class="text-blue-600 hover:text-blue-800 underline hover:underline">
-                Ir a la tienda
-            </a>
+            <br />
+            <a href="/" class="text-blue-600 hover:text-blue-800 underline hover:underline"> Ir a la tienda </a>
 
             <div class="text-center text-sm text-muted-foreground pt-4 border-t">
-              <p>Recibirás un email con los detalles del pedido.</p>
               <p>Para consultas: simplex.parana@gmail.com</p>
               <p>Consultas WhattsApp: 3434718183</p>
             </div>
