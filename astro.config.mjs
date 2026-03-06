@@ -24,7 +24,10 @@ const whenExternalScripts = (items = []) =>
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    mode: 'directory',
+    imageService: 'compile',
+  }),
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -72,11 +75,7 @@ export default defineConfig({
     react(),
   ],
   image: {
-    service: {
-      entrypoint: 'astro/assets/services/compile', // Referencia simbólica
-      config: {},
-    },
-    imageService: 'compile', // Clave para Cloudflare
+    service: { entrypoint: 'astro/assets/services/sharp' },
   },
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
