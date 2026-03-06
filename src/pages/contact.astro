@@ -6,26 +6,26 @@ import Features2 from '~/components/widgets/Features2.astro';
 const metadata = {
   title: 'Contact',
 };
+
+export const prerender = true;
 ---
 
 <Layout metadata={metadata}>
-
-
   <!-- HeroText Widget ******************* -->
 
   <div class="mb-10">
-    <HeroText tagline="Dejanos tu mensaje" title="Contacto"/>
+    <HeroText tagline="Dejanos tu mensaje" title="Contacto" />
   </div>
-  
- 
 
-  <div class="flex items-center justify-center p-2 md:p-8 bg-blue-50 dark:bg-transparent
-  intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+  <div
+    class="flex items-center justify-center p-2 md:p-8 bg-blue-50 dark:bg-transparent
+  intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+  >
     <div class="w-full max-w-md md:max-w-2xl p-4 rounded-lg shadow-lg bg-slate-100 dark:bg-slate-800">
-      <iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSe1qHEkoBD0ArEbN588ItwC1fjoi6shcJvvTXk84uR2Mq2K3w/viewform?embedded=true" 
-        width="100%" 
-        height="600" 
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSe1qHEkoBD0ArEbN588ItwC1fjoi6shcJvvTXk84uR2Mq2K3w/viewform?embedded=true"
+        width="100%"
+        height="600"
         class="rounded-lg"
       >
         Loading…

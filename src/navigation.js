@@ -12,11 +12,11 @@ export const headerData = {
         {
           text: 'Buzos',
           href: getPermalink('/homes/buzos'),
-        },  
+        },
         {
           text: 'Bermudas',
           href: getPermalink('/homes/bermudas'),
-        },      
+        },
         {
           text: 'Pantalones',
           href: getPermalink('/homes/pantalones'),
@@ -27,8 +27,8 @@ export const headerData = {
         },
         {
           text: 'Accesorios',
-          href: getPermalink('/homes/accesorios')
-        }
+          href: getPermalink('/homes/accesorios'),
+        },
       ],
     },
     {
@@ -38,13 +38,11 @@ export const headerData = {
           text: 'Origen',
           href: getPermalink('/about'),
         },
-        { text: 'Ubicación',
-          href: getPermalink('/location')
-        },
+        { text: 'Ubicación', href: getPermalink('/location') },
         {
           text: 'Contacto',
           href: getPermalink('/contact'),
-        }
+        },
       ],
     },
     {
@@ -65,10 +63,10 @@ export const headerData = {
         {
           text: 'Suplementos',
           href: getPermalink('suplementos', 'category'),
-        }
+        },
       ],
-    }
-  ]
+    },
+  ],
 };
 
 export const footerData = {
@@ -81,7 +79,6 @@ export const footerData = {
         { text: 'Pantalones', href: '/homes/pantalones' },
         { text: 'Bags', href: '/homes/bags' },
         { text: 'Accesorios', href: '/homes/accesorios' },
-        { text: 'OFERTAS', href: '/homes/ofertas' },
       ],
     },
     {
@@ -89,15 +86,15 @@ export const footerData = {
       links: [
         { text: 'Origen', href: '/about' },
         { text: 'Ubicación', href: '/location' },
-        { text: 'Contacto', href: '/contact' }
-      ]
+        { text: 'Contacto', href: '/contact' },
+      ],
     },
     {
       title: 'Legales',
       links: [
         { text: 'Términos y Condiciones', href: '/terms' },
         { text: 'Políticas de Privacidad', href: '/privacy' },
-        { text: 'Cambios y Devoluciones', href: '/cambios' }
+        { text: 'Cambios y Devoluciones', href: '/cambios' },
       ],
     },
   ],
@@ -105,7 +102,7 @@ export const footerData = {
     { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://www.tiktok.com/@simplex.ar' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/simplex.parana/' },
     { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@simplex.parana' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') }
+    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
     Padre Grella 1593. WhatsApp 3434 718183

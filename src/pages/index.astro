@@ -9,36 +9,33 @@ import BlogLatestPosts from '@/components/widgets/BlogLatestPosts.astro';
 import FAQs from '@/components/widgets/FAQs.astro';
 import Brands from '@/components/widgets/Brands.astro';
 import { CarouselHero } from '@/components/shadcn/CarouselHero';
-import { CarouselOfertas } from '@/components/shadcn/CarouselOfertas'
+import { CarouselOfertas } from '@/components/shadcn/CarouselOfertas';
 
 const metadata = {
   title: 'Simplex — Indumentaria',
   ignoreTitleTemplate: true,
 };
+
+export const prerender = true;
 ---
 
 <Layout metadata={metadata}>
-
   <!-- Hero Widget ******************* -->
 
   <HeroIndex>
-    <Fragment slot="title">
-      ¡Descubrilo, vivilo, repite!
-    </Fragment>
+    <Fragment slot="title"> ¡Descubrilo, vivilo, repite! </Fragment>
 
     <Fragment slot="subtitle">
-      Nuestra indumentaria urbana, deportiva y para el tiempo libre está diseñada para 
-      aquellos que valoran la elegancia minimalista y la comodidad sin renunciar a la calidad
-      y el estilo.
+      Nuestra indumentaria urbana, deportiva y para el tiempo libre está diseñada para aquellos que valoran la elegancia
+      minimalista y la comodidad sin renunciar a la calidad y el estilo.
     </Fragment>
   </HeroIndex>
 
   <!------------- Carousel ---------------------- -->
 
   <div class="mb-8 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-    <CarouselHero client:load/>
+    <CarouselHero client:load />
   </div>
-  
 
   <!-- Note Widget ******************* -->
 
@@ -66,8 +63,7 @@ const metadata = {
       },
       {
         title: 'Pantalones',
-        description:
-          'Pantalones de jean, gabardina y otros textiles. Ideales para usar en cualquier ocasión.',
+        description: 'Pantalones de jean, gabardina y otros textiles. Ideales para usar en cualquier ocasión.',
         icon: 'jean',
       },
       {
@@ -78,8 +74,7 @@ const metadata = {
       },
       {
         title: 'Accesorios',
-        description:
-          "Accesorios como medias, boxers, perfumes, supĺementos y más. Consultanos y dejate sorprender.",
+        description: 'Accesorios como medias, boxers, perfumes, supĺementos y más. Consultanos y dejate sorprender.',
         icon: 'underwear',
       },
       {
@@ -97,11 +92,11 @@ const metadata = {
 
   <!---------------- Carousel Ofertas ------------------------->
 
-  <div class="p-2 md:p-10 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-    <CarouselOfertas client:visible></CarouselOfertas>
+  <div
+    class="p-2 md:p-10 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+  >
+    <CarouselOfertas client:visible />
   </div>
-
-  
 
   <!-- Steps Widget ****************** -->
 
@@ -111,19 +106,18 @@ const metadata = {
       {
         title: 'Paso 1: <span class="font-medium">Explorá</span>',
         description:
-          "Nuestro catálogo está lleno de productos únicos y de alta calidad. Puedes buscar por categorías, para encontrar exactamente lo que estás buscando.",
+          'Nuestro catálogo está lleno de productos únicos y de alta calidad. Puedes buscar por categorías, para encontrar exactamente lo que estás buscando.',
         icon: 'tabler:search',
       },
       {
         title: 'Paso 2: <span class="font-medium">Seleccioná</span>',
         description:
-          "Añade los productos que te gustan al carrito de compras. Puedes ver el resumen de tus productos y actualizarlos fácilmente.",
+          'Añade los productos que te gustan al carrito de compras. Puedes ver el resumen de tus productos y actualizarlos fácilmente.',
         icon: 'tabler:shopping-cart',
       },
       {
         title: 'Paso 3: <span class="font-medium">Pagá</span>',
-        description:
-          'Tenemos varias opciones de pago, como tarjetas de crédito, efectivo y transferencias.',
+        description: 'Tenemos varias opciones de pago, como tarjetas de crédito, efectivo y transferencias.',
         icon: 'tabler:currency-dollar',
       },
       {
@@ -149,7 +143,7 @@ const metadata = {
       {
         title: '¿Qué tipo de indumentaria se vende?',
         description:
-          "Nuestra tienda ofrece una amplia variedad de indumentaria para hombres y unisex, incluyendo ropa casual, deportiva, accesorios y más.",
+          'Nuestra tienda ofrece una amplia variedad de indumentaria para hombres y unisex, incluyendo ropa casual, deportiva, accesorios y más.',
       },
       {
         title: '¿Cuáles son los horarios de atención en el showroom?',
@@ -159,26 +153,25 @@ const metadata = {
       {
         title: '¿Cómo puedo hacer un pedido en línea?',
         description:
-          "Puedes hacer un pedido en línea en nuestro sitio web, seleccionando los productos que deseas en el carrito y descargando el pedido. El PDF descargado debe ser enviado por Correo electrónico, Formulario de contacto o Whatsapp y nos contactaremos a la brevedad.",
+          'Puedes hacer un pedido en línea en nuestro sitio web, seleccionando los productos que deseas en el carrito y descargando el pedido. El PDF descargado debe ser enviado por Correo electrónico, Formulario de contacto o Whatsapp y nos contactaremos a la brevedad.',
       },
       {
-        title: "¿Qué métodos de pago son aceptados?",
+        title: '¿Qué métodos de pago son aceptados?',
         description:
-          "Los tipos de pagos aceptados son Efectivo, Transferencias, Tarjetas de Débito y Crédito a través de lector Point de Mercado Pago.",
+          'Los tipos de pagos aceptados son Efectivo, Transferencias, Tarjetas de Débito y Crédito a través de lector Point de Mercado Pago.',
       },
       {
         title: '¿Qué es el plazo de envío para pedidos en línea?',
         description:
-          "Nuestros pedidos en línea se envían dentro de las 72 horas hábiles después de recibir el pago. El plazo de entrega es de 3-5 días hábiles para pedidos dentro de la ciudad de Paraná.",
+          'Nuestros pedidos en línea se envían dentro de las 72 horas hábiles después de recibir el pago. El plazo de entrega es de 3-5 días hábiles para pedidos dentro de la ciudad de Paraná.',
       },
       {
         title: '¿Tiene descuentos o promociones especiales?',
         description:
-          "Sí, ofrecemos descuentos y promociones especiales en diferentes momentos del año. Puedes informarte en esta página web sobre noticias y ofertas exclusivas.",
+          'Sí, ofrecemos descuentos y promociones especiales en diferentes momentos del año. Puedes informarte en esta página web sobre noticias y ofertas exclusivas.',
       },
     ]}
-    >
-
+  >
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
@@ -189,9 +182,8 @@ const metadata = {
   <Brands
     title="Formas de Pago"
     subtitle="Recibimos pagos en Efectivo, Transferencias, Tarjetas de Débito y Cŕedito."
-    icons={[ 'cash', 'mp', 'visa', 'mastercard', 'maestro', 'naranja', 'nativa',
-    'american-express', 'cabal', 'diners']}
-    iconClass="w-16 h-16" 
+    icons={['cash', 'mp', 'visa', 'mastercard', 'maestro', 'naranja', 'nativa', 'american-express', 'cabal', 'diners']}
+    iconClass="w-16 h-16"
     images={[]}
   />
 
@@ -201,5 +193,4 @@ const metadata = {
     title="Encontrá contenido de interés en el Blog"
     information={`Artículos sobre la industria textil, informática y tecnologías.`}
   />
-
 </Layout>

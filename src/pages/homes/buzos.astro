@@ -2,17 +2,15 @@
 import Layout from '@/layouts/PageLayout.astro';
 import Hero from '@/components/widgets/Hero.astro';
 import ProductList from '@/components/ecommerce/ProductList';
+
+export const prerender = true;
 ---
 
 <Layout metadata={{ title: 'Buzos' }}>
   <!-- Hero Widget ******************* -->
   <Hero tagline="Simplex Buzos">
-    <Fragment slot="title">
-      Buzos
-    </Fragment>
-    <Fragment slot="subtitle">
-      Nuestros buzos en tus dispositivos.
-    </Fragment>
+    <Fragment slot="title"> Buzos </Fragment>
+    <Fragment slot="subtitle"> Nuestros buzos en tus dispositivos. </Fragment>
   </Hero>
 
   <!---------- Product List --------------------------->
@@ -23,8 +21,6 @@ import ProductList from '@/components/ecommerce/ProductList';
       - category="remeras" filtra desde el store global
       - showCategoryTitle={true} muestra el título de categoría
     -->
-    <ProductList client:load category="buzos"/>
+    <ProductList client:load category="buzos" />
   </div>
-
-  
 </Layout>

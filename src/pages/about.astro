@@ -7,6 +7,8 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'Origenes',
 };
+
+export const prerender = true;
 ---
 
 <Layout metadata={metadata}>
@@ -19,17 +21,14 @@ const metadata = {
       alt: 'Imagen emprendedor en el escritorio',
     }}
   >
-    <Fragment slot="title">
-      El origen del proyecto
-    </Fragment>
+    <Fragment slot="title"> El origen del proyecto </Fragment>
 
     <Fragment slot="subtitle">
-      Simplex nació de la pasión por conectar a los amantes del deporte y el estilo 
-      de vida saludable con las mejores marcas del mercado.
+      Simplex nació de la pasión por conectar a los amantes del deporte y el estilo de vida saludable con las mejores
+      marcas del mercado.
     </Fragment>
   </Hero>
 
-  
   <!-- Features3 Widget ************** -->
 
   <Features3
@@ -49,7 +48,7 @@ const metadata = {
         description:
           'Suplementos naturales de la más alta calidad, formulados para apoyar tus objetivos de bienestar, optimizar tu rendimiento deportivo o simplemente para sentirte mejor.',
         icon: 'tabler:apple',
-      }
+      },
     ]}
   />
 
@@ -60,8 +59,7 @@ const metadata = {
     items={[
       {
         title: 'Simplicidad',
-        description:
-          'Nos enfocamos en la simplicidad y la versatilidad en nuestros productos y procesos.',
+        description: 'Nos enfocamos en la simplicidad y la versatilidad en nuestros productos y procesos.',
       },
       {
         title: 'Comodidad',
@@ -75,15 +73,13 @@ const metadata = {
       },
       {
         title: 'Sostenibilidad',
-        description:
-          'Cuidamos el planeta y a las personas. Innovando para un futuro mejor.',
+        description: 'Cuidamos el planeta y a las personas. Innovando para un futuro mejor.',
       },
       {
         title: 'Innovación',
         description:
           'Nos enfocamos en la innovación para mantenernos a la vanguardia y satisfacer las necesidades de nuestros clientes.',
       },
-      
     ]}
   />
 
@@ -96,7 +92,8 @@ const metadata = {
     items={[
       {
         title: 'Explora Nuestro Catálogo',
-        description: 'Descubre la diversidad de productos que hemos seleccionado para ti, desde ropa urbana y deportiva hasta suplementos naturales de alta calidad.',
+        description:
+          'Descubre la diversidad de productos que hemos seleccionado para ti, desde ropa urbana y deportiva hasta suplementos naturales de alta calidad.',
         icon: 'tabler:shopping-bag-search',
       },
       {
@@ -104,8 +101,7 @@ const metadata = {
         description:
           'Síguenos en nuestras redes sociales para mantenerte al día con consejos de moda, bienestar, y las últimas adiciones a nuestra familia de productos.',
         icon: 'tabler:target-arrow',
-      }
+      },
     ]}
   />
-  
 </Layout>

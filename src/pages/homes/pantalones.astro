@@ -2,24 +2,20 @@
 import Layout from '@/layouts/PageLayout.astro';
 import Hero from '@/components/widgets/Hero.astro';
 import ProductList from '@/components/ecommerce/ProductList';
+
+export const prerender = true;
 ---
 
 <Layout metadata={{ title: 'Pantalones' }}>
   <!-- Hero Widget ******************* -->
   <Hero tagline="Simplex Pantalones">
-    <Fragment slot="title">
-      Pantalones
-    </Fragment>
-    <Fragment slot="subtitle">
-      Nuestros pantalones en tus dispositivos.
-    </Fragment>
+    <Fragment slot="title"> Pantalones </Fragment>
+    <Fragment slot="subtitle"> Nuestros pantalones en tus dispositivos. </Fragment>
   </Hero>
 
   <!---------- Product List --------------------------->
 
   <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-    <ProductList client:load category="pantalones"/>
+    <ProductList client:load category="pantalones" />
   </div>
-
-  
 </Layout>

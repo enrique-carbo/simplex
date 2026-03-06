@@ -4,41 +4,35 @@ import Hero from '@/components/widgets/Hero.astro';
 import Features2 from '@/components/widgets/Features2.astro';
 import Steps2 from '@/components/widgets/Steps2.astro';
 
-
 const metadata = {
   title: 'Ubicación - Simplex',
 };
+
+export const prerender = true;
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
   <div class="container mx-auto">
+    <Hero>
+      <Fragment slot="title">
+        <span class="text-3xl md:text-5xl">¿Dónde nos encontramos?</span>
+      </Fragment>
 
-  <Hero>
-    <Fragment slot="title">
-      <span class="text-3xl md:text-5xl">¿Dónde nos encontramos?</span>
-    </Fragment>
+      <Fragment slot="subtitle">
+        ¡Estamos ubicados en <span class="font-bold">Padre Bartolomé Grella 1593</span>, casi esquina Comandante Espora!
+      </Fragment>
 
-    <Fragment slot="subtitle">
-        ¡Estamos ubicados en <span class="font-bold">Padre Bartolomé Grella 1593</span>, casi esquina Comandante Espora! 
-    </Fragment>
-
-    <Fragment slot="image">
-    <img 
-      src="/images/location.svg" 
-      alt="Ubicación Hero Image" 
-      class="mx-auto"  
-      width="400"
-    />
-  </Fragment>
-  </Hero>
-
+      <Fragment slot="image">
+        <img src="/images/location.svg" alt="Ubicación Hero Image" class="mx-auto" width="400" />
+      </Fragment>
+    </Hero>
   </div>
 
-    <!-- Features2 Widget ************** -->
+  <!-- Features2 Widget ************** -->
 
-    <Features2
+  <Features2
     title="Mapa"
     subtitle="Nuestros local comercial está convenientemente ubicado, rodeado de un fácil acceso al transporte público y se suele encontrar lugar para estacionar. ¡Visitanos hoy!"
   >
@@ -50,8 +44,11 @@ const metadata = {
   <!------------------- Map iframe -------------------------------->
 
   <div class="flex flex-row justify-center py-6 px-4 mx-auto bg-blue-50 dark:bg-transparent overflow-x-auto">
-    <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1m_5VSJ7JHoPJqYZJKuDHtOwPbEdBS1M&ehbc=2E312F&noprof=1" 
-    width="920" height="480" loading="lazy"></iframe>
+    <iframe
+      src="https://www.google.com/maps/d/u/1/embed?mid=1m_5VSJ7JHoPJqYZJKuDHtOwPbEdBS1M&ehbc=2E312F&noprof=1"
+      width="920"
+      height="480"
+      loading="lazy"></iframe>
   </div>
 
   <!-- Steps2 Widget ****************** -->
@@ -79,15 +76,12 @@ const metadata = {
         title: 'Línea G <span class="font-thin text-xs">(ex Línea 7)</span>',
         description: 'Padre Grella y Av. Don Bosco',
         icon: 'tabler:bus',
-      },{
+      },
+      {
         title: 'Línea L <span class="font-thin text-xs">(ex Línea 9)</span>',
         description: 'Av. Ramirez y Av. Don Bosco',
         icon: 'tabler:bus',
       },
     ]}
   />
-
-  
-  
-  </Layout>
-
+</Layout>
