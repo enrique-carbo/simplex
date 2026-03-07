@@ -1,23 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
-import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash } from '~/utils/permalinks';
 
-// 1. Obtener el estado de login
-// Antes
-// const pb = Astro.locals.pb;
-// const isLoggedIn = pb?.authStore?.isValid ?? false;
-// const user = pb?.authStore?.record;
-// //const userId = isLoggedIn ? (user?.id ?? null) : null;
-
-// DESPUÉS:
-const isLoggedIn = Astro.locals.isLoggedIn ?? false;
-const user = Astro.locals.user ?? null;
+const { isLoggedIn = false, user = null } = Astro.locals;
 const userId = user?.id ?? null;
 
 // import CarritoNanostore from '@/components/shadcn/CarritoNanostore';
