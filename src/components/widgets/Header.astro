@@ -170,35 +170,49 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 </header>
 
 <script>
-  // Función principal de manejo
-  const onToggleClick = (event: Event) => {
+  const onHeaderClick = (event: Event) => {
     const target = event.target as HTMLElement;
-    const button = target?.closest('[data-aw-toggle-menu]');
 
-    if (button) {
-      const header = button.closest('header');
-      const nav = header?.querySelector('nav');
-
+    // 1. Manejo del Toggle Menu (Hamburguesa)
+    const toggleButton = target?.closest('[data-aw-toggle-menu]');
+    if (toggleButton) {
+      const nav = toggleButton.closest('header')?.querySelector('nav');
       if (nav) {
-        button.classList.toggle('expanded');
+        toggleButton.classList.toggle('expanded');
         nav.classList.toggle('hidden');
         document.body.classList.toggle('overflow-hidden');
+      }
+      return; // Salimos para no ejecutar lo de abajo si tocamos el toggle
+    }
+
+    // 2. Manejo de Dropdowns (Productos)
+    const dropdownButton = target?.closest('li.dropdown > button');
+    if (dropdownButton) {
+      const menu = dropdownButton.parentElement?.querySelector('.dropdown-menu');
+      if (menu) {
+        // Alternamos la visibilidad del submenú
+        menu.classList.toggle('md:hidden');
+
+        // Cerramos otros dropdowns si hubiera más de uno
+        document.querySelectorAll('.dropdown-menu').forEach((m) => {
+          if (m !== menu) m.classList.add('md:hidden');
+        });
+      }
+    } else {
+      // 3. Cerrar dropdowns si se toca en cualquier otro lado de la pantalla
+      if (!target.closest('li.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach((m) => m.classList.add('md:hidden'));
       }
     }
   };
 
-  // Usamos una función de inicialización que limpie y re-vincule
   const setupHeader = () => {
-    document.removeEventListener('click', onToggleClick);
-    document.addEventListener('click', onToggleClick);
+    document.removeEventListener('click', onHeaderClick);
+    document.addEventListener('click', onHeaderClick);
   };
 
-  // 1. Ejecutar en carga inicial
+  // Ciclo de vida completo para Local y Cloudflare
   setupHeader();
-
-  // 2. Ejecutar cada vez que Astro intercambia la página (Logout/Navegación)
   document.addEventListener('astro:page-load', setupHeader);
-
-  // 3. REFUERZO: Por si la Server Island tarda más que el evento de carga
   document.addEventListener('astro:after-swap', setupHeader);
 </script>
