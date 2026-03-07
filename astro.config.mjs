@@ -26,7 +26,7 @@ export default defineConfig({
   output: 'server',
   adapter: cloudflare({
     mode: 'directory',
-    imageService: 'cloudflare',
+    imageService: 'compile',
   }),
   integrations: [
     tailwind({
@@ -75,7 +75,7 @@ export default defineConfig({
     react(),
   ],
   image: {
-    service: { entrypoint: 'astro/assets/services/cloudflare' },
+    service: { entrypoint: 'astro/assets/services/passthrough' },
   },
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
