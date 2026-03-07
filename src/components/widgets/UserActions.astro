@@ -1,0 +1,39 @@
+---
+// UserActions.astro
+import { Icon } from 'astro-icon/components';
+import Button from '~/components/ui/Button.astro';
+import CarritoNanostorePocketbase from '../shadcn/CarritoNanostorePocketbase';
+
+// Leemos la sesión fresca directamente desde los locals en cada petición
+const { isLoggedIn = false, user = null } = Astro.locals;
+const userId = user?.id ?? null;
+---
+
+<div class="flex items-center gap-4">
+  {/* El Carrito ahora recibe el userId y isLoggedIn actualizados por el servidor */}
+  <div class="flex items-center">
+    <CarritoNanostorePocketbase client:only="react" userId={userId} isLoggedIn={isLoggedIn} />
+  </div>
+
+  <div class="flex items-center">
+    {
+      isLoggedIn ? (
+        <a
+          href="/dashboard"
+          class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-default hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-600"
+        >
+          <Icon name="tabler:user-circle" class="w-6 h-6 text-primary inline" />
+          <span>Mi Cuenta</span>
+        </a>
+      ) : (
+        <Button
+          href="/auth/login"
+          variant="primary"
+          class="py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto"
+        >
+          Ingresar
+        </Button>
+      )
+    }
+  </div>
+</div>
