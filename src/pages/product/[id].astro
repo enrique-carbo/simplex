@@ -1,24 +1,31 @@
 ---
+export const prerender = true;
 import Layout from '@/layouts/PageLayout.astro';
 import { availableProducts } from '@/assets/data/products/products';
 import ButtonAddToCart from '@/components/ecommerce/ButtonAddToCart';
 import { Badge } from '@/components/ui/badge';
 
-const { id } = Astro.params;
+// 1. Definimos las rutas que Astro debe generar en el build
+export async function getStaticPaths() {
+  return availableProducts.map((product) => ({
+    params: { id: product.id.toString() },
+    props: { product }, // Le pasamos el objeto entero como prop
+  }));
+}
 
-const product = availableProducts.find((p) => p.id.toString() === id);
+// 2. Recibimos el producto directamente (ya no necesitamos .find)
+const { product } = Astro.props;
 
+// 3. Pequeña validación por seguridad (aunque getStaticPaths asegura que existe)
 if (!product) {
-  return Astro.redirect('/404'); 
+  return Astro.redirect('/404');
 }
 
 const metadata = {
   title: `Producto ${product.name}`,
 };
 
-const discountPercentage = (
-  ((product.listPrice - product.discountedPrice) / product.listPrice) * 100
-).toFixed(0);
+const discountPercentage = (((product.listPrice - product.discountedPrice) / product.listPrice) * 100).toFixed(0);
 ---
 
 <Layout metadata={metadata}>
@@ -34,35 +41,37 @@ const discountPercentage = (
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center">
               <p class="text-2xl font-semibold">${product.discountedPrice}</p>
-              {product.discountedPrice < product.listPrice && (
-                <p class="ml-4 line-through text-gray-500">${product.listPrice}</p>
-              )}
+              {
+                product.discountedPrice < product.listPrice && (
+                  <p class="ml-4 line-through text-gray-500">${product.listPrice}</p>
+                )
+              }
             </div>
-            {product.discountedPrice < product.listPrice && (
-              <Badge className="text-red-500 bg-white border-red-500 dark:bg-red-500 dark:text-white">  
-                {discountPercentage}% OFF
-              </Badge>
-            )}
+            {
+              product.discountedPrice < product.listPrice && (
+                <Badge className="text-red-500 bg-white border-red-500 dark:bg-red-500 dark:text-white">
+                  {discountPercentage}% OFF
+                </Badge>
+              )
+            }
           </div>
 
-          {product.inStock ? (
-            <p class="text-green-600 mb-4">Disponible</p>
-          ) : (
-            <p class="text-red-600 mb-4">Sin stock</p>
-          )}
+          {product.inStock ? <p class="text-green-600 mb-4">Disponible</p> : <p class="text-red-600 mb-4">Sin stock</p>}
 
-          {product.sizes.length > 0 && product.inStock && (
-            <div>
-              {product.sizes.length > 1 ? (
-                <div class="p-2">
-                  <p class="block text-gray-700 font-bold mb-2">Selecciona un talle:</p>
-                </div>
-              ) : (
-                <p class="text-gray-700 font-bold mb-2">Talle único</p>
-              )}
-            </div>
-          )}
-          <ButtonAddToCart client:load product={product}></ButtonAddToCart>
+          {
+            product.sizes.length > 0 && product.inStock && (
+              <div>
+                {product.sizes.length > 1 ? (
+                  <div class="p-2">
+                    <p class="block text-gray-700 font-bold mb-2">Selecciona un talle:</p>
+                  </div>
+                ) : (
+                  <p class="text-gray-700 font-bold mb-2">Talle único</p>
+                )}
+              </div>
+            )
+          }
+          <ButtonAddToCart client:load product={product} />
         </div>
       </div>
       <div class="mt-8">

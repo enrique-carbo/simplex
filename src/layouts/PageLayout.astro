@@ -18,7 +18,35 @@ const { metadata } = Astro.props;
     <Announcement />
   </slot>
   <slot name="header">
-    <Header {...headerData} isSticky showRssFeed showToggleTheme />
+    <Header {...headerData} isSticky showToggleTheme server:defer>
+      <div
+        slot="fallback"
+        class="sticky top-0 z-40 w-full bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800"
+      >
+        <div
+          class="relative py-3 px-3 md:px-6 mx-auto w-full max-w-7xl md:grid md:grid-cols-3 md:items-center min-h-[68px]"
+        >
+          <div class="flex justify-between">
+            <div class="flex items-center">
+              <div class="w-32 h-8 bg-gray-100 dark:bg-slate-800 animate-pulse rounded"></div>
+            </div>
+          </div>
+
+          <div class="hidden md:flex justify-self-center">
+            <div class="flex space-x-4">
+              <div class="w-16 h-4 bg-gray-50 dark:bg-slate-800 animate-pulse rounded"></div>
+              <div class="w-16 h-4 bg-gray-50 dark:bg-slate-800 animate-pulse rounded"></div>
+              <div class="w-16 h-4 bg-gray-50 dark:bg-slate-800 animate-pulse rounded"></div>
+            </div>
+          </div>
+
+          <div class="hidden md:flex items-center justify-end gap-4">
+            <div class="w-10 h-10 bg-gray-50 dark:bg-slate-800 animate-pulse rounded-full"></div>
+            <div class="w-24 h-10 bg-gray-100 dark:bg-slate-800 animate-pulse rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+    </Header>
   </slot>
   <main>
     <slot />
