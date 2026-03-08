@@ -492,6 +492,28 @@
     "sizes": [{ "size": "unico", "quantity": 1 }]
   },
   {
+    "id": "offe-mochila-azul",
+    "item": "503",
+    "name": "Mochila Azul  33cm x 26cm",
+    "discountedPrice": 23500,
+    "listPrice": 28300,
+    "image": "/images/products/offe/mochila-impermeable-azul.jpg",
+    "category": "bags",
+    "inStock": true,
+    "sizes": [{ "size": "unico", "quantity": 1 }]
+  },
+  {
+    "id": "offe-mochila-negra",
+    "item": "503",
+    "name": "Mochila Negra  33cm x 26cm",
+    "discountedPrice": 23500,
+    "listPrice": 28300,
+    "image": "/images/products/offe/mochila-impermeable-negra.jpg",
+    "category": "bags",
+    "inStock": true,
+    "sizes": [{ "size": "unico", "quantity": 1 }]
+  },
+  {
     "id": "boxer-zorba",
     "item": "001",
     "name": "Boxers Algodón",

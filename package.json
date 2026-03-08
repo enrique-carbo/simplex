@@ -1,6 +1,6 @@
 {
   "name": "simplex",
-  "version": "1.0.0-beta.39",
+  "version": "1.0.0",
   "description": "E-commerce de Simplex Paraná.",
   "type": "module",
   "private": true,
