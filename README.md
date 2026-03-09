@@ -10,11 +10,12 @@ Página web oficial de **Simplex**, un local de venta minorista de indumentaria 
 - **[PocketBase](https://pocketbase.io/)** - Backend y autenticación
 - **[Cloudflare Pages](https://pages.cloudflare.com/)** - Hosting y edge network
 - **[Nanostores](https://github.com/nanostores/nanostores)** - Estado global del carrito
+- **[Astrowind](https://github.com/arthelokyo/astrowind)** - Este proyecto está basado en **AstroWind**
 
 ## 🎯 Características
 
 - ✅ **Optimizado para Cloudflare** - Mínimo consumo de CPU time
-- ✅ **Autenticación eficiente** - Sesiones validadas por cookies, no por DB
+- ✅ **Autenticación híbrida y persistente** - Implementación de un Middleware que sincroniza la sesión de PocketBase mediante cookies en el borde (Edge). Realiza un authRefresh() único al inicio del ciclo de vida de la solicitud para validar el token y expone los datos del usuario a través de Astro.locals
 - ✅ **Carrito de compras** con estado global y feedback visual
 - ✅ **Blog estático** - 0 CPU time en Cloudflare (con `prerender = true`)
 - ✅ **Dashboard de usuario** con datos en tiempo real
@@ -30,6 +31,9 @@ Página web oficial de **Simplex**, un local de venta minorista de indumentaria 
 - Uso de `Astro.locals.isLoggedIn` desde middleware
 - Verificación de sesión por cookie (sin llamadas a PocketBase)
 - Indicador visual en carrito cuando hay items sin login
+
+### Arquitectura de Islas de Servidor: 
+El Header utiliza <UserActions server:defer />. Esto permite que el 90% de la página sea estática y cacheable, delegando la lógica de sesión a una micro-isla dinámica.
 
 ### API Endpoints
 - Validación con `locals.isLoggedIn` en lugar de `pb.authStore`

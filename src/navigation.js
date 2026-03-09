@@ -76,6 +76,7 @@ export const footerData = {
       links: [
         { text: 'Remeras', href: '/homes/remeras' },
         { text: 'Buzos', href: '/homes/buzos' },
+        { text: 'Bermudas', href: '/homes/bermudas' },
         { text: 'Pantalones', href: '/homes/pantalones' },
         { text: 'Bags', href: '/homes/bags' },
         { text: 'Accesorios', href: '/homes/accesorios' },
