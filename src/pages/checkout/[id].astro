@@ -31,11 +31,11 @@ if (!id) {
 let order: Order | null = null;
 try {
   order = await pb.collection('orders').getOne<Order>(id);
-  
+
   if (order.user !== user.id) {
     return Astro.redirect('/dashboard/orders');
   }
-  
+
   if (order.status !== 'draft' && order.status !== 'pending') {
     return Astro.redirect(`/dashboard/orders/${order.id}`);
   }
@@ -54,12 +54,15 @@ try {
 // Datos para el componente
 const checkoutData = {
   orderTotal: order.total,
-  customerData: customerData ? {
-    direccionCalle: customerData.direccionCalle || '',
-    ciudad: customerData.ciudad || '',
-    phone: customerData.phone || ''
-  } : null,
-  orderId: order.id
+  customerData: customerData
+    ? {
+        direccionCalle: customerData.direccionCalle || '',
+        direccionNumero: customerData.direccionNumero || '',
+        ciudad: customerData.ciudad || '',
+        phone: customerData.phone || '',
+      }
+    : null,
+  orderId: order.id,
 };
 ---
 
@@ -72,8 +75,13 @@ const checkoutData = {
       </p>
     </div>
 
-    <form method="POST" action={`/api/checkout/${order.id}`} 
-    class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="checkout-form" enctype="multipart/form-data">
+    <form
+      method="POST"
+      action={`/api/checkout/${order.id}`}
+      class="grid grid-cols-1 lg:grid-cols-3 gap-8"
+      id="checkout-form"
+      enctype="multipart/form-data"
+    >
       <div class="lg:col-span-2 space-y-8">
         {/* Productos del pedido */}
         <Card>
@@ -88,29 +96,27 @@ const checkoutData = {
           </CardHeader>
           <CardContent>
             <div class="space-y-4">
-              {order.items.map((item) => (
-                <div class="flex items-center justify-between py-3 border-b last:border-0">
-                  <div>
-                    <p class="font-medium">{item.name}</p>
-                    <p class="text-sm text-muted-foreground">
-                      {item.item} • Talla: {item.size} • Cantidad: {item.quantity}
-                    </p>
+              {
+                order.items.map((item) => (
+                  <div class="flex items-center justify-between py-3 border-b last:border-0">
+                    <div>
+                      <p class="font-medium">{item.name}</p>
+                      <p class="text-sm text-muted-foreground">
+                        {item.item} • Talla: {item.size} • Cantidad: {item.quantity}
+                      </p>
+                    </div>
+                    <p class="font-bold">${(item.discountedPrice * item.quantity).toFixed(2)}</p>
                   </div>
-                  <p class="font-bold">
-                    ${(item.discountedPrice * item.quantity).toFixed(2)}
-                  </p>
-                </div>
-              ))}
+                ))
+              }
             </div>
           </CardContent>
         </Card>
 
         {/* Método de envío y pago (React Component) */}
-        <CheckoutForm 
-          orderTotal={order.total} 
-          customerData={checkoutData.customerData}
-          client:load
-        />
+        <div class="mt-2">
+          <CheckoutForm orderTotal={order.total} customerData={checkoutData.customerData} client:load />
+        </div>
 
         {/* Notas adicionales */}
         <Card>
@@ -119,8 +125,8 @@ const checkoutData = {
             <CardDescription>¿Alguna indicación especial para tu pedido?</CardDescription>
           </CardHeader>
           <CardContent>
-            <Textarea 
-              name="notes" 
+            <Textarea
+              name="notes"
               placeholder="Ej: Dejar el paquete con el portero, llamar antes de entregar, etc."
               rows={3}
               className="resize-none"
@@ -141,33 +147,33 @@ const checkoutData = {
                 <span>Subtotal</span>
                 <span class="font-medium">${order.total.toFixed(2)}</span>
               </div>
-              
+
               <div class="flex justify-between">
                 <span>Envío</span>
                 <span id="shipping-cost">$0.00</span>
               </div>
-              
+
               <Separator />
-              
+
               <div class="flex justify-between text-lg font-bold">
                 <span>Total</span>
                 <span id="total-with-shipping">${order.total.toFixed(2)}</span>
               </div>
             </div>
-            
+
             <div class="space-y-3 pt-4">
               <Button type="submit" className="w-full text-white" size="lg">
                 <CheckCircle className="h-5 w-5 mr-2 text-white" />
                 Confirmar Pedido
               </Button>
             </div>
-            
-            <div class="text-xs text-muted-foreground pt-4 border-t">
+
+            <!-- <div class="text-xs text-muted-foreground pt-4 border-t">
               <p class="flex items-start gap-1">
                 <AlertCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
                 Al confirmar, recibirás un email con los detalles y datos de pago.
               </p>
-            </div>
+            </div> -->
           </CardContent>
         </Card>
 
@@ -185,20 +191,24 @@ const checkoutData = {
               <Mail className="h-4 w-4 text-muted-foreground" />
               <span>{user.email}</span>
             </div>
-            {customerData?.phone && (
-              <div class="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-muted-foreground" />
-                <span>{customerData.phone}</span>
-              </div>
-            )}
-            {customerData?.direccionCalle && (
-              <div class="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-muted-foreground" />
-                <span class="text-sm">
-                  {customerData.direccionCalle} {customerData.direccionNumero}, {customerData.ciudad}
-                </span>
-              </div>
-            )}
+            {
+              customerData?.phone && (
+                <div class="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <span>{customerData.phone}</span>
+                </div>
+              )
+            }
+            {
+              customerData?.direccionCalle && (
+                <div class="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-muted-foreground" />
+                  <span class="text-sm">
+                    {customerData.direccionCalle} {customerData.direccionNumero}, {customerData.ciudad}
+                  </span>
+                </div>
+              )
+            }
           </CardContent>
         </Card>
       </div>
@@ -220,7 +230,7 @@ const checkoutData = {
       form.addEventListener('change', (e) => {
         const target = e.target as HTMLInputElement;
         if (!target || !target.name) return;
-        
+
         if (target.name === 'shipping_cost' && shippingCostEl) {
           shippingCostEl.textContent = '$' + parseFloat(target.value).toFixed(2);
         }
@@ -233,13 +243,13 @@ const checkoutData = {
       form.addEventListener('submit', (e) => {
         const hasShipping = document.querySelector('input[name="shipping_method"]:checked');
         const hasPayment = document.querySelector('input[name="payment_method"]:checked') as HTMLInputElement;
-        
+
         if (!hasShipping || !hasPayment) {
           e.preventDefault();
           alert('Por favor, completa todos los campos requeridos.');
           return;
         }
-        
+
         // Validar archivo para transferencia
         if (hasPayment.value === 'transferencia') {
           const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;

@@ -122,14 +122,26 @@ const metadata = {
                 </p>
               )
             }
+
             {
-              order?.shipping_address &&
+              order?.shipping_method === 'retiro_local' && (
+                <div>
+                  <p class="font-medium">Dirección de envío:</p>
+                  <p class="text-sm"> Retiro en el local</p>
+                </div>
+              )
+            }
+
+            {
+              (order?.shipping_method === 'correo' || order?.shipping_method === 'uber') &&
+                order?.shipping_address &&
                 typeof order.shipping_address === 'object' &&
                 'direccion' in order.shipping_address && (
                   <div>
                     <p class="font-medium">Dirección de envío:</p>
                     <p class="text-sm">
-                      {order.shipping_address.direccion}, {order.shipping_address.ciudad}
+                      {order.shipping_address.direccion}, {order.shipping_address.numero},{' '}
+                      {order.shipping_address.ciudad}
                     </p>
                   </div>
                 )
@@ -198,10 +210,23 @@ const metadata = {
                 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <h4 class="font-medium text-blue-800 mb-2">Próximos pasos:</h4>
                   <ol class="text-sm space-y-2">
-                    <li>1. Realiza la transferencia con los datos proporcionados</li>
-                    <li>2. Envía el comprobante a "simplex.parana@gmail.com"</li>
-                    <li>3. Envía el comprobante al WhattsApp: 3434718183</li>
-                    <li>4. Tu pedido será procesado una vez verificado</li>
+                    <li>1. Envía el comprobante a "simplex.parana@gmail.com"</li>
+                    <li>2. Envía el comprobante al WhattsApp: 3434718183</li>
+                    <li>3. Tu pedido será procesado una vez verificado</li>
+                  </ol>
+                </div>
+              )
+            }
+
+            {
+              order?.payment_method === 'efectivo' && (
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 class="font-medium text-blue-800 mb-2">Próximos pasos:</h4>
+                  <ol class="text-sm space-y-2">
+                    <li>1. Envía un correo a "simplex.parana@gmail.com"</li>
+                    <li>2. Envía un mensaje al WhattsApp: 3434718183</li>
+                    <li>3. Comunicanos tu pedido para prepararlo</li>
+                    <li>4. Retiro en Grella 1593. Lunes a viernes de 16 a 20hs.</li>
                   </ol>
                 </div>
               )

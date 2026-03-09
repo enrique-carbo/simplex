@@ -120,6 +120,14 @@ function getOrderStatus(status: string) {
               <dd>{new Date(order.created).toLocaleDateString()}</dd>
             </div>
             <div>
+              <dt class="text-sm text-muted-foreground">Pago</dt>
+              <dd class="font-mono text-sm">{order.payment_method}</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-muted-foreground">Envío</dt>
+              <dd class="font-mono text-sm">{order.shipping_method}</dd>
+            </div>
+            <div>
               <dt class="text-sm text-muted-foreground">Última actualización</dt>
               <dd>{new Date(order.updated).toLocaleDateString()}</dd>
             </div>

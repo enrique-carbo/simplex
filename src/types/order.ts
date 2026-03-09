@@ -15,6 +15,7 @@ export interface OrderItem {
 export interface ShippingAddress {
   direccion?: string;
   ciudad?: string;
+  numero?: string;
   codigo_postal?: string;
   telefono?: string;
   notas?: string;
@@ -54,6 +55,6 @@ export interface Order extends RecordModel {
       id: string;
       email: string;
       username?: string;
-    }
+    };
   };
 }

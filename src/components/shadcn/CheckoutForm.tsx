@@ -7,13 +7,14 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Truck, CreditCard } from 'lucide-react';
+import { Truck, CreditCard, AlertCircle } from 'lucide-react'; // Añadido AlertCircle para advertencias
 import { checkoutConfig } from '@/lib/checkout';
 
 interface CheckoutFormProps {
   orderTotal: number;
   customerData?: {
     direccionCalle?: string;
+    direccionNumero?: string;
     ciudad?: string;
     phone?: string;
   } | null;
@@ -26,29 +27,38 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
 
   const shippingCosts = checkoutConfig.shippingCosts;
 
+  // Lógica de restricción
+  const isCashAllowed = shippingMethod === 'retiro_local';
+
   const transferData = {
     cvu: import.meta.env.PUBLIC_TRANSFER_CVU,
     alias: import.meta.env.PUBLIC_TRANSFER_ALIAS,
     razonSocial: import.meta.env.PUBLIC_TRANSFER_RAZON_SOCIAL,
-    cuit: import.meta.env.PUBLIC_TRANSFER_CUIT
+    cuit: import.meta.env.PUBLIC_TRANSFER_CUIT,
   };
 
   useEffect(() => {
     const cost = shippingCosts[shippingMethod as keyof typeof shippingCosts] || 0;
     setShippingCost(cost);
-    
-    // Actualizar totales visibles
+
+    // REGLA DE NEGOCIO: Si el usuario cambia a un método de envío que no permite efectivo
+    // y tenía efectivo seleccionado, forzamos el cambio a transferencia.
+    if (!isCashAllowed && paymentMethod === 'efectivo') {
+      setPaymentMethod('transferencia');
+    }
+
+    // Actualizar totales visibles en el layout de Astro
     const shippingCostEl = document.getElementById('shipping-cost');
     const totalWithShippingEl = document.getElementById('total-with-shipping');
-    
+
     if (shippingCostEl) {
       shippingCostEl.textContent = `$${cost.toFixed(2)}`;
     }
-    
+
     if (totalWithShippingEl) {
       totalWithShippingEl.textContent = `$${(orderTotal + cost).toFixed(2)}`;
     }
-  }, [shippingMethod, orderTotal, shippingCosts]);
+  }, [shippingMethod, paymentMethod, orderTotal, shippingCosts, isCashAllowed]);
 
   const showAddressFields = shippingMethod !== 'retiro_local';
   const showTransferFields = paymentMethod === 'transferencia';
@@ -65,64 +75,80 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
           <CardDescription>Selecciona cómo quieres recibir tu pedido</CardDescription>
         </CardHeader>
         <CardContent>
-          <RadioGroup 
-            value={shippingMethod} 
-            onValueChange={setShippingMethod} 
-            name="shipping_method" 
-            required 
+          <RadioGroup
+            value={shippingMethod}
+            onValueChange={setShippingMethod}
+            name="shipping_method"
+            required
             className="space-y-3"
           >
-            <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-gray-400 cursor-pointer">
+            <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-muted/50 cursor-pointer">
               <RadioGroupItem value="correo" id="correo" />
               <div className="flex-1">
-                <Label htmlFor="correo" className="font-medium cursor-pointer">Correo Argentino</Label>
+                <Label htmlFor="correo" className="font-medium cursor-pointer">
+                  Correo Argentino
+                </Label>
                 <p className="text-sm text-muted-foreground">Envío a domicilio en 5-10 días hábiles</p>
               </div>
               <Badge variant="outline">${shippingCosts.correo.toFixed(2)}</Badge>
             </div>
-            
-            <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-gray-400 cursor-pointer">
+
+            <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-muted/50 cursor-pointer">
               <RadioGroupItem value="uber" id="uber" />
               <div className="flex-1">
-                <Label htmlFor="uber" className="font-medium cursor-pointer">Uber/Delivery</Label>
+                <Label htmlFor="uber" className="font-medium cursor-pointer">
+                  Uber/Delivery
+                </Label>
                 <p className="text-sm text-muted-foreground">Entrega en 48 hs en Paraná (16 a 20 hs)</p>
               </div>
               <Badge variant="outline">${shippingCosts.uber.toFixed(2)}</Badge>
             </div>
-            
-            <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-gray-400 cursor-pointer">
+
+            <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-muted/50 cursor-pointer">
               <RadioGroupItem value="retiro_local" id="retiro_local" />
               <div className="flex-1">
-                <Label htmlFor="retiro_local" className="font-medium cursor-pointer">Retiro en Local</Label>
+                <Label htmlFor="retiro_local" className="font-medium cursor-pointer">
+                  Retiro en Local
+                </Label>
                 <p className="text-sm text-muted-foreground">Padre Grella 1593, Paraná. Lunes a Viernes 16-20hs</p>
               </div>
               <Badge variant="outline">Gratis</Badge>
             </div>
           </RadioGroup>
         </CardContent>
-        </Card>  
+      </Card>
 
-        <Card>
-          <CardContent>
-          {/* Datos de envío (condicional) */}
+      <Card>
+        <CardContent>
           {showAddressFields && (
             <div className="mt-6 space-y-4">
               <h4 className="font-extrabold text-lg">Dirección de entrega</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="direccion">Dirección</Label>
-                  <Input 
-                    id="direccion" 
+                  <Input
+                    id="direccion"
                     name="shipping_address[direccion]"
-                    placeholder="Calle y número"
+                    placeholder="Calle"
                     defaultValue={customerData?.direccionCalle || ''}
                     required={showAddressFields}
                   />
                 </div>
                 <div className="space-y-2">
+                  <Label htmlFor="direccion_numero">Número</Label>
+                  <Input
+                    id="direccion_numero"
+                    name="shipping_address[numero]"
+                    placeholder="Número"
+                    defaultValue={customerData?.direccionNumero || ''}
+                    required={showAddressFields}
+                  />
+                </div>
+                {/* ... (resto de campos de dirección sin cambios) */}
+                <div className="space-y-2">
                   <Label htmlFor="ciudad">Ciudad</Label>
-                  <Input 
-                    id="ciudad" 
+                  <Input
+                    id="ciudad"
                     name="shipping_address[ciudad]"
                     placeholder="Ciudad"
                     defaultValue={customerData?.ciudad || ''}
@@ -131,20 +157,10 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="codigo_postal">Código Postal</Label>
-                  <Input 
-                    id="codigo_postal" 
+                  <Input
+                    id="codigo_postal"
                     name="shipping_address[codigo_postal]"
                     placeholder="CP"
-                    required={showAddressFields}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="telefono_contacto">Teléfono de Contacto</Label>
-                  <Input 
-                    id="telefono_contacto" 
-                    name="shipping_address[telefono]"
-                    placeholder="+54 9 11 1234-5678"
-                    defaultValue={customerData?.phone || ''}
                     required={showAddressFields}
                   />
                 </div>
@@ -166,27 +182,43 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
           <CardDescription>Selecciona cómo quieres pagar</CardDescription>
         </CardHeader>
         <CardContent>
-          <RadioGroup 
-            value={paymentMethod} 
-            onValueChange={setPaymentMethod} 
-            name="payment_method" 
-            required 
+          <RadioGroup
+            value={paymentMethod}
+            onValueChange={setPaymentMethod}
+            name="payment_method"
+            required
             className="space-y-3"
           >
-            <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-gray-400 cursor-pointer">
+            {/* Opción Transferencia */}
+            <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-muted/50 cursor-pointer">
               <RadioGroupItem value="transferencia" id="transferencia" />
               <div className="flex-1">
-                <Label htmlFor="transferencia" className="font-medium cursor-pointer">Transferencia Bancaria</Label>
+                <Label htmlFor="transferencia" className="font-medium cursor-pointer">
+                  Transferencia Bancaria
+                </Label>
                 <p className="text-sm text-muted-foreground">Realiza la transferencia y envía el comprobante</p>
               </div>
             </div>
-            
-            <div className="flex items-center space-x-3 border rounded-lg p-4 hover:bg-gray-400 cursor-pointer">
-              <RadioGroupItem value="efectivo" id="efectivo" />
+
+            {/* Opción Efectivo - Con Lógica de Bloqueo */}
+            <div
+              className={`flex items-center space-x-3 border rounded-lg p-4 transition-colors ${
+                !isCashAllowed ? 'opacity-50 bg-muted cursor-not-allowed' : 'hover:bg-muted/50 cursor-pointer'
+              }`}
+            >
+              <RadioGroupItem value="efectivo" id="efectivo" disabled={!isCashAllowed} />
               <div className="flex-1">
-                <Label htmlFor="efectivo" className="font-medium cursor-pointer">Efectivo</Label>
-                <p className="text-sm text-muted-foreground">Solo disponible para retiro en local</p>
+                <Label
+                  htmlFor="efectivo"
+                  className={`font-medium ${!isCashAllowed ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                >
+                  Efectivo
+                </Label>
+                <p className="text-sm text-muted-foreground">
+                  {!isCashAllowed ? 'Solo disponible retirando en el local' : 'Pagas al momento de retirar en el local'}
+                </p>
               </div>
+              {!isCashAllowed && <AlertCircle className="h-4 w-4 text-orange-500" />}
             </div>
           </RadioGroup>
 
@@ -214,39 +246,31 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
                   </div>
                 </div>
               </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="comprobante" className='font-extrabold text-lg'>
-                  Comprobante de Transferencia
+
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="space-y-2">
+                  <Label htmlFor="comprobante" className="font-extrabold text-lg">
+                    Comprobante de Transferencia
                   </Label>
-                <Input 
-                  id="comprobante" 
-                  name="payment_receipt"
-                  type="file"
-                  accept="image/*,.pdf"
-                  required={showTransferFields}
-                />
-                <p className="text-xs text-muted-foreground">Subí una foto o PDF del comprobante (máx. 1MB)</p>
+                  <Input
+                    id="comprobante"
+                    name="payment_receipt"
+                    type="file"
+                    accept="image/*,.pdf"
+                    required={showTransferFields}
+                  />
+                  <p className="text-xs text-muted-foreground">Subí una foto o PDF del comprobante (máx. 1MB)</p>
+                </div>
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="cbu_cliente">Tu CBU (opcional)</Label>
-                <Input 
-                  id="cbu_cliente" 
-                  name="cbu"
-                  placeholder="0000000000000000000000"
-                  maxLength={22}
-                />
+                <Input id="cbu_cliente" name="cbu" placeholder="0000000000000000000000" maxLength={22} />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="alias_cliente">Tu Alias (opcional)</Label>
-                <Input 
-                  id="alias_cliente" 
-                  name="alias"
-                  placeholder="tualias.bancario"
-                  maxLength={30}
-                />
+                <Input id="alias_cliente" name="alias" placeholder="tualias.bancario" maxLength={30} />
               </div>
             </div>
           )}

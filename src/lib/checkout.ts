@@ -1,11 +1,11 @@
 export const checkoutConfig = {
   shippingCosts: {
-    correo: 10000,
+    correo: 12000,
     uber: 8000,
-    retiro_local: 0
+    retiro_local: 0,
   },
-  
+
   // Configuraciones adicionales
   maxFileSize: 1 * 1024 * 1024, // 1MB
-  allowedFileTypes: ['image/jpeg', 'image/webp', 'image/jpg', 'application/pdf']
+  allowedFileTypes: ['image/jpeg', 'image/webp', 'image/jpg', 'application/pdf'],
 } as const;
