@@ -230,26 +230,26 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-blue-700">CVU:</span>
-                    <span className="font-mono font-bold">{transferData.cvu}</span>
+                    <span className="font-mono font-bold text-gray-900">{transferData.cvu}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-blue-700">Alias:</span>
-                    <span className="font-bold">{transferData.alias}</span>
+                    <span className="font-bold text-gray-900">{transferData.alias}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-blue-700">Razón Social:</span>
-                    <span>{transferData.razonSocial}</span>
+                    <span className="text-gray-900">{transferData.razonSocial}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-blue-700">CUIT:</span>
-                    <span>{transferData.cuit}</span>
+                    <span className="text-gray-900">{transferData.cuit}</span>
                   </div>
                 </div>
               </div>
 
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <div className="space-y-2">
-                  <Label htmlFor="comprobante" className="font-extrabold text-lg">
+                  <Label htmlFor="comprobante" className="font-extrabold text-lg text-gray-900">
                     Comprobante de Transferencia
                   </Label>
                   <Input
@@ -259,7 +259,9 @@ export default function CheckoutForm({ orderTotal, customerData }: CheckoutFormP
                     accept="image/*,.pdf"
                     required={showTransferFields}
                   />
-                  <p className="text-xs text-muted-foreground">Subí una foto o PDF del comprobante (máx. 1MB)</p>
+                  <p className="text-xs text-muted-foreground text-gray-900">
+                    Subí una foto o PDF del comprobante (máx. 1MB)
+                  </p>
                 </div>
               </div>
 
