@@ -1,27 +1,30 @@
 ---
 import { SITE } from 'astrowind:config';
-import { Image } from 'astro:assets';
 import logoSimplexLight from '@/assets/images/logo-simplex-blanco.svg';
-import logoSimplexDark from '@/assets/images/logo-simplex-black.svg'; 
+import logoSimplexDark from '@/assets/images/logo-simplex-black.svg';
 ---
 
 <div class="flex items-center">
   <div class="logo-container">
     <div class="hidden md:block">
-    <Image 
-      src={logoSimplexDark} 
-      alt="Simplex Logo Dark" 
-      width="75" 
-      height="70"
-      class="block dark:hidden"
-    />
-    <Image 
-      src={logoSimplexLight} 
-      alt="Simplex Logo Light" 
-      width="75" 
-      height="70"
-      class="hidden dark:block"
-    />
+      <img
+        src={logoSimplexDark.src}
+        alt="Simplex Logo Dark"
+        width="75"
+        height="70"
+        class="block dark:hidden"
+        loading="eager"
+        decoding="sync"
+      />
+      <img
+        src={logoSimplexLight.src}
+        alt="Simplex Logo Light"
+        width="75"
+        height="70"
+        class="hidden dark:block"
+        loading="eager"
+        decoding="sync"
+      />
     </div>
   </div>
   <span
