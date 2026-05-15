@@ -139,7 +139,7 @@
     "sizes": [
       { "size": "38", "quantity": 1 },
       { "size": "40", "quantity": 1 },
-      { "size": "42", "quantity": 1 },
+      { "size": "42", "quantity": 0 },
       { "size": "44", "quantity": 1 },
       { "size": "46", "quantity": 0 },
       { "size": "48", "quantity": 1 }
@@ -216,11 +216,11 @@
     "listPrice": 35000,
     "image": "/images/products/rasta/jogging-algodon/Jogging-algodon-melange.webp",
     "category": "pantalones",
-    "inStock": true,
+    "inStock": false,
     "sizes": [
       { "size": "S", "quantity": 0 },
       { "size": "M", "quantity": 0 },
-      { "size": "L", "quantity": 1 }
+      { "size": "L", "quantity": 0 }
     ]
   },
   {
